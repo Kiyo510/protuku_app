@@ -45,6 +45,7 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'erb_lint', require: false
   gem 'ast', '~> 2.4', '>= 2.4.1'
+  gem 'faker', '~> 2.12'
 end
 
 group :test do
