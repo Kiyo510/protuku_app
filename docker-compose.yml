@@ -8,6 +8,7 @@ services:
     command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/webapp
+      - bundle:/bundle
       - public-data:/webapp/public
       - tmp-data:/webapp/tmp
       - log-data:/webapp/log
@@ -34,3 +35,5 @@ volumes:
   tmp-data:
   log-data:
   db-data:
+  bundle:
+    driver: local
