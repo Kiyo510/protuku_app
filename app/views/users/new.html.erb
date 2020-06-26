@@ -1,0 +1,55 @@
+<div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport uk-animation-fade>
+  <div class="uk-width-1-1">
+    <div class="uk-container">
+      <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+        <div class="uk-width-5-6 uk-margin-auto">
+          <div class="uk-card uk-card-default uk-card-large uk-grid-collapse uk-child-width-1-2@s uk-margin uk-border-rounded" uk-grid>
+            <div class="uk-flex-last@s uk-card-media-right uk-cover-container">
+              <img src="https://picsum.photos/2900/4334?image=870" alt="" uk-cover>
+              <canvas width="600" height="400"></canvas>
+            </div>
+            <div>
+              <div class="uk-card-body">
+                <h3 class="uk-card-title uk-text-bold uk-text-uppercase uk-text-primary">ユーザー登録（無料）</h3>
+                <%= form_with(model: @user, local: true) do |f| %>
+                <div class="uk-margin">
+                  <%= f.label :ニックネーム, class: "uk-form-label" %>
+                  <div class="uk-form-controls">
+                    <%= f.text_field :nickname, class: "uk-input" %>
+                  </div>
+                </div>
+                <div class="uk-margin">
+                  <%= f.label :Eメール, class: "uk-form-label" %>
+                  <div class="uk-form-controls">
+                    <%= f.email_field :email, class: "uk-input" %>
+                  </div>
+                </div>
+                <div class="uk-margin">
+                  <%= f.label :パスワード, class: "uk-form-label" %>
+                  <div class="uk-form-controls">
+                    <%=f.password_field :password, class: "uk-input"%>
+                  </div>
+                </div>
+                <div class="uk-margin">
+                  <%= f.label :パスワード確認, class: "uk-form-label" %>
+                  <div class="uk-form-controls">
+                    <%=f.password_field :password_confirmation, class: "uk-input"%>
+                  </div>
+                </div>
+                <small class="uk-flex uk-flex-middle uk-margin-small-top">Minimum 6 characters, at least one letter and one number.</small>
+              </div>
+              <div class="uk-margin">
+                <div class="uk-form-controls">
+                  <label><input class="uk-checkbox uk-margin-small-right" type="checkbox"><small>Accept our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</small></label>
+                </div>
+              </div>
+              <%= f.submit "ユーザー登録", class: "uk-button uk-button-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
