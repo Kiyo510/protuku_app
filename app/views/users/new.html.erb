@@ -16,24 +16,36 @@
                   <%= f.label :ニックネーム, class: "uk-form-label" %>
                   <div class="uk-form-controls">
                     <%= f.text_field :nickname, class: "uk-input" %>
+                    <% if @user.errors.include?(:nickname) %>
+                    <p style="color: red;"><%= @user.errors.full_messages_for(:nickname).first %>
+                      <% end %>
                   </div>
                 </div>
                 <div class="uk-margin">
                   <%= f.label :Eメール, class: "uk-form-label" %>
                   <div class="uk-form-controls">
                     <%= f.email_field :email, class: "uk-input" %>
+                    <% if @user.errors.include?(:email) %>
+                    <p style="color: red;"><%= @user.errors.full_messages_for(:email).first %>
+                      <% end %>
                   </div>
                 </div>
                 <div class="uk-margin">
                   <%= f.label :パスワード, class: "uk-form-label" %>
                   <div class="uk-form-controls">
                     <%=f.password_field :password, class: "uk-input"%>
+                    <% if @user.errors.include?(:password) %>
+                    <p style="color: red;"><%= @user.errors.full_messages_for(:password).first %>
+                      <% end %>
                   </div>
                 </div>
                 <div class="uk-margin">
                   <%= f.label :パスワード確認, class: "uk-form-label" %>
                   <div class="uk-form-controls">
-                    <%=f.password_field :password_confirmation, class: "uk-input"%>
+                    <%=f.password_field :password, class: "uk-input"%>
+                    <% if @user.errors.include?(:password) %>
+                    <p style="color: red;"><%= @user.errors.full_messages_for(:password).first %>
+                      <% end %>
                   </div>
                 </div>
                 <small class="uk-flex uk-flex-middle uk-margin-small-top">Minimum 6 characters, at least one letter and one number.</small>
