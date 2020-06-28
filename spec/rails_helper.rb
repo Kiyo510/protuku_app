@@ -6,6 +6,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'factory_bot'
 require 'faker'
+require 'capybara/rspec'
+
  Dir[Rails.root.join("spec/support/**/*.rb")].each { |file| require file}
  begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -22,6 +24,7 @@ end
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.inculde FactoryBot::Syntax::Methods
+  config.include TestHelper #作成したヘルパーを追加
 end
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
