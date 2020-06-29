@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_28_154704) do
+ActiveRecord::Schema.define(version: 2020_06_29_072548) do
+
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.integer "price"
+    t.integer "saler_id"
+    t.integer "buyer_id"
+    t.string "region"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "index_items_on_created_at"
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname"
@@ -28,4 +42,5 @@ ActiveRecord::Schema.define(version: 2020_06_28_154704) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "items", "users"
 end
