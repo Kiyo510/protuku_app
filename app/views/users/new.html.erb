@@ -9,9 +9,9 @@
               <canvas width="600" height="400"></canvas>
             </div>
             <div>
+              <%= form_with(model: @user, local: true) do |f| %>
               <div class="uk-card-body">
                 <h3 class="uk-card-title uk-text-bold uk-text-uppercase uk-text-primary">ユーザー登録（無料）</h3>
-                <%= form_with(model: @user, local: true) do |f| %>
                 <div class="uk-margin">
                   <%= f.label :ニックネーム, class: "uk-form-label" %>
                   <div class="uk-form-controls">
