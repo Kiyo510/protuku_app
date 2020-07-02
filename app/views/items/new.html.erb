@@ -1,7 +1,7 @@
-<%= form_with(model: @item, local: true) do |f| %>
 <div class="uk-form">
   <fieldset data-uk-margin>
     <legend>出品ページ</legend>
+    <%= form_with(model: @item, local: true) do |f| %>
     <div class="uk-form-row">
       <%= f.label :タイトル %>
       <%= f.text_field :title, placeholder: "タイトルを入力" %>
@@ -16,8 +16,8 @@
     </div>
     <div class="uk-form-row">
       <%= f.select :region, [["--", 0],["東京", 1],["三重", 2],["静岡",3],["愛知",4]] %>
-      </div>
-      <%= f.submit "出品する", disable_with: '出品中...', class: "uk-button" %>
+    </div>
+    <%= f.submit "出品する", disable_with: '出品中...', class: "uk-button" %>
+    <% end %>
   </fieldset>
 </div>
-<% end %>

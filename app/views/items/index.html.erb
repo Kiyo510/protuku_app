@@ -1,6 +1,24 @@
-<% @items.each do |item| %>
-  <p><%= item.title %></p>
-  <p><%= item.content %></p>
-  <p><%= item.price %></p>
-  <p><%= item.region %></p>
-<% end %>
+<div class="uk-section uk-section-small">
+  <div class="uk-text-center" uk-grid>
+    <div class="uk-width-1-4@m">
+      <div class="uk-card uk-card-default uk-card-body">サイドバー</div>
+    </div>
+    <div class="uk-width-expand@m">
+      <div class="uk-card uk-card-default uk-card-body">
+        <h2>投稿一覧ページ</h2>
+        <hr>
+        <div uk-grid>
+          <div class="uk-width-1-6">画像</div>
+          <div class="uk-width-expand@m  uk-text-left">
+            <ul>
+             <li>タイトル</li>
+             <li>内容</li>
+             <li>価格</li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
