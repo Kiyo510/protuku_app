@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'rooms/index'
+  get 'rooms/show'
   root 'home#home'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
@@ -7,4 +9,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   resources :users
   resources :items
+  resources :messages, only: [:create]
+  resources :rooms, only: [:show, :create]
 end

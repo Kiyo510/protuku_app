@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
   has_many :items
   before_save { self.email = email.downcase }
   validates :nickname, presence: true, length: { maximum: 30 }

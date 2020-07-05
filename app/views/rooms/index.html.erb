@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th> | メッセージ相手</th>
+      <th>| メッセージ内容</th>
+    </tr>
+  </thead>
+  <% @another_entries.each do |entry| %>
+  <tbody>
+    <td><%= link_to entry.user.nickname, user_path(entry.user) %></td>
+    <td><%= link_to room_path(entry.room) do %>
+    <%
+=begin%>
+    最後に送られたメッセージを表示
+    <%
+=end%>
+    <%= Message.find_by(id: entry.room.message_ids.last)&.content %></td>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>

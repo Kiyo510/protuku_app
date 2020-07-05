@@ -11,9 +11,15 @@
           <div class="uk-width-1-6">画像</div>
           <div class="uk-width-expand@m  uk-text-left">
             <ul>
-             <li>タイトル</li>
-             <li>内容</li>
-             <li>価格</li>
+              <% @items.each do |item| %>
+              <hr>
+              <p><%= item.title %></p>
+              <p><%= item.content %></p>
+              <p><%= item.price %></p>
+              <p><%= item.region %></p>
+              <p><%= link_to item.user.nickname, user_path(item.user_id) %></p>
+              <% end %>
+              <hr>
             </ul>
           </div>
         </div>
