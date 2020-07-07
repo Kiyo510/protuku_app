@@ -1,0 +1,21 @@
+.uk-section.uk-section-small
+  .uk-text-center{"uk-grid" => ""}
+    %div{:class => "uk-width-1-4@m"}
+      .uk-card.uk-card-default.uk-card-body サイドバー
+    %div{:class => "uk-width-expand@m"}
+      .uk-card.uk-card-default.uk-card-body
+        %h2 投稿一覧ページ
+        %hr/
+        %div{"uk-grid" => ""}
+          .uk-width-1-6 画像
+          .uk-text-left{:class => "uk-width-expand@m"}
+            %ul
+              - @items.each do |item|
+                %hr/
+                %p= item.title
+                %p= item.content
+                %p= item.price
+                %p= item.region
+                %p= link_to item.user.nickname, user_path(item.user_id)
+              %hr/
+        %hr/

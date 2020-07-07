@@ -1,0 +1,23 @@
+= form_with(url: login_path, scope: :session, local: true) do |f|
+  .uk-section.uk-section-muted.uk-flex.uk-flex-middle.uk-animation-fade{"uk-height-viewport" => ""}
+    .uk-width-1-1
+      .uk-container
+        .uk-grid-margin.uk-grid.uk-grid-stack{"uk-grid" => ""}
+          %div{:class => "uk-width-1-1@m"}
+            .uk-margin.uk-width-large.uk-margin-auto.uk-card.uk-card-default.uk-card-body.uk-box-shadow-large
+              %h3.uk-card-title.uk-text-center 〇〇にログイン
+              .uk-margin
+                .uk-inline.uk-width-1-1
+                  %span.uk-form-icon{"uk-icon" => "icon: mail"}
+                  = f.label :email
+                  = f.email_field :email, class: 'uk-input uk-form-large'
+              .uk-margin
+                .uk-inline.uk-width-1-1
+                  %span.uk-form-icon{"uk-icon" => "icon: lock"}
+                  = f.label :password
+                  = f.password_field :password, class: 'uk-input uk-form-large'
+              .uk-margin
+                = f.submit "ログイン", class: 'uk-button uk-button-primary uk-button-large uk-width-1-1"'
+              .uk-text-small.uk-text-center
+                %p
+                  アカウントをお持ちでない場合は#{link_to  "こちら", signup_path}

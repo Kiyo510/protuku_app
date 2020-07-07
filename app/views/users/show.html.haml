@@ -1,0 +1,10 @@
+= @user.nickname
+= link_to  "メッセージ一覧", rooms_index_path
+- unless @user.id == current_user.id
+  - if @is_room == true
+    = link_to 'メッセージ', room_path(@room_id), class: 'btn-sm btn-success'
+  - else
+    = form_with model: @room, url: rooms_path, local: true do |f|
+      = fields_for @entry do |e|
+        = e.hidden_field :user_id, value: @user.id
+        = f.submit 'メッセージ', class: 'btn-sm btn-success'
