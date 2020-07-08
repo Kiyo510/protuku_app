@@ -1,12 +1,13 @@
 class Item < ApplicationRecord
    belongs_to :user
+   has_one_attached :image
   # アソシエーションを設定する
   has_many :stocks, dependent: :destroy
   # 投稿記事が誰にストックされているかを取得できる
   has_many :stock_users, through: :stocks, source: :user
 
   validates :title, presence: true, length: { maximum: 35 }
-  validates :contenet, presence: true, length: { maximum: 10000 }
+  validates :content, presence: true, length: { maximum: 10000 }
 
 
   # 現在ログインしているユーザーidを受け取り、記事をストックする

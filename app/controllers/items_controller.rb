@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.image.attach(params[:item][:image])
     @item.user_id = current_user.id
     if @item.save
       redirect_to items_path
@@ -25,7 +26,7 @@ class ItemsController < ApplicationController
 
     private
       def item_params
-        params.require(:item).permit(:title, :content, :price, :region)
+        params.require(:item).permit(:title, :content, :price, :region, :image)
       end
 
 end

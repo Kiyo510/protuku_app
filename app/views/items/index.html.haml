@@ -8,7 +8,11 @@
         %hr/
         - @items.each do |item|
           %div{"uk-grid" => ""}
-            .uk-width-1-6 画像
+            .uk-width-1-6
+              - if item.image.attached?
+                = image_tag item.image, alt: '投稿画像', class: 'uk-align-center uk-text-center'
+              - else
+                = image_tag '/assets/noimage.png', alt: '投稿画像', class: 'uk-align-center uk-text-center'
             .uk-text-left{:class => "uk-width-expand@m"}
               %ul
                 %p= link_to item.title, item_path(item)
