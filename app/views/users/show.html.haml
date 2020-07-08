@@ -8,3 +8,5 @@
       = fields_for @entry do |e|
         = e.hidden_field :user_id, value: @user.id
         = f.submit 'メッセージ', class: 'btn-sm btn-success'
+%ol.stocks
+  = render partial: 'stocks/stock'
