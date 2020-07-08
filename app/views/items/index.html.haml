@@ -6,16 +6,14 @@
       .uk-card.uk-card-default.uk-card-body
         %h2 投稿一覧ページ
         %hr/
-        %div{"uk-grid" => ""}
-          .uk-width-1-6 画像
-          .uk-text-left{:class => "uk-width-expand@m"}
-            %ul
-              - @items.each do |item|
-                %hr/
-                %p= item.title
+        - @items.each do |item|
+          %div{"uk-grid" => ""}
+            .uk-width-1-6 画像
+            .uk-text-left{:class => "uk-width-expand@m"}
+              %ul
+                %p= link_to item.title, item_path(item)
                 %p= item.content
                 %p= item.price
                 %p= item.region
                 %p= link_to item.user.nickname, user_path(item.user_id)
-              %hr/
-        %hr/
+          %hr/

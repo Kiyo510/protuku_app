@@ -19,6 +19,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    #ストック一覧を取得
+    stock_items = Stock.get_stock_items(current_user)
+    @stock_items = Kaminari.paginate_array(stock_items).page(params[:page]).per(10)
     @user = User.find(params[:id])
     # Entryモデルからログインユーザーのレコードを抽出
     @current_entry = Entry.where(user_id: current_user.id)
