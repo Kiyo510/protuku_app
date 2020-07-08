@@ -23,8 +23,11 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 # Use haml as a template engine
 gem 'haml-rails'
-
-
+# Use kaminari for a pagenation
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
+# Use fontawesome
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
+# Use jquery-rails
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
