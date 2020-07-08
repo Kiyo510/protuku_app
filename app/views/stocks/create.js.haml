@@ -1,0 +1,1 @@
+$("#item-#{@item.id} .stock").html("#{escape_javascript(render partial: 'stocks/stock_btn', locals: { item: @item })}");
