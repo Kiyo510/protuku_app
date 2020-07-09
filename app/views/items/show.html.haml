@@ -5,5 +5,5 @@
   = render partial: 'stocks/stock_btn', locals: { item: @item }
 
   -# twitterシェア
-= link_to "https://twitter.com/share?url=#{request.url}", title: 'Twitter', target: 'blank' do
+= link_to "https://twitter.com/intent/tweet?url=#{request.url}/&hashtags=宿題代行", title: 'Twitter', target: 'blank' do
   = fa_icon 'twitter'
