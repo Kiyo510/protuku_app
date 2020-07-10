@@ -8,7 +8,5 @@
       %td= link_to entry.user.nickname, user_path(entry.user)
       %td
         = link_to room_path(entry.room) do
-          - =begin
-          最後に送られたメッセージを表示
-          - =end
+          -#最後に送られたメッセージを表示
           = Message.find_by(id: entry.room.message_ids.last)&.content
