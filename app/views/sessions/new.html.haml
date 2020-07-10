@@ -17,6 +17,10 @@
                   = f.label :password
                   = f.password_field :password, class: 'uk-input uk-form-large'
               .uk-margin
+                .uk-inline.uk-width-1-1
+                  = f.check_box :remember_me, class: "uk-checkbox"
+                  %span.uk-text-small 次回から自動ログインする
+              .uk-margin
                 = f.submit "ログイン", class: 'uk-button uk-button-primary uk-button-large uk-width-1-1"'
               .uk-text-small.uk-text-center
                 %p

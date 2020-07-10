@@ -32,13 +32,6 @@
                       - if @user.errors.include?(:password)
                         %p{:style => "color: red;"}
                           = @user.errors.full_messages_for(:password).first
-                  .uk-margin
-                    = f.label :パスワード確認, class: "uk-form-label"
-                    .uk-form-controls
-                      = f.password_field :password, class: "uk-input"
-                      - if @user.errors.include?(:password)
-                        %p{:style => "color: red;"}
-                          = @user.errors.full_messages_for(:password).first
                   %small.uk-flex.uk-flex-middle.uk-margin-small-top Minimum 6 characters, at least one letter and one number.
                 .uk-margin
                   .uk-form-controls
@@ -46,8 +39,8 @@
                       %input.uk-checkbox.uk-margin-small-right{:type => "checkbox"}/
                       %small
                         Accept our
-                        %a{:href => "#"} Terms of Service
+                        %a{:href => "#"} 利用規約
                         and
                         = succeed "." do
-                          %a{:href => "#"} Privacy Policy
+                          %a{:href => "#"} プライバシーポリシー
                 = f.submit "ユーザー登録", class: "uk-button uk-button-primary"
