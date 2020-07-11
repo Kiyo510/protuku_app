@@ -32,7 +32,7 @@ module SessionsHelper
    def forget(user)
      user.forget
      cookies.delete(:user_id)
-     cokkies.delete(:remember_token)
+     cookies.delete(:remember_token)
    end
 
   #ユーザーのセッションを削除してログアウトする
