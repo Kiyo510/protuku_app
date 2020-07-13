@@ -1,2 +1,33 @@
-%h1 Users#edit
-%p Find me in app/views/users/edit.html.erb
+.uk-section.uk-section-muted.uk-flex.uk-flex-middle.uk-animation-fade{"uk-animation-fade" => "", "uk-height-viewport" => ""}
+  .uk-width-1-1
+    .uk-container
+      .uk-grid-margin.uk-grid.uk-grid-stack{"uk-grid" => ""}
+        .uk-width-5-6.uk-margin-auto
+          .uk-card.uk-card-default.uk-card-large.uk-margin.uk-border-rounded{:class => "uk-child-width-1-2@s", "uk-grid" => ""}
+            %div
+              = form_with(model: @user, local: true) do |f|
+                .uk-card-body
+                  %h3.uk-card-title.uk-text-bold.uk-text-uppercase.uk-text-primary ユーザー登録情報の編集
+                  .uk-margin
+                    = f.label :ニックネーム, class: "uk-form-label"
+                    .uk-form-controls
+                      = f.text_field :nickname, class: "uk-input"
+                      - if @user.errors.include?(:nickname)
+                        %p{:style => "color: red;"}
+                          = @user.errors.full_messages_for(:nickname).first
+                  .uk-margin
+                    = f.label :Eメール, class: "uk-form-label"
+                    .uk-form-controls
+                      = f.email_field :email, class: "uk-input"
+                      - if @user.errors.include?(:email)
+                        %p{:style => "color: red;"}
+                          = @user.errors.full_messages_for(:email).first
+                  .uk-margin
+                    = f.label :パスワード, class: "uk-form-label"
+                    .uk-form-controls
+                      = f.password_field :password, class: "uk-input"
+                      - if @user.errors.include?(:password)
+                        %p{:style => "color: red;"}
+                          = @user.errors.full_messages_for(:password).first
+                  %small.uk-flex.uk-flex-middle.uk-margin-small-top Minimum 6 characters, at least one letter and one number.
+                  = f.submit "登録情報を更新", class: "uk-button uk-button-primary"

@@ -46,10 +46,21 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = 'プロフィールを編集しました'
+      redirect_to @user
+    else
+      render 'edit'
+    end
   end
 
     private
        def user_params
-        params.require(:user).permit(:nickname, :email, :password, :password_confirmation)
+        params.require(:user).permit(:nickname, :email, :password)
        end
 end
