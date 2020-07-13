@@ -1,0 +1,9 @@
+- @posted_items.each do |item|
+  %ul
+    %li
+      = item.title
+    %li
+      = item.user.nickname
+/10件毎にページネーション
+.paginate
+  = paginate @posted_items

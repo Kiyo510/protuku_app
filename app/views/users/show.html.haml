@@ -8,8 +8,12 @@
       = fields_for @entry do |e|
         = e.hidden_field :user_id, value: @user.id
         = f.submit 'メッセージ', class: 'btn-sm btn-success'
-%ol.stocks
-  = render partial: 'stocks/stock'
 
-- if @user.id == current_user.id
-  = link_to 'プロフィールを編集', edit_user_path(current_user)
+.items
+  %h3 出品履歴
+  = render partial: 'items/item_index'
+  - if @user.id == current_user.id
+    .stocks
+    %h3 保存した出品
+    = render partial: 'stocks/stock'
+    = link_to 'プロフィールを編集', edit_user_path(current_user)
