@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
     @users = User.all
   end
@@ -19,10 +20,13 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
     #ストック一覧を取得
     stock_items = Stock.get_stock_items(current_user)
     @stock_items = Kaminari.paginate_array(stock_items).page(params[:page]).per(10)
-    @user = User.find(params[:id])
+    #投稿した出品一覧を取得
+    posted_items = @user.items
+    @posted_items = Kaminari.paginate_array(posted_items).page(params[:page]).per(10)
     # Entryモデルからログインユーザーのレコードを抽出
     @current_entry = Entry.where(user_id: current_user.id)
     # Entryモデルからメッセージ相手のレコードを抽出
@@ -59,8 +63,12 @@ class UsersController < ApplicationController
     end
   end
 
-    private
-       def user_params
-        params.require(:user).permit(:nickname, :email, :password)
-       end
+  private
+    def user_params
+    params.require(:user).permit(:nickname, :email, :password)
+    end
+
+    # def set_user
+    #   @user = User.find(params[:id])
+    # end
 end
