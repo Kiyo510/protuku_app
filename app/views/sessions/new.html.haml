@@ -21,6 +21,7 @@
                   = f.check_box :remember_me, class: "uk-checkbox"
                   %span.uk-text-small 次回から自動ログインする
               .uk-margin
+                = link_to 'パスワードを忘れた方はこちら' , password_resets_new_path
                 = f.submit "ログイン", class: 'uk-button uk-button-primary uk-button-large uk-width-1-1"'
               .uk-text-small.uk-text-center
                 %p
