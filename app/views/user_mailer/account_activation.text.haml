@@ -1,0 +1,4 @@
+= "#{@user.nickname } 様"
+ご登録いただきありがとうございます。
+以下のリンクをクリックしてアカウントの有効化をお願い致します。
+= edit_account_activation_url(@user.activation_token, email: @user.email)

@@ -1,0 +1,21 @@
+= form_with(model: @user, url: password_reset_path(params[:id]), local: true) do |f|
+  .uk-section.uk-section-muted.uk-flex.uk-flex-middle.uk-animation-fade{"uk-height-viewport" => ""}
+    .uk-width-1-1
+      .uk-container
+        .uk-grid-margin.uk-grid.uk-grid-stack{"uk-grid" => ""}
+          %div{:class => "uk-width-1-1@m"}
+            .uk-margin.uk-width-large.uk-margin-auto.uk-card.uk-card-default.uk-card-body.uk-box-shadow-large
+              %h3.uk-card-title.uk-text-center パスワードの再設定
+              = hidden_field_tag :email, @user.email
+              .uk-margin
+                .uk-inline.uk-width-1-1
+                  %span.uk-form-icon{"uk-icon" => "icon: mail"}
+                  = f.label :新しいパスワード
+                  = f.password_field :password, class: 'uk-input uk-form-large'
+              .uk-margin
+                .uk-inline.uk-width-1-1
+                  %span.uk-form-icon{"uk-icon" => "icon: mail"}
+                  = f.label :新しいパスワードの確認
+                  = f.password_field :password_confirmation, class: 'uk-input uk-form-large'
+              .uk-margin
+                = f.submit "パスワードを更新", class: 'uk-button uk-button-primary uk-button-large uk-width-1-1"'
