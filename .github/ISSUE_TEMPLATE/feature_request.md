@@ -2,8 +2,8 @@
 name: 機能要望
 about: 欲しい機能がある場合、こちらを利用してください。
 title: 'enhancement_〇〇'
-labels: 'enhancement'
-assignees: 'gonjitti'
+labels: '機能要望'
+assignees: 
 
 ---
 
