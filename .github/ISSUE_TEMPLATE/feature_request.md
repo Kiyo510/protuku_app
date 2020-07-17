@@ -1,20 +1,31 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
+name: 機能要望
+about: 欲しい機能がある場合、こちらを利用してください。
+title: 'enhancement_〇〇'
+labels: 'enhancement'
+assignees: 'gonjitti'
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+---
+name: 機能要望
+about: 欲しい機能がある場合、こちらを利用してください。
+---
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+## 欲しい機能はなに?
+例. bulmaの解説機能が欲しい
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+
+## なぜその機能が欲しい?
+例). Bootstrapより簡易的でモダンなCSSフレームワークでファンも増えるはずだが、日本語の解説が少なすぎるため。
+
+
+## 実装方法
+例). gonjitti.comのナビゲーションにbulmaのメニューを追加して解説ページを作成していく。
+
+
+## 参考URL
+
+
+## 参考資料
