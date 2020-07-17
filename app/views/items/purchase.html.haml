@@ -1,0 +1,18 @@
+%h2 購入確認画面
+%p= "購入商品: #{@item.title}"
+%p= "購入価格: #{@item.price}"
+
+%h3 支払い方法
+- if @default_card_information.blank?
+  %br/
+- else
+  -#カード情報を表示
+  = "**** **** ****" + @default_card_information.last4
+  - exp_month = @default_card_information.exp_month.to_s
+  - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+  - exp_month + " / " + exp_year
+%br/
+%br/
+= form_with url: pay_items_path, local: true do
+  :plain
+    <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_1bdf03e14adc6303182f9957"></script>
