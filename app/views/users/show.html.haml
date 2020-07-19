@@ -17,3 +17,5 @@
     %h3 保存した出品
     = render partial: 'stocks/stock'
     = link_to 'プロフィールを編集', edit_user_path(current_user)
+    %h3 購入履歴
+    = link_to '購入履歴', purchase_histories_index_path

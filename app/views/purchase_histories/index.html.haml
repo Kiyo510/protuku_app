@@ -1,0 +1,7 @@
+%h2 購入履歴一覧
+
+- @purchase_items.each do |purchase_item|
+  %p= "商品名: #{purchase_item.title}　価格: #{purchase_item.price}円"
+/ 10件毎にページネーション
+.paginate
+  = paginate @purchase_items

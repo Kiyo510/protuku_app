@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'home#home'
+  get 'purchase_histories/index'
   get 'cards/new'
   get 'cards/show'
   get 'password_resets/new'
@@ -7,7 +9,6 @@ Rails.application.routes.draw do
   get 'password_reset/edit'
   get 'rooms/index'
   get 'rooms/show'
-  root 'home#home'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   get '/login', to: 'sessions#new'

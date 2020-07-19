@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
-   belongs_to :user
-   has_one_attached :image
+  has_many :purchase_histories, dependent: :destroy
+  belongs_to :user
+  has_one_attached :image
   # アソシエーションを設定する
   has_many :stocks, dependent: :destroy
   # 投稿記事が誰にストックされているかを取得できる
