@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_113749) do
+ActiveRecord::Schema.define(version: 2020_07_18_142612) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 2020_07_16_113749) do
     t.index ["user_id"], name: "fk_rails_6613941af1"
   end
 
+  create_table "purchase_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_purchase_histories_on_item_id"
+    t.index ["user_id"], name: "index_purchase_histories_on_user_id"
+  end
+
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -112,6 +121,8 @@ ActiveRecord::Schema.define(version: 2020_07_16_113749) do
   add_foreign_key "items", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "messages", "users", column: "room_id"
+  add_foreign_key "purchase_histories", "items"
+  add_foreign_key "purchase_histories", "users"
   add_foreign_key "stocks", "items"
   add_foreign_key "stocks", "users"
 end
