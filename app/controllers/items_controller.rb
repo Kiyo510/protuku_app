@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-
   require 'payjp'
 
   def index
@@ -39,6 +38,10 @@ class ItemsController < ApplicationController
       customer = Payjp::Customer.retrieve(card.customer_id)
       #保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入
       @default_card_information = customer.cards.retrieve(card.card_id)
+      #購入履歴を保存
+      new_history = @item.purchase_histories.build
+      new_history.user_id = current_user.id
+      new_history.save
     end
   end
 
