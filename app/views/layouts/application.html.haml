@@ -22,10 +22,13 @@
                     = link_to  "新規登録", signup_path, class: "uk-active"
                   %li
                     = link_to  "出品一覧", items_path, class: "uk-active"
-                  %li
-                    - if logged_in?
+                  - if logged_in?
+                    %li
                       = link_to  "ログアウト", logout_path, method: :delete
-                    - else
+                    %li
+                      = link_to "マイページ", user_path(current_user)
+                  - else
+                    %li
                       = link_to  "ログイン", login_path
                   %li.uk-active
                     %a{:href => "#"} Webappとは？
