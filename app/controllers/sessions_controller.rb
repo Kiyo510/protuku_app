@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         flash[:success] = "ログインに成功しました。"
-        redirect_to root_url
+        redirect_to user
       else
         message  = "アカウントが有効化されていません。 "
         message += "Eメールのアカウント有効化リンクをクリックしてください。"
