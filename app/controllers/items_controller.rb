@@ -25,6 +25,27 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      flash[:success] = "内容を更新しました"
+      redirect_to items_path
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    Item.find(params[:id]).destroy
+    flash[:success] = "投稿を削除しました"
+    redirect_to items_path
+  end
+
+
   def purchase
     @item = Item.find(params[:id])
     card = Card.where(user_id: current_user.id).first
