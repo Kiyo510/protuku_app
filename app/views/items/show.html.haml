@@ -9,3 +9,7 @@
   = fa_icon 'twitter'
 
 = link_to 'カードで購入する', purchase_items_path(@item)
+%p
+  = link_to '投稿の編集', edit_item_path(@item)
+%p
+  = link_to '投稿の削除', item_path(@item), method: :delete, data: { confirm: "投稿内容はデータから完全に削除されます。本当に削除しますか？" }
