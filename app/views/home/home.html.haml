@@ -1,3 +1,54 @@
-%p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-%p Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-%p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+%main
+  %section.uk-section.uk-cover-background{:style => "background-image: url('/assets/carrepair.jpg');"}
+    .uk-block.uk-block-large
+      .uk-container.uk-container-center
+        %h1.uk-heading-hero.uk-text-light タイトル
+        %div{:class => "uk-child-width-expand@s", "uk-grid" => ""}
+          .uk-text-light
+            %h3 Heading
+            %p
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          .uk-card.uk-card-default.uk-card-body.uk-border-rounded.uk-width-large.uk-margin-large-left.uk-margin-small-right
+            = form_with(model: @user, local: true) do |f|
+              .uk-width-1-1
+                .uk-container
+                  %div{:class => "uk-width-1-1@m"}
+                    %h3.uk-card-title.uk-text-center 会員登録(無料)
+                    .uk-margin
+                      = f.label :username,class: 'uk-text-bolder'
+                      .uk-form-controls
+                      = f.text_field :nickname, class: 'uk-input'
+                    .uk-margin
+                      .uk-form-controls
+                      = f.label :email,class: 'uk-text-bolder'
+                      = f.email_field :email, class: 'uk-input'
+                    .uk-margin
+                      .uk-form-controls
+                      = f.label :password,class: 'uk-text-bolder'
+                      = f.password_field :password, class: 'uk-input'
+                    .uk-margin
+                      = f.submit "ユーザー登録", class: 'uk-button uk-button-primary uk-button-large uk-width-1-1 .uk-border-rounded'
+
+.uk-section.uk-section-small
+  .uk-text-center{"uk-grid" => ""}
+    %div{:class => "uk-width-1-4@m"}
+      .uk-card.uk-card-default.uk-card-body サイドバー
+    %div{:class => "uk-width-expand@m"}
+      .uk-card.uk-card-default.uk-card-body
+        %h2 最近の投稿
+        %hr/
+        - @items.each do |item|
+          %div{"uk-grid" => ""}
+            .uk-width-1-6
+              - if item.image.attached?
+                = image_tag item.image, alt: '投稿画像', class: 'uk-align-center uk-text-center'
+              - else
+                = image_tag '/assets/noimage.png', alt: '投稿画像', class: 'uk-align-center uk-text-center'
+            .uk-text-left{:class => "uk-width-expand@m"}
+              %ul
+                %p= link_to item.title, item_path(item)
+                %p= item.content
+                %p= item.price
+                %p= item.region
+                %p= link_to item.user.nickname, user_path(item.user_id)
+          %hr/
