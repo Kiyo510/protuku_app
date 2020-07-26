@@ -1,0 +1,18 @@
+.uk-form
+  %fieldset{"data-uk-margin" => ""}
+    %legend 投稿内容の編集
+    = form_with(model: @item, local: true) do |f|
+      .uk-form-row
+        = f.label :タイトル
+        = f.text_field :title, placeholder: "タイトルを入力"
+      .uk-form-row
+        = f.file_field :image
+      .uk-form-row
+        = f.label :内容　
+        = f.text_area :content, cols: 40, rows: 10, placeholder: "内容を入力"
+      .uk-form-row
+        = f.label :価格
+        = f.text_field :price, placeholder: "価格を入力"
+      .uk-form-row
+        = f.select :region, [["--", 0],["東京", 1],["三重", 2],["静岡",3],["愛知",4]]
+      = f.submit "保存する", disable_with: '出品中...', class: "uk-button"

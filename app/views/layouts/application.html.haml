@@ -12,34 +12,29 @@
     %script{:src => "https://code.jquery.com/jquery-3.0.0.min.js"}
   %body
     %header
-      .uk-section-primary.uk-preserve-color
-        %div{"uk-sticky" => "animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200"}
-          %nav.uk-navbar-container
-            .uk-container.uk-container-expand
-              %div{"uk-navbar" => ""}
-                %ul.uk-navbar-nav
-                  %li
-                    = link_to  "新規登録", signup_path, class: "uk-active"
-                  %li
-                    = link_to  "出品一覧", items_path, class: "uk-active"
-                  - if logged_in?
-                    %li
-                      = link_to  "ログアウト", logout_path, method: :delete
-                    %li
-                      = link_to "マイページ", user_path(current_user)
-                  - else
-                    %li
-                      = link_to  "ログイン", login_path
-                  %li.uk-active
-                    %a{:href => "#"} Webappとは？
-                  %li
-                    = link_to  "HOME", root_path
-                  %li
-                    = link_to  "仕事を受ける", new_item_path
+      .uk-navbar-container.tm-navbar-container.uk-sticky{"uk-sticky" => "media: 960"}
+        .uk-container.uk-container-expand
+          %nav.uk-navbar
+            .uk-navbar-left
+              %a.uk-navbar-item.uk-logo
+                = link_to  "タイトル", root_path
+            .uk-navbar-right
+              %ul.uk-navbar-nav{:class => "uk-visible@m"}
+                %li
+                  = link_to  "ユーザー登録", signup_path, class: "uk-active"
+                %li.uk-active
+                  = link_to  "ログイン", login_path
+                %li
+                  %a{:href => "#"} Webappとは？
+              .uk-navbar-item{:class => "uk-visible@m"}
+                %a.uk-button.uk-button-default.tm-button-default.uk-icon{:href => "#"}
+                  ログイン
+              %a.uk-navbar-toggle.uk-icon.uk-navbar-toggle-icon{:class => "uk-hidden@m", :href => "#offcanvas", "uk-navbar-toggle-icon" => "", "uk-toggle" => ""}
+
+
     - flash.each do |message_type, message|
       = message
-    .uk-container.uk-container-large.uk-margin-small
-      = yield
+    = yield
     / /uk-container
     = debug(params) if Rails.env.development?
     / UIkit JS
