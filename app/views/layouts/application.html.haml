@@ -9,35 +9,74 @@
     %link{:href => "https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css", :rel => "stylesheet"}/
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    %script{:src => "https://code.jquery.com/jquery-3.0.0.min.js"}
-  %body
+  %body.uk-background-muted
     %header
-      .uk-navbar-container.tm-navbar-container.uk-sticky{"uk-sticky" => "media: 960"}
+      .uk-navbar-container.tm-navbar-container
         .uk-container.uk-container-expand
-          %nav.uk-navbar
+          %nav.uk-navbar.uk-text-light
             .uk-navbar-left
               %a.uk-navbar-item.uk-logo
                 = link_to  "タイトル", root_path
             .uk-navbar-right
               %ul.uk-navbar-nav{:class => "uk-visible@m"}
-                %li
-                  = link_to  "ユーザー登録", signup_path, class: "uk-active"
-                %li.uk-active
-                  = link_to  "ログイン", login_path
-                %li
-                  %a{:href => "#"} Webappとは？
-              .uk-navbar-item{:class => "uk-visible@m"}
-                %a.uk-button.uk-button-default.tm-button-default.uk-icon{:href => "#"}
-                  ログイン
+                - if logged_in?
+                  .uk-navbar-item
+                    %li.uk-active
+                      = link_to  "投稿一覧", items_path
+                  .uk-navbar-item
+                    %li
+                      = link_to  "投稿する", new_item_path, class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
+                  .uk-navbar-item
+                    %li.uk-active
+                      = link_to  "ログアウト", logout_path, method: :delete, class: "uk-button uk-button-default uk-border-rounded uk-text-bold uk-text-primary"
+                -else
+                  .uk-navbar-item
+                    %li
+                      = link_to  "ユーザー登録", signup_path
+                  .uk-navbar-item
+                    %li.uk-active
+                      = link_to  "ログイン", login_path
+                  .uk-navbar-item
+                    %li
+                      = link_to  "ユーザー登録", signup_path, class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
+                  .uk-navbar-item
+                    %li.uk-active
+                      = link_to  "ログイン", login_path, class: "uk-button uk-button-default uk-border-rounded uk-text-bold uk-text-primary"
               %a.uk-navbar-toggle.uk-icon.uk-navbar-toggle-icon{:class => "uk-hidden@m", :href => "#offcanvas", "uk-navbar-toggle-icon" => "", "uk-toggle" => ""}
-
-
     - flash.each do |message_type, message|
-      = message
+      %div{class: "uk-alert-#{message_type}"}
+        = message
     = yield
-    / /uk-container
+    %footer.uk-margin-top
+      .uk-container.uk-flex.uk-flex-between.uk-flex-center
+        .uk-section-small.uk-flex-column
+          %h2.uk-heading-hero タイトル
+          %p
+            テキストテキストテキストテキスト
+        .uk-section.uk-flex-column
+          .uk-flex
+            %ul
+              %li
+                テキスト
+              %li
+                テキスト
+              %li
+                テキスト
+              %li
+                テキスト
+            %ul
+              %li
+                テキスト
+              %li
+                テキスト
+              %li
+                テキスト
+              %li
+                テキスト
+
     = debug(params) if Rails.env.development?
     / UIkit JS
+    %script{:src => "https://code.jquery.com/jquery-3.0.0.min.js"}
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
     %script{:src => "https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"}
     %script{:src => "https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"}
