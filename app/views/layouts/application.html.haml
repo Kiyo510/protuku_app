@@ -7,6 +7,10 @@
     = csp_meta_tag
     / UIkit CSS
     %link{:href => "https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css", :rel => "stylesheet"}/
+    / Marked.js
+    %script{:src => "https://cdn.jsdelivr.net/npm/marked/marked.min.js"}
+    / jQuery
+    %script{:src => "https://code.jquery.com/jquery-3.0.0.min.js"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body.uk-background-muted
@@ -76,7 +80,6 @@
 
     = debug(params) if Rails.env.development?
     / UIkit JS
-    %script{:src => "https://code.jquery.com/jquery-3.0.0.min.js"}
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
     %script{:src => "https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"}
     %script{:src => "https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"}
