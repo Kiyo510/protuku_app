@@ -5,6 +5,9 @@
 a {
   text-decoration: none;
 }
+body {
+  margin: 0;
+}
 // TOPページ
 //header
 .uk-border-rounded {
@@ -17,7 +20,20 @@ a {
   background-color: white;
 }
 
-//新規登録
+//新規登録フォーム
+.uk-width-form {
+  width: 30%;
+}
+.uk-margin-btn {
+  margin-bottom: 0;
+}
+
+//新規投稿ページ
+#markdown_preview {
+  border: 1px solid #e5e5e5;
+  background-color: #fff;
+  margin-left: 10px;
+}
 
 // 投稿一覧ページ
 
@@ -25,6 +41,8 @@ a {
 footer {
   background-color: #3e3e3e;
   color: whitesmoke;
+  margin-top: 3em;
+  height: 100%;
   ul {
     margin-top: 0;
     li {
