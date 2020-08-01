@@ -1,19 +1,19 @@
 .uk-form
-  %fieldset{"data-uk-margin" => ""}
-    = form_with(model: @item, local: true) do |f|
-      .uk-margin
-        = f.text_field :title, placeholder: "タイトルを入力", class: 'uk-input'
-        .uk-flex.uk-margin
-          -# .uk-form-row
-          -#   = f.file_field :image
-          .uk-form.uk-width-2-1
-            = f.text_area :content, placeholder: "内容を入力",id: "markdown_editor_textarea", class: 'uk-textarea', size: "94x20"
-          .uk-width-2-1#markdown_preview
-          -# .uk-form-row
-          -#   = f.text_field :price, placeholder: "価格を入力"
-          -# .uk-form-row
-          -#   = f.select :region, [["--", 0],["東京", 1],["三重", 2],["静岡",3],["愛知",4]]
-        = f.submit "出品する", disable_with: '出品中...', class: "uk-button"
+  = form_with(model: @item, local: true) do |f|
+    .uk-margin
+      = f.text_field :title, placeholder: "タイトルを入力", class: 'uk-input'
+      .uk-flex.uk-margin
+        -# .uk-form-row
+        -#   = f.file_field :image
+        .uk-form.uk-width-2-1
+          = f.text_area :content, placeholder: "内容を入力",id: "markdown_editor_textarea", class: 'uk-textarea', size: "94x20"
+        .uk-width-2-1#markdown_preview
+        -# .uk-form-row
+        -#   = f.text_field :price, placeholder: "価格を入力"
+        -# .uk-form-row
+        -#   = f.select :region, [["--", 0],["東京", 1],["三重", 2],["静岡",3],["愛知",4]]
+      .uk-text-right.uk-margin-right
+        = f.submit "投稿する", disable_with: '出品中...', class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
 
 :javascript
   $(function () {
