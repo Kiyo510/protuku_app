@@ -25,6 +25,8 @@
                 = link_to  "タイトル", root_path
             .uk-navbar-right
               %ul.uk-navbar-nav{:class => "uk-visible@m"}
+                .uk-navbar-item
+                  .uk-input.uk-form-width-medium
                 - if logged_in?
                   .uk-navbar-item
                     %li.uk-active
