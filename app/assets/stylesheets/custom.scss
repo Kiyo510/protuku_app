@@ -1,12 +1,22 @@
 //Utility
  li {
    list-style: none;
+   line-height: 1.5;
  }
-a {
+ ul {
+   margin: 0
+ }
+a,a:hover {
   text-decoration: none;
 }
 body {
   margin: 0;
+  letter-spacing: .01em;
+  word-break: break-all;
+  font-family: Ropa Sans,
+              Arial,
+              hiragino kaku gothic pron,
+              sans-serif;
 }
 // TOPページ
 
@@ -30,11 +40,14 @@ body {
 }
 
 //新規投稿ページ
+.new_post_form {
+ padding: 5px;
+}
 #markdown_preview {
   border: 1px solid #e5e5e5;
   background-color: #fff;
   margin-left: 10px;
-  p{
+  p {
     margin-left: 28px;
     margin-top: 0;
   }
@@ -46,7 +59,7 @@ body {
     border-bottom: 1px solid #eaecef;
     padding-left: 10px;
   }
-  h2,h3{
+  h2,h3 {
     border: 1px solid #f4f8fa;
     background: #f4f8fa;
     padding: 0px 10px;
@@ -57,22 +70,62 @@ body {
     margin-right: 20px;
     font-weight: bold;
   }
-  h4{
+  h4 {
     margin-left: 20px;
     font-size: 15px;
   }
-  h5{
+  h5 {
     margin-left: 20px;
     font-size: 13px;
   }
-  h6{
+  h6 {
     margin-left: 20px;
     font-size: 10px;
   }
 }
+.user_region {
+  vertical-align: middle;
+  margin-right: .3em;
+}
+#item_region {
+  color: #666;
+  max-width: 100%;
+  padding: 4px 6px;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #e5e5e5
+}
+.post_region {
+}
+.post_example{
+  margin-top: 5px;
+}
 
 // 投稿一覧ページ
-
+.search_friend {
+  padding: 1em 0;
+}
+.search_friend_by_categorize {
+  padding-bottom: 1em
+}
+.uk-panel {
+  p{
+    margin: 3px 10px 3px 0;
+    padding-left: 10px;
+  }
+  font-weight: bolder;
+  .post_user_title {
+    width: 570px;
+    a{
+    color: #4f5050;
+    cursor: pointer;
+      &:hover {
+        color: #ccc;
+      }
+    }
+  }
+}
 //フッター
 footer {
   background-color: #3e3e3e;
