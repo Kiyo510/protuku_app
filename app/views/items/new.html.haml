@@ -1,19 +1,22 @@
-.uk-form
+.uk-form.new_post_form
   = form_with(model: @item, local: true) do |f|
-    .uk-margin
+    .uk-margin-small
       = f.text_field :title, placeholder: "タイトルを入力", class: 'uk-input'
-      .uk-flex.uk-margin
-        -# .uk-form-row
-        -#   = f.file_field :image
-        .uk-form.uk-width-2-1
-          = f.text_area :content, placeholder: "内容を入力",id: "markdown_editor_textarea", class: 'uk-textarea', size: "94x20"
-        .uk-width-2-1#markdown_preview
-        -# .uk-form-row
-        -#   = f.text_field :price, placeholder: "価格を入力"
-        -# .uk-form-row
-        -#   = f.select :region, [["--", 0],["東京", 1],["三重", 2],["静岡",3],["愛知",4]]
-      .uk-text-right.uk-margin-right
-        = f.submit "投稿する", disable_with: '出品中...', class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
+    .post_region
+      = f.label :投稿者の所在地, class: 'uk-text-bold user_region'
+      = f.select :region, [["非公開"],["東京"],["三重"],["静岡"],["愛知"]]
+    .post_example
+      = link_to '投稿例を見る', '#'
+    .uk-flex.uk-margin-bottom
+      -# .uk-form-row
+      -#   = f.file_field :image
+      .uk-width-2-1
+        = f.text_area :content, placeholder: "投稿例を参考に、マークダウン記法を用いてわかりやすく具体的に書きましょう！",id: "markdown_editor_textarea", class: 'uk-textarea', size: "94x20"
+      .uk-width-2-1#markdown_preview
+      -# .uk-form-row
+      -#   = f.text_field :price, placeholder: "価格を入力"
+    .uk-text-right.uk-margin-right
+      = f.submit "投稿する", disable_with: '投稿中...', class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
 
 :javascript
   $(function () {

@@ -40,6 +40,9 @@ body {
 }
 
 //新規投稿ページ
+.new_post_form {
+ padding: 5px;
+}
 #markdown_preview {
   border: 1px solid #e5e5e5;
   background-color: #fff;
@@ -79,6 +82,24 @@ body {
     margin-left: 20px;
     font-size: 10px;
   }
+}
+.user_region {
+  vertical-align: middle;
+  margin-right: .3em;
+}
+#item_region {
+  color: #666;
+  max-width: 100%;
+  padding: 4px 6px;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #e5e5e5
+}
+.post_region {
+}
+.post_example{
+  margin-top: 5px;
 }
 
 // 投稿一覧ページ
