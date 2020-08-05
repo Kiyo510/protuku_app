@@ -1,23 +1,41 @@
-.uk-section.uk-section-small
-  .uk-text-center{"uk-grid" => ""}
-    %div{:class => "uk-width-1-4@m"}
-      .uk-card.uk-card-default.uk-card-body サイドバー
-    %div{:class => "uk-width-expand@m"}
-      .uk-card.uk-card-default.uk-card-body
-        %h2 投稿一覧ページ
-        %hr/
+.uk-container
+  .uk-section.uk-section-small
+    %div{"uk-grid" => ""}
+      %div{:class => "uk-width-1-4@m"}
+        .uk-card.uk-card-default
+          %ul
+            %li.search_friend
+              .uk-input.uk-form-width-medium
+            %li.search_friend_by_categorize
+              カテゴリで探す
+              .uk-flex-column
+                .uk-flex
+                  %ul
+                    %li
+                      カテゴリ1
+                    %li
+                      カテゴリ２
+                    %li
+                      カテゴリ３
+                    %li
+                      カテゴリ４
+                    %li
+                      カテゴリ５
+      %div{:class => "uk-width-expand@m"}
+        %h2 仲間を探す
         - @items.each do |item|
-          %div{"uk-grid" => ""}
-            .uk-width-1-6
+          .uk-card.uk-card-small.uk-card-default.uk-card-body.uk-margin-bottom
+            .uk-flex
+              %div
+                = image_tag '/assets/noimage.png', alt: 'プロフィール画像', size: '120x120', class: 'uk-border-circle'
+              .uk-panel
+                %ul
+                  %p.post_user_nickname
+                    = link_to item.user.nickname, user_path(item.user_id)
+                  %p.post_user_title
+                    = link_to item.title, item_path(item)
+                  %p
+                    = item.region
               - if item.image.attached?
-                = image_tag item.image, alt: '投稿画像', class: 'uk-align-center uk-text-center'
-              - else
-                = image_tag '/assets/noimage.png', alt: '投稿画像', class: 'uk-align-center uk-text-center'
-            .uk-text-left{:class => "uk-width-expand@m"}
-              %ul
-                %p= link_to item.title, item_path(item)
-                %p= item.content
-                %p= item.price
-                %p= item.region
-                %p= link_to item.user.nickname, user_path(item.user_id)
-          %hr/
+                .uk-panel.uk-vertical-align
+                  = image_tag item.image, alt: '投稿画像', size: '120x100',class: 'uk-vertical-align-middle'
