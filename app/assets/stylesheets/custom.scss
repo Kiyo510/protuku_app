@@ -3,20 +3,34 @@
    list-style: none;
    line-height: 1.5;
  }
+ p {
+   margin: 0;
+ }
  ul {
-   margin: 0
+   margin: 0;
+   padding: 0;
  }
 a,a:hover {
   text-decoration: none;
+  cursor: pointer;
 }
+a:hover {
+  color: #ccc;
+}
+
 body {
   margin: 0;
   letter-spacing: .01em;
   word-break: break-all;
-  font-family: Ropa Sans,
-              Arial,
-              hiragino kaku gothic pron,
+  font-family: -apple-system,
+              "Segoe UI",
+              "Helvetica Neue",
+              "Hiragino Kaku Gothic ProN",
+              メイリオ,
+              meiryo,
               sans-serif;
+  font-size: .85rem;
+  color: rgb(51, 51, 51);
 }
 // TOPページ
 
@@ -24,9 +38,15 @@ body {
 .uk-navbar-item {
   min-height: 65px;
 }
-.uk-border-rounded {
-  border-color: #1e87f0
+.uk-button-default {
+  border-color: #1e87f0;
+  color: #1e87f0;
+  &:hover {
+    border-color: #5988df;
+    color: #5988df;
+  }
 }
+
 .uk-text-white {
   color: white;
   }
@@ -99,8 +119,6 @@ body {
   vertical-align: middle;
   border: 1px solid #e5e5e5
 }
-.post_region {
-}
 .post_example{
   margin-top: 5px;
 }
@@ -122,12 +140,91 @@ body {
     width: 570px;
     a{
     color: #4f5050;
-    cursor: pointer;
-      &:hover {
+      &:hover{
         color: #ccc;
       }
     }
   }
+}
+//マイページ
+.mypage_sidebar {
+  height: 50vh;
+  min-width: 300px;
+}
+.user_nickname {
+  font-size: .95rem;
+  color: #777777;
+  font-weight: bold;
+}
+
+.mypage_content_title{
+  font-size: 1.2rem;
+  color: #504e4e;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.fa-user::before {
+  font-family: FontAwesome;
+  content: "\f05d";
+  color: #1e87f0;
+  margin-right: .5rem;
+}
+.fa-history::before {
+  font-family: FontAwesome;
+  content: "\f05d";
+  color: #1e87f0;
+  margin-right: .5rem;
+}
+.fa-bookmark-o::before {
+  font-family: FontAwesome;
+  content: "\f05d";
+  color: #1e87f0;
+  margin-right: .5rem;
+}
+
+.edit_profile_btn {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-align: center;
+  width: 100%;
+  background-color: #636262;
+  color: rgb(255, 255, 255);
+  border: 2px solid #636262;
+  font-weight: bold;
+  padding: 4px 0px;
+}
+.message_btn {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-align: center;
+  width: 100%;
+  background-color: #1e87f0;
+  color: #fff;
+  border: 1px solid #1e87f0;
+  font-weight: bold;
+  padding: 4px 0px;
+    &:hover {
+      background-color: #0f7ae5;
+    }
+}
+.edit_profile {
+  text-align: right;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  font-size: .8rem;
+  margin-top: 10px;
+  a {
+    color: #666;
+  }
+}
+.post_detail {
+  width: 170px;
+  height: auto;
+  color: #777777;
+  font-size: .9rem;
+  text-align: center;
+  padding: 2px 0 0 0;
 }
 //フッター
 footer {
