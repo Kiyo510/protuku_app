@@ -1,9 +1,10 @@
 - @posted_items.each do |item|
-  %ul
-    %li
-      = item.title
-    %li
-      = item.user.nickname
-/10件毎にページネーション
+  .uk-flex
+    .post_detail
+      = l item.created_at, format: :short
+    .uk-panel
+      %p.post_user_title
+        = link_to item.title, item_path(item)
+  /10件毎にページネーション
 .paginate
   = paginate @posted_items
