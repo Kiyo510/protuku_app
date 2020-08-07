@@ -1,9 +1,10 @@
 - @stock_items.each do |item|
-  %ul
-    %li
-      = item.title
-    %li
-      = item.user.nickname
-/10件毎にページネーション
+  .uk-flex
+    .post_detail
+      = "#{item.user.nickname}の投稿"
+    .uk-panel
+      %p.post_user_title
+        = link_to item.title, item_path(item)
+  /10件毎にページネーション
 .paginate
-  = paginate @stock_items
+  = paginate @posted_items
