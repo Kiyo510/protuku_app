@@ -1,21 +1,42 @@
-= @user.nickname
-= link_to  "メッセージ一覧", rooms_index_path
-- unless @user.id == current_user.id
-  - if @is_room == true
-    = link_to 'メッセージ', room_path(@room_id), class: 'btn-sm btn-success'
-  - else
-    = form_with model: @room, url: rooms_path, local: true do |f|
-      = fields_for @entry do |e|
-        = e.hidden_field :user_id, value: @user.id
-        = f.submit 'メッセージ', class: 'btn-sm btn-success'
-
-.items
-  %h3 出品履歴
-  = render partial: 'items/item_index'
-  - if @user.id == current_user.id
-    .stocks
-    %h3 保存した出品
-    = render partial: 'stocks/stock'
-    = link_to '登録情報の設定・変更', edit_user_path(current_user)
-    %h3 購入履歴
-    = link_to '購入履歴', purchase_histories_index_path
+.uk-container
+  .uk-section.uk-section-small
+    .uk-flex
+      .uk-card.uk-card-small.uk-card-body.uk-card-default.uk-margin-small-right.mypage_sidebar.uk-text-center
+        .user_image.uk-margin
+          = image_tag '/assets/noimage.png', alt: 'プロフィール画像', size: '450x450', class: 'uk-border-circle'
+        .user_nickname.uk-margin
+          %p= @user.nickname
+        .uk-margin-remove-top
+          - if @user.id == current_user.id
+            = link_to 'プロフィールを編集する', edit_user_path(current_user), class: 'edit_profile_btn'
+        .uk-margin
+          - unless @user.id == current_user.id
+            - if @is_room == true
+              = link_to 'メッセージを送る', room_path(@room_id), class: "message_btn"
+            - else
+              = form_with model: @room, url: rooms_path, local: true do |f|
+                = fields_for @entry do |e|
+                  = e.hidden_field :user_id, value: @user.id
+                  = f.submit 'メッセージを送る', class: '"message_btn"'
+      .uk-flex-column.uk-margin-small-left.profole_box
+        .uk-card.uk-card-small.uk-card-default.uk-card-body.uk-margin-bottom
+          %h2.mypage_content_title.fa-user
+            自己紹介
+          .edit_profile
+            - if @user.id == current_user.id
+              = link_to 'プロフィールを編集する', edit_user_path(current_user)
+          %p
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+            テキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        .uk-card.uk-card-small.uk-card-default.uk-card-body.uk-margin-bottom.profole_box
+          %h2.mypage_content_title.fa-history
+            投稿履歴
+          = render 'items/item_index'
+        .uk-card.uk-card-small.uk-card-default.uk-card-body.uk-margin-bottom.profole_box
+          %h2.mypage_content_title.fa-bookmark-o
+            お気に入り一覧
+          = render 'stocks/stock'
