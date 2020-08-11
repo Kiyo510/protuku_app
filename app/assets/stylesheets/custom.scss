@@ -22,12 +22,10 @@ body {
   margin: 0;
   letter-spacing: .01em;
   word-break: break-all;
-  font-family: -apple-system,
-              "Segoe UI",
-              "Helvetica Neue",
-              "Hiragino Kaku Gothic ProN",
-              メイリオ,
-              meiryo,
+  font-family:"AvenirNext",
+              "Lato",
+              "Hirago KakuGothic ProN",
+              Meiryo,
               sans-serif;
   font-size: .85rem;
   color: rgb(51, 51, 51);
@@ -54,13 +52,74 @@ body {
   background-color: white;
 }
 
-//新規登録フォーム
+//新規登録フォーム(TOP)
 .uk-width-form {
   width: 30%;
 }
 .uk-margin-btn {
   margin-bottom: 0;
 }
+
+//新規登録フォーム
+.sns-sign-up_item_btn {
+  color: #fff;
+  text-align: center;
+  padding: 10px 12px;
+  border-radius: 5px;
+  font-size: 13px;
+  letter-spacing: .05em;
+  margin: 10px auto;
+  width: 65%;
+}
+.twitter_btn{
+  background-color:#1e87f0;
+;
+  }
+.github_btn {
+  background-color: #5a4646;
+}
+.sign_up_or{
+  display: block;
+  min-width: 100%;
+  color: #81878d;
+  text-align: center;
+  margin-top: 30px;
+}
+.form-control {
+  width: 97%;
+  background-color: #fafbfc;
+  padding-top: 4px;
+  padding-left: 9px;
+  padding-bottom: 4px;
+  line-height: 20px;
+  color: #24292e;
+  vertical-align: middle;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(225, 228, 232, .2);
+    &:focus {
+      background-color: #fff;
+      border-color: #0366d6;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(3, 102, 214, .3);
+    }
+}
+.form-label {
+  display: inline-block;
+  font-weight: 600;
+  cursor: default;
+  font-family: -apple-system,
+              BlinkMacSystemFont,
+              Segoe UI,
+              Helvetica,
+              Arial,
+              sans-serif,
+              Apple Color Emoji,
+              Segoe UI Emoji;
+  margin-bottom: 6px;
+}
+
 
 //新規投稿ページ
 .new_post_form {
