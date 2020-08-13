@@ -250,6 +250,42 @@ body {
   padding: 8px 28px 4px 11px;
 }
 
+.stock-btn_inner {
+  border-radius: 50%;
+  background-color: grey;
+  font-size: 1.2rem;
+  padding: 8px 28px 4px 11px;
+  margin-top: 10px;
+}
+.stock-btn {
+ color: black;
+ border: none;
+ background-color: grey;
+ font-size: 1.2rem;
+ padding: 1px 1px;
+  &:focus,
+  &:hover {
+    color: black;
+    border: none;
+    cursor: pointer;
+  }
+}
+.unstock-btn {
+  color: white;
+  border: none;
+  background-color: grey;
+  font-size: 1.2rem;
+  padding: 1px 1px;
+  &:focus,
+  &:hover {
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+}
+.fa-bookmark-o::before {
+
+}
 //マイページ
 .mypage_sidebar {
   height: 50vh;
