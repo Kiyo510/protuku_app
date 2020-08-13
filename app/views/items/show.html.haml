@@ -4,6 +4,9 @@
       .sns-share_btn_twitter{"uk-sticky" => "offset: 70; bottom: #top"}
         = link_to "https://twitter.com/intent/tweet?url=#{request.url}/&hashtags=appname", title: 'Twitter', target: 'blank' do
           = fa_icon 'twitter'
+      - if current_user != @item.user && logged_in?
+        %div{:id => "item-#{@item.id}",:class => "stock-btn_inner","uk-sticky" => "offset: 120; bottom: #top"}
+          = render partial: 'stocks/stock_btn', locals: { item: @item }
     .uk-card.uk-card-default.uk-card-body.post_user_box
       .uk-card-title.uk-flex.uk-flex-between.uk-flex-middle
         .item_show_title.uk-text-bold
@@ -22,8 +25,6 @@
         .post_user_content.uk-margin-small
           = @item.content
       -#stockボタン
-      -# %div{:id => "item-#{@item.id}"}
-      -#   = render partial: 'stocks/stock_btn', locals: { item: @item }
       -# = link_to 'カードで購入する', purchase_items_path(@item)
       -# %p
       -#   = link_to '投稿の編集', edit_item_path(@item)
