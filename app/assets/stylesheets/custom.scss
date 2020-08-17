@@ -22,11 +22,12 @@ body {
   margin: 0;
   letter-spacing: .01em;
   word-break: break-all;
-  font-family:"AvenirNext",
-              "Lato",
-              "Hirago KakuGothic ProN",
-              Meiryo,
-              sans-serif;
+  font-family:Ropa Sans,
+            -apple-system,
+            Helvetica Neue,
+            Arial,
+            hiragino kaku gothic pron,
+            sans-serif;
   font-size: .85rem;
   color: rgb(51, 51, 51);
 }
@@ -212,14 +213,14 @@ body {
     font-family: FontAwesome;
     content: "\f044";
     color: #666;
-   }
-   .fa-trash::before {
+  }
+  .fa-trash::before {
     font-family: FontAwesome;
     content: "\f1f8";
     color: #666;
-   }
-   a {
-     color: #666;
+  }
+  a {
+    color: #666;
    }
 }
 .post_user_box {
@@ -366,6 +367,29 @@ body {
   font-size: .9rem;
   text-align: center;
   padding: 2px 0 0 0;
+}
+//DMルーム
+.dm-room_title {
+  margin-top: 30px;
+  h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+}
+.dm-form_box {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+.message_user_name a{
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+.message_time {
+  font-size: .8rem;
+}
+.message_box {
+
 }
 //フッター
 footer {
