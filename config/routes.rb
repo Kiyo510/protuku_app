@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       get  'done', to:    'items#done', as: 'done'
     end
   end
-  resources :messages, only: [:create]
+  resources :messages, only: [:create, :destroy]
   resources :rooms, only: [:show, :create]
   resources :stocks, only: %i(index create destroy)
   resources :account_activations, only: [:edit]

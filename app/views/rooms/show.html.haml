@@ -1,10 +1,29 @@
-- @room.messages.each do |message|
-  = link_to user_path(message.user) do
-    = message.user.nickname
-    \:
-  = message.content
-  %br/
-= form_with model: @message, url: messages_path, local: true do |f|
-  = f.text_field :content, class: 'form-control'
-  = f.hidden_field :room_id, value: @room.id
-  = f.submit '送信', class: 'btn btn-info btn-block'
+.uk-container.uk-container-small.uk-container-center
+  .dm-room_title
+    %h2
+      メッセージルーム
+  .dm-form_box
+    .uk-card.uk-card-default.uk-card-body
+      %strong>= @another_entry.user.nickname
+      さんへメッセージを送る
+      = form_with model: @message, url: messages_path, local: true do |f|
+        = f.text_area :content, placeholder: "メッセージ内容を入力してください", class: 'uk-textarea', size: "94x10"
+        = f.hidden_field :room_id, value: @room.id
+        .uk-margin-top.uk-text-center
+          = f.submit '送信', class: 'uk-button uk-button-primary uk-border-rounded'
+  - @room.messages.all.reverse_order.each do |message|
+    .uk-margin
+      .uk-card.uk-card-default.uk-card-body.uk-card-small
+        .uk-flex.uk-flex-between
+          .message_user_infoBox
+            = image_tag '/assets/noimage.png', alt: 'プロフィール画像', size: '50x80', class: 'uk-border-circle'
+            %span.message_user_name
+              = link_to user_path(message.user) do
+                = message.user.nickname
+            = l message.created_at, format: :short,class: 'uk-text-muted uk-text-normal'
+          -if message.user_id == current_user.id
+            .edit_post_box
+              %span.fa-trash
+                = link_to '削除', message, method: :delete, data: { confirm: "本当に削除しますか？" }
+        .message_box
+          = safe_join(message.content.split("\n"),tag(:br))
