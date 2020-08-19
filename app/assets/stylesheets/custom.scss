@@ -129,9 +129,25 @@ body {
   border: 1px solid #e5e5e5;
   background-color: #fff;
   margin-left: 10px;
+  pre {
+    margin: 0px 20px 0;
+  }
+  li {
+    margin-left: 40px;
+    list-style: disc;
+  }
+  ul>li>ul {
+    margin-left: -25px;
+    li {
+      list-style-type: circle;
+    }
+  }
   p {
     margin-left: 28px;
     margin-top: 0;
+  }
+  p+p {
+    margin-top: 1rem;
   }
   h1 {
     font-weight: bold;
