@@ -2,12 +2,15 @@
   .uk-section.uk-section-small
     %div{"uk-grid" => ""}
       %div{:class => "uk-width-1-4@m"}
-        .uk-card.uk-card-default
+        .uk-card.uk-card-default.uk-card-body.uk-card-small
           %ul
             %li.search_friend
-              .uk-input.uk-form-width-medium
+              .uk-text-bold.uk-text-secondary
+                検索ワードで探す
+              .uk-input.uk-form-small
             %li.search_friend_by_categorize
-              カテゴリで探す
+              .uk-text-secondary.uk-text-bold
+                カテゴリで探す
               .uk-flex-column
                 .uk-flex
                   %ul
@@ -22,18 +25,21 @@
                     %li
                       カテゴリ５
       %div{:class => "uk-width-expand@m"}
-        %h2 仲間を探す
+        %h2.uk-text-bold 仲間を探す
         - @items.each do |item|
           .uk-card.uk-card-small.uk-card-default.uk-card-body.uk-margin-bottom
             .uk-flex
               %div
-                = image_tag '/assets/noimage.png', alt: 'プロフィール画像', size: '120x120', class: 'uk-border-circle'
+                = image_tag '/assets/noimage.png', alt: 'プロフィール画像', size: '80x60', class: 'uk-border-circle'
               .uk-panel
-                %ul
+                .post_index_infobox
                   %p.post_user_nickname
                     = link_to item.user.nickname, user_path(item.user_id)
                   %p.post_user_title
                     = link_to item.title, item_path(item)
+                  %p.post_user_content_introduction
+                    = truncate(item.content,length: 127) do
+                      = link_to '詳細を見る', item_path(item), class: 'more_detail'
                   %p
                     = item.region
               - if item.image.attached?
