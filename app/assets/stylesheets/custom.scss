@@ -224,6 +224,9 @@ body {
 .post_user_nickname a {
     color: #28b7c4;
 }
+.post_user_title {
+  font-size: 0.9rem;
+}
 .post_user_content_introduction {
   font-size: .75rem;
 }
@@ -233,6 +236,17 @@ body {
   color: #666!important;
   transition: opacity .2s;
 }
+//ページネーション
+ .uk-pagination>* {
+  padding-left: 0;
+ }
+ .uk-pagination>.uk-active.current {
+   border-radius: 50%;
+   background-color: #0366d6;
+   color: white;
+   font-weight: bolder;
+   padding: 0 6px;
+ }
 //投稿詳細ページ
 .edit_post_box {
    font-size: .8rem;

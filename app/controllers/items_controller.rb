@@ -2,7 +2,8 @@ class ItemsController < ApplicationController
   require 'payjp'
 
   def index
-    @items = Item.all.order(created_at: :desc)
+    items = Item.all.order(created_at: :desc)
+    @items = Kaminari.paginate_array(items).page(params[:page]).per(10)
   end
 
   def new
