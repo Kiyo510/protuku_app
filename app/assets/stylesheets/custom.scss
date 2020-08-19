@@ -45,7 +45,6 @@ body {
     color: #5988df;
   }
 }
-
 .uk-text-white {
   color: white;
   }
@@ -196,15 +195,27 @@ body {
     padding-left: 10px;
   }
   font-weight: bolder;
-  .post_user_title {
-    width: 570px;
-    a{
+  a{
     color: #4f5050;
-      &:hover{
-        color: #ccc;
-      }
+    &:hover{
+      color: #ccc;
     }
   }
+}
+.post_index_infobox {
+  width: 600px;
+}
+.post_user_nickname a {
+    color: #28b7c4;
+}
+.post_user_content_introduction {
+  font-size: .75rem;
+}
+.more_detail {
+  font-size: .7rem;
+  font-weight: normal;
+  color: #666!important;
+  transition: opacity .2s;
 }
 //投稿詳細ページ
 .edit_post_box {
