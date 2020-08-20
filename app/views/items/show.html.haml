@@ -8,7 +8,7 @@
         %div{:id => "item-#{@item.id}",:class => "stock-btn_inner","uk-sticky" => "offset: 120; bottom: #top"}
           = render partial: 'stocks/stock_btn', locals: { item: @item }
     .uk-card.uk-card-default.uk-card-body.post_user_box
-      .uk-card-title.uk-flex.uk-flex-between.uk-flex-middle
+      .uk-card-title.uk-flex.uk-flex-between
         .item_show_title.uk-text-bold
           = @item.title
         - if current_user.id == @item.user_id
@@ -23,13 +23,9 @@
           = link_to @item.user.nickname, user_path(@item.user),class:'uk-text-normal'
           = l @item.created_at, format: :short,class: 'uk-text-muted uk-text-normal'
         .post_user_content.uk-margin-small
-          = @item.content
-      -#stockボタン
+          = markdown(@item.content)
+      -#後にカード決済を追加予定
       -# = link_to 'カードで購入する', purchase_items_path(@item)
-      -# %p
-      -#   = link_to '投稿の編集', edit_item_path(@item)
-      -# %p
-
     .uk-card.uk-card-small.uk-card-body.uk-card-default.uk-margin-small-right.post_user_info_sidebar.uk-text-center
       .uk-text-bolder.uk-text-secondary
         投稿者情報
