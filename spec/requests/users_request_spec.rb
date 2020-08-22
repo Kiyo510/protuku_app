@@ -8,7 +8,7 @@ RSpec.describe "User pages", type: :request do
     # 正常なレスポンスを返すこと
     it "returns http success" do
       get signup_path
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to have_http_status "200"
     end
   end
@@ -19,9 +19,9 @@ RSpec.describe "User pages", type: :request do
     context "as an authenticated user" do
       #正常なレスポンスを返すこと
       it "responds successfully" do
-        sign_in as user
+        sign_in_as user
         get user_path(user)
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response).to have_http_status "200"
       end
     end
@@ -32,19 +32,6 @@ RSpec.describe "User pages", type: :request do
       it "redirects to the login page" do
         get user_path(user)
         expect(response).to redirect_to login_path
-      end
-    end
-
-    context "as other user" do
-      before do
-        @other_user = FactoryBot.create(:user)
-      end
-
-      #ホーム画面にリダイレクトすること
-      it "redirecs to the login page" do
-        sign_in_as @other_user
-        get user_path(user)
-        expect(response).to redirect_to root_path
       end
     end
   end
