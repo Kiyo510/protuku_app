@@ -13,11 +13,11 @@
         OR
       = form_with(url: login_path, scope: :session, local: true) do |f|
         .uk-margin
-          = f.label :email,class: 'form-label'
+          = f.label :Eメール,class: 'form-label'
           .uk-form-controls
           = f.email_field :email, class: 'form-control'
         .uk-margin
-          = f.label :password, class: 'form-label'
+          = f.label :パスワード, class: 'form-label'
           .uk-form-controls
           = f.password_field :password, class: 'form-control'
         .uk-margin

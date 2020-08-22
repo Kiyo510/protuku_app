@@ -10,13 +10,13 @@ RSpec.feature "SignUps", type: :feature do
 
     perform_enqueued_jobs do
       expect {
-        fill_in "名前",              with: "Example"
-        fill_in "メールアドレス",     with: "test@example.com"
-        fill_in "パスワード",         with: "test123"
+        fill_in "user[nickname]",              with: "Example"
+        fill_in "user[email]",     with: "test@example.com"
+        fill_in "user[password]",         with: "test123"
         click_button "ユーザー登録"
       }.to change(User, :count).by(1)
 
-      expect(page).to have_content "アカウント有効化メールを送信しました。"
+      expect(page).to have_content "アカウント有効用のメールを送信しました。クリックして有効化をお願い致します。"
       expect(current_path).to eq root_path
     end
 
@@ -27,7 +27,7 @@ RSpec.feature "SignUps", type: :feature do
     aggregate_failures do
       expect(mail.to).to eq ["test@example.com"]
       expect(mail.from).to eq ["noreply@example.com"]
-      expect(mail.subject).to eq "Account activation"
+      expect(mail.subject).to eq "アカウントの有効化をお願いします。"
     end
   end
 end

@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       end
     else
       flash.now[:denger] = "パスワードまたはEメールアドレスが間違っています。"
-      new
+      render "new"
     end
   end
 

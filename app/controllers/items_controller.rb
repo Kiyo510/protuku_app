@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  require 'payjp'
+  before_action :authenticate_user, only: [:new, :edit, :update]
+  #require 'payjp'
 
   def index
     items = Item.all.order(created_at: :desc)
@@ -64,7 +65,6 @@ class ItemsController < ApplicationController
     flash[:success] = "投稿を削除しました"
     redirect_to items_path
   end
-
 
   def purchase
     @item = Item.find(params[:id])

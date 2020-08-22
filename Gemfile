@@ -63,11 +63,12 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 4.3'
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 4.0', '>= 4.0.1'
+  gem 'rspec-rails', '4.0.0.beta3'
   gem 'factory_bot_rails', '~> 6.0'
 end
 
