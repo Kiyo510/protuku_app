@@ -38,7 +38,7 @@ jobs:
         environment:
           MYSQL_DATABASE: webapp_test
           MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          MYSQL_ROOT_HOST: '%'
+          MYSQL_ROOT_HOST: db
     # environment variables specific to Ruby/Rails, applied to the primary container.
     environment:
       BUNDLE_JOBS: "3"
