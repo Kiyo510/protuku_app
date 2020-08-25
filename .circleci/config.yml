@@ -44,12 +44,23 @@ jobs:
       - run:
           name: Database setup
           command: bundle exec rake db:create db:schema:load --trace
-      - run: bundle exec rubocop --auto-gen-config
       - run:
-          name: Rubocop
-          command: bundle exec rubocop -a
-      - run:
-          name: execute rspec
-          command: bundle exec rspec
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
+
+              bundle exec rspec \
+                --format progress \
+                --format RspecJunitFormatter \
+                --out /tmp/test-results/rspec.xml \
+                --format progress \
+                $TEST_FILES
+
+      # collect reports
       - store_test_results:
           path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
