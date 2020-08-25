@@ -13,8 +13,8 @@ jobs:
       - image: circleci/mysql:5.7
         environment:
           MYSQL_DATABASE: webapp_test
-          MYSQL_USER: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
-          MYSQL_ROOT_PASSWORD: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          MYSQL_ROOT_HOST: '%'
     steps:
       - checkout # pull down our git code.
       - ruby/install-deps # use the ruby orb to install dependencies
