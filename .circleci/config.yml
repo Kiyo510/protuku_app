@@ -44,9 +44,10 @@ jobs:
       - run:
           name: Database setup
           command: bundle exec rake db:create db:schema:load --trace
+      - run: bundle exec rubocop --auto-gen-config
       - run:
           name: Rubocop
-          command: bundle exec rubocop
+          command: bundle exec rubocop -a
       - run:
           name: execute rspec
           command: bundle exec rspec
