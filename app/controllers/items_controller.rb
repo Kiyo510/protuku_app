@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user, only: [:new, :edit, :update]
-  #require 'payjp'
+  before_action :authenticate_user, only: %i[show new edit update]
+  before_action :correct_user, only: %i[edit update]
+  # require 'payjp'
 
   def index
     items = Item.all.order(created_at: :desc)
@@ -18,7 +19,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to items_path
     else
-      flash.now[:alert] = "投稿に失敗しました"
+      flash.now[:alert] = '投稿に失敗しました'
       render 'new'
     end
   end
@@ -53,7 +54,7 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      flash[:success] = "内容を更新しました"
+      flash[:success] = '内容を更新しました'
       redirect_to items_path
     else
       render 'edit'
@@ -62,24 +63,24 @@ class ItemsController < ApplicationController
 
   def destroy
     Item.find(params[:id]).destroy
-    flash[:success] = "投稿を削除しました"
+    flash[:success] = '投稿を削除しました'
     redirect_to items_path
   end
 
   def purchase
     @item = Item.find(params[:id])
     card = Card.where(user_id: current_user.id).first
-    #カードテーブルから顧客のカード情報を引っ張る
+    # カードテーブルから顧客のカード情報を引っ張る
     if card.blank?
-      #登録されたカード情報がない場合カード登録画面へ遷移
-      redirect_to controller: "cards", action: "new"
+      # 登録されたカード情報がない場合カード登録画面へ遷移
+      redirect_to controller: 'cards', action: 'new'
     else
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      #保管した顧客IDでpayjpから情報を取ってくる
+      Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+      # 保管した顧客IDでpayjpから情報を取ってくる
       customer = Payjp::Customer.retrieve(card.customer_id)
-      #保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入
+      # 保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入
       @default_card_information = customer.cards.retrieve(card.card_id)
-      #購入履歴を保存
+      # 購入履歴を保存
       new_history = @item.purchase_histories.build
       new_history.user_id = current_user.id
       new_history.save
@@ -96,14 +97,15 @@ class ItemsController < ApplicationController
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(
       amount: @item.price, # 決済する値段
-      customer: card.customer_id, #顧客ID
-      currency: 'jpy' #日本円を選択
+      customer: card.customer_id, # 顧客ID
+      currency: 'jpy' # 日本円を選択
     )
-    redirect_to action: 'done'#購入完了画面へ
+    redirect_to action: 'done' # 購入完了画面へ
   end
 
-    private
-      def item_params
-        params.require(:item).permit(:title, :content, :price, :region, :image)
-      end
+  private
+
+  def item_params
+    params.require(:item).permit(:title, :content, :price, :region, :image)
+  end
 end

@@ -4,35 +4,35 @@ RSpec.describe User, type: :model do
   let(:user) { FactoryBot.create(:user) }
 
   describe User do
-    #factory_botが有効化どうか検査
-    it "has a valid factory" do
+    # factory_botが有効化どうか検査
+    it 'has a valid factory' do
       expect(user).to be_valid
     end
   end
 
-  #Shoulda Matchers
+  # Shoulda Matchers
   it { is_expected.to validate_presence_of :nickname }
-  it { is_expected.to validate_length_of(:nickname).is_at_most(30)}
+  it { is_expected.to validate_length_of(:nickname).is_at_most(30) }
   it { is_expected.to validate_presence_of :email }
   it { is_expected.to validate_length_of(:email).is_at_most(255) }
   it { is_expected.to validate_presence_of :password }
   it { is_expected.to validate_length_of(:password).is_at_least(6) }
 
   # 重複したメールアドレスなら無効な状態であること
-  it "is invalid with a duplicate email adress" do
-    FactoryBot.create(:user, email: "alice@example.com")
-    user = FactoryBot.build(:user, email: "Alice@example.com")
+  it 'is invalid with a duplicate email adress' do
+    FactoryBot.create(:user, email: 'alice@example.com')
+    user = FactoryBot.build(:user, email: 'Alice@example.com')
     user.valid?
-    #expect(user.errors[:email]).to include("そのEmailアドレスは既に登録されています。")
+    # expect(user.errors[:email]).to include("そのEmailアドレスは既に登録されています。")
   end
 
   # メールアドレスの有効性
-  describe "email validation should reject incalid addresses" do
+  describe 'email validation should reject incalid addresses' do
     # 無効なメールアドレスの場合
-    it "should be invalid" do
+    it 'should be invalid' do
       invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
-                              foo@bar_baz.com foo@bar+baz.com]
-      invalid_addresses.each do |invalid_address|
+                             foo@bar_baz.com foo@bar+baz.com]
+      invalid_addresses.each do |_invalid_address|
         user.email = invalid_addresses
         expect(user).to_not be_valid
       end
@@ -41,8 +41,8 @@ RSpec.describe User, type: :model do
 
   describe 'before_save' do
     describe '#email_downcase' do
-      #let!を使うことでbefore doのように先に実行される
-      let!(:user) { create(:user, email: 'ORIGINAL@EXAMPLE.COM')}
+      # let!を使うことでbefore doのように先に実行される
+      let!(:user) { create(:user, email: 'ORIGINAL@EXAMPLE.COM') }
       it 'makes email to low case' do
         expect(user.reload.email).to eq 'original@example.com'
       end

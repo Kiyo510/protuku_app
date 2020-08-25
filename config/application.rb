@@ -10,7 +10,6 @@ module Webapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-
     config.generators do |g|
       g.test_framework :rspec,
        fixtures: false, # テストDBにレコード作成するファイルの作成をスキップ（初めだけ、のちに削除）。

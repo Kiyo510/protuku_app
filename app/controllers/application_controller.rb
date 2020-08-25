@@ -3,8 +3,13 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     unless logged_in?
-      flash[:danger] = "ログインをして下さい。"
+      flash[:danger] = 'ログインが必要です。'
       redirect_to login_url
     end
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user)
   end
 end

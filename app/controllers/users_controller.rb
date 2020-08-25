@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, only: [:show, :edit, :update]
+  before_action :authenticate_user, only: %i[show edit update]
+  before_action :correct_user, only: %i[edit update]
 
   def index
     @users = User.all
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      flash[:info] = "アカウント有効用のメールを送信しました。クリックして有効化をお願い致します。"
+      flash[:info] = 'アカウント有効用のメールを送信しました。クリックして有効化をお願い致します。'
       redirect_to root_path
     else
       flash.now[:denger] = 'ユーザー登録に失敗しました。'
@@ -23,10 +24,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    #ストック一覧を取得
+    # ストック一覧を取得
     stock_items = Stock.get_stock_items(current_user)
     @stock_items = Kaminari.paginate_array(stock_items).page(params[:page]).per(10)
-    #投稿した出品一覧を取得
+    # 投稿した出品一覧を取得
     posted_items = @user.items
     @posted_items = Kaminari.paginate_array(posted_items).page(params[:page]).per(10)
     # Entryモデルからログインユーザーのレコードを抽出
@@ -66,11 +67,12 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_params
-    params.require(:user).permit(:nickname, :email, :password)
-    end
 
-    # def set_user
-    #   @user = User.find(params[:id])
-    # end
+  def user_params
+    params.require(:user).permit(:nickname, :email, :password)
+  end
+
+  # def set_user
+  #   @user = User.find(params[:id])
+  # end
 end

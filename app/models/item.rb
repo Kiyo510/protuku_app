@@ -8,8 +8,7 @@ class Item < ApplicationRecord
   has_many :stock_users, through: :stocks, source: :user
 
   validates :title, presence: true, length: { maximum: 35 }
-  validates :content, presence: true, length: { maximum: 10000 }
-
+  validates :content, presence: true, length: { maximum: 10_000 }
 
   # 現在ログインしているユーザーidを受け取り、記事をストックする
   def stock(user)
