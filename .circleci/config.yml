@@ -9,9 +9,9 @@ jobs:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
       - image: circleci/mysql:5.7
-          environment:
-            - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-            - MYSQL_ROOT_HOST: '%'
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          - MYSQL_ROOT_HOST: '%'
     steps:
       - checkout
       - restore_cache:
