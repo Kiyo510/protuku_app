@@ -1,12 +1,9 @@
-
 version: 2.1 # Use 2.1 to enable using orbs and other features.
-
 # Declare the orbs that we'll use in our config.
 # read more about orbs: https://circleci.com/docs/2.0/using-orbs/
 orbs:
   ruby: circleci/ruby@1.0
   node: circleci/node@2
-
 jobs:
   build: # our first job, named "build"
     docker:
@@ -27,10 +24,10 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
           cache-key: "yarn.lock"
-
   test:  # our next job, called "test"
     # we run "parallel job containers" to enable speeding up our tests;
     # this splits our tests across multiple containers.
+    parallelism: 2
     parallelism: 1
     # here we set TWO docker images.
     docker:
@@ -41,8 +38,8 @@ jobs:
       - image: circleci/mysql:5.7
         environment:
           MYSQL_DATABASE: webapp_test
-          MYSQL_USER: root
-          MYSQL_ROOT_PASSWORD:
+          MYSQL_USER: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
+          MYSQL_ROOT_PASSWORD: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
     # environment variables specific to Ruby/Rails, applied to the primary container.
     environment:
       BUNDLE_JOBS: "3"
@@ -62,7 +59,7 @@ jobs:
       # up before we run operations on the database.
       - run:
           name: Wait for DB
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+          command: dockerize -wait tcp://localhost -timeout 1m
       - run:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
