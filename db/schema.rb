@@ -65,13 +65,13 @@ ActiveRecord::Schema.define(version: 2020_08_25_094318) do
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "content"
-    t.bigint "room_id", null: false
     t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["room_id"], name: "fk_rails_a8db0fb63a"
-    t.index ["user_id"], name: "fk_rails_6613941af1"
+    t.text "content"
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "purchase_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -119,8 +119,8 @@ ActiveRecord::Schema.define(version: 2020_08_25_094318) do
   add_foreign_key "entries", "rooms"
   add_foreign_key "entries", "users"
   add_foreign_key "items", "users"
+  add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "messages", "users", column: "room_id"
   add_foreign_key "purchase_histories", "items"
   add_foreign_key "purchase_histories", "users"
   add_foreign_key "stocks", "items"
