@@ -1,12 +1,14 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user, only: %i[index show]
+  before_action :correct_user, only: [:index]
 
   def create
-    room = Room.create
+    @room = Room.create
     # Entryモデルにログインユーザーのレコードを作成
-    current_entry = Entry.create(user_id: current_user.id, room_id: room.id)
+    current_entry = Entry.create(user_id: current_user.id, room_id: @room.id)
     # Entryモデルにメッセージ相手のレコードを作成
-    another_entry = Entry.create(user_id: params[:entry][:user_id], room_id: room.id)
-    redirect_to room_path(room)
+    another_entry = Entry.create(user_id: params[:entry][:user_id], room_id: @room.id)
+    redirect_to room_path(@room)
   end
 
   def index
@@ -22,8 +24,12 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @message = Message.new
-    # メッセージ相手を抽出
-    @another_entry = @room.entries.find_by('user_id != ?', current_user.id)
+    if Entry.where(user_id: current_user.id, room_id: @room.id).present?
+      @message = Message.new
+      # メッセージ相手を抽出
+      @another_entry = @room.entries.find_by('user_id != ?', current_user.id)
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 end

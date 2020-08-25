@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :purchase_histories, dependent: :destroy
   validates :nickname, presence: true, length: { maximum: 30 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
@@ -17,8 +17,11 @@ class User < ApplicationRecord
 
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
+    cost = if ActiveModel::SecurePassword.min_cost
+             BCrypt::Engine::MIN_COST
+           else
+             BCrypt::Engine.cost
+end
     BCrypt::Password.create(string, cost: cost)
   end
 
@@ -35,17 +38,18 @@ class User < ApplicationRecord
 
   # 渡されたトークンがダイジェストと一致したらtrueを返す
   def authenticated?(attribute, token)
-    digest = self.send("#{attribute}_digest")
+    digest = send("#{attribute}_digest")
     return if digest.nil?
+
     BCrypt::Password.new(digest).is_password?(token)
   end
 
-  #ユーザーのログイン情報を破棄する
+  # ユーザーのログイン情報を破棄する
   def forget
     update_attribute(:remember_digest, nil)
   end
 
-   # アカウントを有効にする
+  # アカウントを有効にする
   def activate
     update_columns(activated: true, activated_at: Time.zone.now)
   end
@@ -65,16 +69,17 @@ class User < ApplicationRecord
   end
 
   def password_reset_expired?
-    #reset_sent_at < 2.hours.ago
+    # reset_sent_at < 2.hours.ago
   end
 
   private
-    def downcase_email
-      self.email = email.downcase
-    end
 
-    def create_activation_digest
-      self.activation_token = User.new_token
-      self.activation_digest = User.digest(activation_token)
-    end
+  def downcase_email
+    self.email = email.downcase
+  end
+
+  def create_activation_digest
+    self.activation_token = User.new_token
+    self.activation_digest = User.digest(activation_token)
+  end
 end

@@ -6,6 +6,6 @@ class Stock < ApplicationRecord
   validates :item_id, presence: true
 
   def self.get_stock_items(user)
-    self.where(user_id: user.id).map(&:item)
+    where(user_id: user.id).map(&:item)
   end
 end

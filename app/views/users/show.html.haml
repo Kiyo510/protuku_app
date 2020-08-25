@@ -17,7 +17,7 @@
               = form_with model: @room, url: rooms_path, local: true do |f|
                 = fields_for @entry do |e|
                   = e.hidden_field :user_id, value: @user.id
-                  = f.submit 'メッセージを送る', class: '"message_btn"'
+                  = f.submit 'メッセージを送る', class: 'message_btn'
       .uk-flex-column.uk-margin-small-left.profole_box
         .uk-card.uk-card-small.uk-card-default.uk-card-body.uk-margin-bottom
           %h2.mypage_content_title.fa-user

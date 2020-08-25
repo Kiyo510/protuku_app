@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
   resources :messages, only: [:create, :destroy]
-  resources :rooms, only: [:show, :create]
+  resources :rooms, only: [:show, :create, :index]
   resources :stocks, only: %i(index create destroy)
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :edit, :create, :update]

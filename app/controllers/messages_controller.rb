@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
-
- def create
+  def create
     message = Message.new(message_params)
     message.user_id = current_user.id
     if message.save
@@ -13,13 +12,13 @@ class MessagesController < ApplicationController
   def destroy
     message = Message.find(params[:id])
     message.destroy
-    flash[:success] = "メッセージを削除しました"
+    flash[:success] = 'メッセージを削除しました'
     redirect_back(fallback_location: root_path)
   end
 
   private
 
-    def message_params
-      params.require(:message).permit(:room_id, :content)
-    end
+  def message_params
+    params.require(:message).permit(:room_id, :content)
+  end
 end

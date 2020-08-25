@@ -1,5 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe "AccountActivations", type: :request do
-
+RSpec.describe 'AccountActivations', type: :request do
 end

@@ -5,7 +5,6 @@ class HTML < Redcarpet::Render::HTML
 end
 
 module MarkdownHelper
-
   def markdown(content)
     options = {
       filter_html: false,
