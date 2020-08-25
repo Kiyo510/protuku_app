@@ -11,7 +11,7 @@
       .uk-card-title.uk-flex.uk-flex-between
         .item_show_title.uk-text-bold
           = @item.title
-        - if current_user.id == @item.user_id
+        - if current_user.id == @item.user_id && logged_in?
           .edit_post_box
             %span.fa-edit
               = link_to '編集', edit_item_path(@item)
