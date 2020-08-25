@@ -1,4 +1,7 @@
 version: 2
+orbs:
+  ruby: circleci/ruby@1.0
+  node: circleci/node@2
 jobs:
   build:
     docker:
@@ -25,7 +28,7 @@ jobs:
 
     steps:
       - checkout
-
+      - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
           cache-key: "yarn.lock"
