@@ -41,8 +41,8 @@ jobs:
       - image: circleci/mysql:5.7
         environment:
           MYSQL_DATABASE: webapp_test
-          MYSQL_USER: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
-          MYSQL_ROOT_PASSWORD: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
+          MYSQL_USER: root
+          MYSQL_ROOT_PASSWORD:
     # environment variables specific to Ruby/Rails, applied to the primary container.
     environment:
       BUNDLE_JOBS: "3"
@@ -72,11 +72,18 @@ jobs:
           name: Rubocop
           command: bundle exec rubocop
       - run:
-          name: run tests
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-              circleci tests split --split-by=timings)"
+      name: Run rspec in parallel
+      command: |
+        bundle exec rspec --profile 10 \
+                          --format RspecJunitFormatter \
+                          --out test_results/rspec.xml \
+                          --format progress \
+                          $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:
   version: 2
