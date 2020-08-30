@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :purchase_histories, dependent: :destroy
+  has_one_attached :avatar
   validates :nickname, presence: true, length: { maximum: 30 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, presence: true, length: { maximum: 255 },
