@@ -1,4 +1,4 @@
-//Utility
+//ユーティリティ
  li {
    list-style: none;
    line-height: 1.5;
@@ -17,7 +17,6 @@ a {
 a:hover {
   color: #ccc;
 }
-
 body {
   margin: 0;
   letter-spacing: .01em;
@@ -31,6 +30,7 @@ body {
   font-size: .85rem;
   color: rgb(51, 51, 51);
 }
+
 // TOPページ
 
 //header
@@ -119,7 +119,6 @@ body {
               Segoe UI Emoji;
   margin-bottom: 6px;
 }
-
 
 //新規投稿ページ
 .new_post_form {
@@ -251,6 +250,7 @@ body {
   color: #666!important;
   transition: opacity .2s;
 }
+
 //ページネーション
  .uk-pagination>* {
   padding-left: 0;
@@ -262,6 +262,7 @@ body {
    font-weight: bolder;
    padding: 0 6px;
  }
+
 //投稿詳細ページ
 .item_show_title {
   width: 660px;
@@ -350,7 +351,6 @@ body {
     border-collapse: collapse;
     border: 1px solid #b4afaf;
   }
-
   th,
   td {
     padding: 6px 13px;
@@ -375,7 +375,6 @@ body {
   font-size: 1.2rem;
   padding: 8px 28px 4px 11px;
 }
-
 .stock-btn_inner {
   border-radius: 50%;
   background-color: grey;
@@ -412,6 +411,7 @@ body {
 .fa-bookmark-o::before {
 
 }
+
 //マイページ
 .mypage_sidebar {
   height: 50vh;
@@ -422,7 +422,6 @@ body {
   color: #777777;
   font-weight: bold;
 }
-
 .mypage_content_title{
   font-size: 1.2rem;
   color: #504e4e;
@@ -447,7 +446,6 @@ body {
   color: #1e87f0;
   margin-right: .5rem;
 }
-
 .edit_profile_btn {
   display: inline-block;
   font-size: 0.8rem;
@@ -493,6 +491,13 @@ body {
   text-align: center;
   padding: 2px 0 0 0;
 }
+
+//ユーザー編集ページ
+.edit_user_form {
+  width: 80%;
+  margin: 0 auto;
+}
+
 //DMルーム
 .dm-room_title {
   margin-top: 30px;
@@ -516,6 +521,7 @@ body {
 .message_box {
 
 }
+
 //フッター
 footer {
   background-color: #3e3e3e;
