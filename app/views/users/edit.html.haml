@@ -1,77 +1,28 @@
-.uk-section.uk-section-muted.uk-flex.uk-flex-middle.uk-animation-fade{"uk-animation-fade" => "", "uk-height-viewport" => ""}
-  .uk-width-1-1
-    .uk-container
-      .uk-grid-margin.uk-grid.uk-grid-stack{"uk-grid" => ""}
-        .uk-card.uk-card-default.uk-card-large.uk-margin.uk-border-rounded{:class => "uk-child-width-1-2@s", "uk-grid" => ""}
-          %div
-            = form_with(model: @user, local: true) do |f|
-              .uk-card-body
-                %h3.uk-card-title.uk-text-bold.uk-text-uppercase.uk-text-primary ユーザー登録情報の編集
-                .uk-margin
-                  = f.label :ニックネーム, class: "uk-form-label"
-                  .uk-form-controls
-                    = f.text_field :nickname, class: "uk-input"
-                    - if @user.errors.include?(:nickname)
-                      %p{:style => "color: red;"}
-                        = @user.errors.full_messages_for(:nickname).first
-                .uk-margin
-                  = f.label :Eメール, class: "uk-form-label"
-                  .uk-form-controls
-                    = f.email_field :email, class: "uk-input"
-                    - if @user.errors.include?(:email)
-                      %p{:style => "color: red;"}
-                        = @user.errors.full_messages_for(:email).first
-                .uk-margin
-                  = f.label :パスワード, class: "uk-form-label"
-                  .uk-form-controls
-                    = f.password_field :password, class: "uk-input"
-                    - if @user.errors.include?(:password)
-                      %p{:style => "color: red;"}
-                        = @user.errors.full_messages_for(:password).first
-                %small.uk-flex.uk-flex-middle.uk-margin-small-top Minimum 6 characters, at least one letter and one number.
-                = f.submit "プロフィールを更新", class: "uk-button uk-button-primary"
-
-    .uk-container
-      .uk-grid-margin.uk-grid.uk-grid-stack{"uk-grid" => ""}
-        .uk-card.uk-card-default.uk-card-large.uk-margin.uk-border-rounded{:class => "uk-child-width-1-1@s", "uk-grid" => ""}
-          %div
-            = form_with(model: @user, local: true) do |f|
-              .uk-card-body
-                %h3.uk-card-title.uk-text-bold.uk-text-uppercase.uk-text-primary 銀行口座情報の登録・更新
-                .uk-margin
-                  = f.label :金融機関コード, class: "uk-form-label"
-                  .uk-form-controls
-                    = f.text_field :bank_code, class: "uk-input"
-                    - if @user.errors.include?(:bank_code)
-                      %p{:style => "color: red;"}
-                        = @user.errors.full_messages_for(:bank_code).first
-                .uk-margin
-                  = f.label :支店コード, class: "uk-form-label"
-                  .uk-form-controls
-                    = f.text_field :bank_branch_code, class: "uk-input"
-                    - if @user.errors.include?(:bank_branch_code)
-                      %p{:style => "color: red;"}
-                        = @user.errors.full_messages_for(:bank_branch_code).first
-                .uk-margin
-                  = f.label :預金種別, class: "uk-form-label"
-                  .uk-form-controls
-                    = f.text_field :password, class: "uk-input"
-                    - if @user.errors.include?(:password)
-                      %p{:style => "color: red;"}
-                        = @user.errors.full_messages_for(:password).first
-                .uk-margin
-                  = f.label :口座番号, class: "uk-form-label"
-                  .uk-form-controls
-                    = f.text_field :bank_account_number, class: "uk-input"
-                    - if @user.errors.include?(:bank_account_number)
-                      %p{:style => "color: red;"}
-                        = @user.errors.full_messages_for(:bank_account_number).first
-                .uk-margin
-                  = f.label :口座名義, class: "uk-form-label"
-                  .uk-form-controls
-                    = f.text_field :bank_account_holder_name, class: "uk-input"
-                    - if @user.errors.include?(:bank_account_holder_name)
-                      %p{:style => "color: red;"}
-                        = @user.errors.full_messages_for(:bank_account_holder_name).first
-                %small.uk-flex.uk-flex-middle.uk-margin-small-top Minimum 6 characters, at least one letter and one number.
-                = f.submit "送信", class: "uk-button uk-button-primary"
+.uk-section.uk-animation-fade{"uk-animation-fade" => "", "uk-height-viewport" => ""}
+  .uk-container.uk-container-small
+    .edit_user_form
+      %h3.uk-text-bold プロフィール編集ページ
+      .uk-card.uk-card-default.uk-card-small.uk-card-body.uk-border-rounded
+        = form_with(model: @user, local: true) do |f|
+          .uk-margin
+            = f.label :自己紹介, class: 'form-label'
+            = f.text_area :content, placeholder: "本文を入力",id: "user_introduce_form", class: 'uk-textarea', size: "40x10"
+          .uk-margin
+            = f.label :ニックネーム, class: 'form-label'
+            .uk-form-controls
+            = f.text_field :nickname, class: 'form-control'
+          .uk-margin
+            = f.label :アイコン設定, class: 'form-label'
+            .uk-form-controls.uk-background-muted.uk-padding.uk-panel.uk-text-center
+              %p.uk-text-light 画像をアップロードする
+              = f.file_field :avatar
+          .uk-margin
+            = f.label :Eメール,class: 'form-label'
+            .uk-form-controls
+            = f.email_field :email, class: 'form-control'
+          .uk-margin
+            = f.label :パスワード, class: 'form-label'
+            .uk-form-controls
+            = f.password_field :password, class: 'form-control'
+          .uk-margin-top.uk-text-center
+            = f.submit "保存する", class: 'uk-button uk-button-primary uk-text-bold uk-border-rounded'
