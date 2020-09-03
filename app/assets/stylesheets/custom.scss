@@ -286,12 +286,29 @@ body {
 .post_user_box {
   width: 69%;
 }
-.post_user_info {
+.post_user_infoBox {
   font-size: 15px;
   letter-spacing: .05rem;
   a {
     color: black;
   }
+}
+.post_user_image_info img{
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  object-fit: cover;
+}
+.post_user_image_info {
+  margin-right: 5px;
+}
+.post_user_nickname_info {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.post_user_dataTime_info {
+  font-size: 0.75rem;
+  margin-right: 5px;
 }
 .post_user_content {
   pre {
