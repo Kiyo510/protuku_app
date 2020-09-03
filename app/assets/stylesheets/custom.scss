@@ -417,6 +417,12 @@ body {
   height: 50vh;
   min-width: 300px;
 }
+.user_image img {
+  width: 10rem;
+  height: 10rem;
+  display: inline-block;
+  object-fit: cover;
+}
 .user_nickname {
   font-size: .95rem;
   color: #777777;
