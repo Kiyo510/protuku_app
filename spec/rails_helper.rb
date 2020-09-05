@@ -20,6 +20,10 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
+  config.before(:each, type: :system) do
+    driven_by :selenium, using: :headless_chrome, screen_size: [1920, 1080],
+                        options: { args: %w[headless disable-gpu no-sandbox disable-dev-shm-usage] }
+  end
   DatabaseCleaner.strategy = :truncation
   config.before(:suite) do
     DatabaseCleaner.clean
