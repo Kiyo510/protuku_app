@@ -18,10 +18,16 @@
             %span.fa-trash
               = link_to '削除', item_path, method: :delete, data: { confirm: "投稿内容はデータから完全に削除されます。本当に削除しますか？" }
       .uk-margin-small
-        .post_user_info
-          = image_tag '/assets/noimage.png', alt: 'プロフィール画像', size: '50x80', class: 'uk-border-circle'
-          = link_to @item.user.nickname, user_path(@item.user),class:'uk-text-normal'
-          = l @item.created_at, format: :short,class: 'uk-text-muted uk-text-normal'
+        .post_user_infoBox.uk-flex.uk-flex-middle
+          .post_user_image_info
+            - if @item.user.avatar.attached?
+              = image_tag @item.user.avatar, alt: 'プロフィール画像', size: '50x80', class: 'uk-border-circle'
+            - else
+              = image_tag '/assets/noimage.png', alt: 'プロフィール画像',size: '50x80', class: 'uk-border-circle'
+          .post_user_nickname_info
+            = link_to @item.user.nickname, user_path(@item.user),class:'uk-text-normal'
+          .post_user_dataTime_info
+            = "投稿日時:#{l @item.created_at, format: :short,class: 'uk-text-muted uk-text-normal'}"
         .post_user_content.uk-margin-small
           = markdown(@item.content)
       -#後にカード決済を追加予定
@@ -30,7 +36,10 @@
       .uk-text-bolder.uk-text-secondary
         投稿者情報
       .user_image.uk-margin
-        = image_tag '/assets/noimage.png', alt: 'プロフィール画像', size: '450x450', class: 'uk-border-circle'
+        - if @item.user.avatar.attached?
+          = image_tag @item.user.avatar, alt: 'プロフィール画像', class: 'uk-border-circle'
+        - else
+          = image_tag '/assets/noimage.png', alt: 'プロフィール画像', class: 'uk-border-circle'
       .user_nickname.uk-margin
         = link_to @item.user.nickname, user_path(@item.user_id), class: 'uk-text-normal'
       .uk-margin

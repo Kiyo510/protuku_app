@@ -48,6 +48,23 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "user_avatar" do
+    it "should indicate user_avatar" do
+      user.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'test.jpg')), filename: 'test.jpg', content_type: 'image/jpg')
+      expect(user).to be_valid
+    end
+
+    it "should not be over than 5MB" do
+      user.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'test_5mb.jpg')), filename: 'test_5mb.jpg', content_type: 'image/jpg')
+      expect(user).to  be_invalid
+    end
+
+    it "should be only images file" do
+      user.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'test.pdf')), filename: 'test.pdf', content_type: 'application/pdf')
+      expect(user).to be_invalid
+    end
+  end
 end
 
 #  describe "when password doesn't match confirmation" do

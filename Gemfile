@@ -38,6 +38,9 @@ gem 'rouge'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rails-i18n'
+gem 'mini_magick'
+gem 'active_storage_validations'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
 end
