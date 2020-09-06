@@ -10,20 +10,24 @@
                 = f.text_field :search, placeholder: '投稿タイトル、本文で検索', class: 'uk-input uk-form-small'
             %li.search_friend_by_categorize
               .uk-text-secondary.uk-text-bold
-                カテゴリで探す
-              .uk-flex-column
-                .uk-flex
-                  %ul
-                    %li
-                      カテゴリ1
-                    %li
-                      カテゴリ２
-                    %li
-                      カテゴリ３
-                    %li
-                      カテゴリ４
-                    %li
-                      カテゴリ５
+                タグで探す
+              %ul.uk-flex.uk-flex-wrap
+                %li
+                  = link_to '#Rails', '#', class: 'uk-margin-small-top uk-margin-small-right'
+                %li
+                  = link_to '#Rails', '#', class: 'uk-margin-small-top uk-margin-small-right'
+                %li
+                  = link_to '#Rails', '#', class: 'uk-margin-small-top uk-margin-small-right'
+                %li
+                  = link_to '#Rails', '#', class: 'uk-margin-small-top uk-margin-small-right'
+                %li
+                  = link_to '#Rails', '#', class: 'uk-margin-small-top uk-margin-small-right'
+                %li
+                  = link_to '#Javascript', '#', class: 'uk-margin-small-top uk-margin-small-right'
+                %li
+                  = link_to '#Javascriptooooo', '#', class: 'uk-margin-small-top uk-margin-small-right'
+
+
       %div{:class => "uk-width-expand@m"}
         %h2.uk-text-bold 仲間を探す
         - @items.each do |item|
