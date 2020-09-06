@@ -5,9 +5,9 @@
         .uk-card.uk-card-default.uk-card-body.uk-card-small
           %ul
             %li.search_friend
-              .uk-text-bold.uk-text-secondary
-                検索ワードで探す
-              .uk-input.uk-form-small
+              = form_with(url: items_path, method: :get , local: true) do |f|
+                = f.label :検索ワードで探す, class: 'uk-text-bold uk-text-secondary'
+                = f.text_field :search, placeholder: '投稿タイトル、本文で検索', class: 'uk-input uk-form-small'
             %li.search_friend_by_categorize
               .uk-text-secondary.uk-text-bold
                 カテゴリで探す
