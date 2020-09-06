@@ -4,7 +4,11 @@ class ItemsController < ApplicationController
   # require 'payjp'
 
   def index
-    items = Item.all.order(created_at: :desc)
+    if params[:search].present?
+      items = Item.items_serach(params[:search])
+    else
+      items = Item.all.order(created_at: :desc)
+    end
     @items = Kaminari.paginate_array(items).page(params[:page]).per(10)
   end
 

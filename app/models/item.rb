@@ -25,4 +25,9 @@ class Item < ApplicationRecord
   def stocked?(user)
     stock_users.include?(user)
   end
+
+  #検索メソッド、タイトルと内容をあいまい検索する
+  def self.items_serach(search)
+    Item.where(['title LIKE ? OR content LIKE ?', "%#{search}%", "%#{search}%"])
+  end
 end
