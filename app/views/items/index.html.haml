@@ -12,22 +12,9 @@
               .uk-text-secondary.uk-text-bold
                 タグで探す
               %ul.uk-flex.uk-flex-wrap
-                %li
-                  = link_to '#Rails', '#', class: 'uk-margin-small-top uk-margin-small-right'
-                %li
-                  = link_to '#Rails', '#', class: 'uk-margin-small-top uk-margin-small-right'
-                %li
-                  = link_to '#Rails', '#', class: 'uk-margin-small-top uk-margin-small-right'
-                %li
-                  = link_to '#Rails', '#', class: 'uk-margin-small-top uk-margin-small-right'
-                %li
-                  = link_to '#Rails', '#', class: 'uk-margin-small-top uk-margin-small-right'
-                %li
-                  = link_to '#Javascript', '#', class: 'uk-margin-small-top uk-margin-small-right'
-                %li
-                  = link_to '#Javascriptooooo', '#', class: 'uk-margin-small-top uk-margin-small-right'
-
-
+                - @tag_lists.each do |list|
+                  %li
+                    = link_to list.tag_name, items_path(tag_id: list.id), class: 'tag_list'
       %div{:class => "uk-width-expand@m"}
         %h2.uk-text-bold 仲間を探す
         - @items.each do |item|
@@ -39,8 +26,13 @@
                 .post_index_infobox
                   %p.post_user_nickname
                     = link_to item.user.nickname, user_path(item.user_id)
-                  %p.post_user_title
-                    = link_to item.title, item_path(item)
+                  .uk-flex
+                    %p.post_user_title
+                      = link_to item.title, item_path(item)
+                    %p.tag_list_box
+                      - item.tags.each do |tag|
+                        = link_to "##{tag.tag_name}", items_path(tag), class: 'smaller tag_list'
+                  %hr
                   %p.post_user_content_introduction
                     = truncate(item.content,length: 127) do
                       = link_to '詳細を見る', item_path(item), class: 'more_detail'

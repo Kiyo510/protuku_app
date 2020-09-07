@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe'UploadImage', type: :system do
   let(:user) { FactoryBot.create(:user) }
-  let(:item) { FactoryBot.create(:item) }
+  let(:item) { FactoryBot.create(:item, user_id: user.id) }
 
   #画像をアップロードして保存する
   def upload_user_avatar(user)
@@ -20,7 +20,6 @@ RSpec.describe'UploadImage', type: :system do
   it 'user successfully upload image on item#show' do
     upload_user_avatar(user)
     visit item_path(item)
-    page.save_screenshot 'screenshot.png'
     expect(page).to have_selector("img[src$='test.jpg']")
   end
 end

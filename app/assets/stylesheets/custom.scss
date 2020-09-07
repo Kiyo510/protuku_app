@@ -14,8 +14,17 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+hr {
+  margin: 0;
+}
 a:hover {
   color: #ccc;
+}
+.small {
+  font-size: .8rem;
+}
+.smaller {
+  font-size: .55rem;
 }
 body {
   margin: 0;
@@ -237,6 +246,15 @@ body {
 }
 .post_user_nickname a {
     color: #28b7c4;
+}
+.tag_list {
+  color: #28b7c4;
+  display: inline-block;
+  font-weight: normal;
+  border: 1px solid #dddbdb;
+  background-color: #dddbdb;
+  padding: 3px;
+  margin: 1px 5px 2px 0;
 }
 .post_user_title {
   font-size: 0.9rem;

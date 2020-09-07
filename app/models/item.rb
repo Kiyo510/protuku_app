@@ -6,9 +6,12 @@ class Item < ApplicationRecord
   has_many :stocks, dependent: :destroy
   # 投稿記事が誰にストックされているかを取得できる
   has_many :stock_users, through: :stocks, source: :user
+  has_many :tagmaps, dependent: :destroy
+  has_many :tags, through: :tagmaps, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 35 }
   validates :content, presence: true, length: { maximum: 10_000 }
+  validates :region, presence: true
 
   # 現在ログインしているユーザーidを受け取り、記事をストックする
   def stock(user)
@@ -30,4 +33,23 @@ class Item < ApplicationRecord
   def self.items_serach(search)
     Item.where(['title LIKE ? OR content LIKE ?', "%#{search}%", "%#{search}%"])
   end
+
+  #入力されたタグをTagsテーブルに保存する
+  def save_items(tags)
+    current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
+    old_tags = current_tags - tags
+    new_tags = tags - current_tags
+
+    # Destroy
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(tag_name:old_name)
+    end
+
+    # Create
+    new_tags.each do |new_name|
+      item_tag = Tag.find_or_create_by(tag_name:new_name)
+      self.tags << item_tag
+    end
+  end
+
 end

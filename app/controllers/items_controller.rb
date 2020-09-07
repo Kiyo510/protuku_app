@@ -6,9 +6,13 @@ class ItemsController < ApplicationController
   def index
     if params[:search].present?
       items = Item.items_serach(params[:search])
+    elsif params[:tag_id].present?
+      @tag = Tag.find(params[:tag_id])
+      items = @tag.items.order(created_at: :desc)
     else
       items = Item.all.order(created_at: :desc)
     end
+    @tag_lists = Tag.all
     @items = Kaminari.paginate_array(items).page(params[:page]).per(10)
   end
 
@@ -18,9 +22,11 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    tag_list = params[:item][:tag_name].split(nil)
     @item.image.attach(params[:item][:image])
     @item.user_id = current_user.id
     if @item.save
+       @item.save_items(tag_list)
       redirect_to items_path
     else
       flash.now[:alert] = '投稿に失敗しました'
@@ -53,11 +59,14 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @tag_list = @item.tags.pluck(:tag_name).join(",")
   end
 
   def update
     @item = Item.find(params[:id])
+    tag_list = params[:item][:tag_name].split(",")
     if @item.update(item_params)
+      @item.save_items(tag_list)
       flash[:success] = '内容を更新しました'
       redirect_to items_path
     else
