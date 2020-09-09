@@ -15,14 +15,14 @@
     %script{:src => "https://code.jquery.com/jquery-3.0.0.min.js"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  %body.uk-background-muted
+  %body
     %header
       .uk-navbar-container.tm-navbar-container
-        .uk-container.uk-container-expand
+        .uk-container.uk-container-center
           %nav.uk-navbar.uk-text-light
             .uk-navbar-left
-              %a.uk-navbar-item.uk-logo
-                = link_to  "タイトル", root_path
+              %a.uk-navbar-item
+                = link_to  "プロつく！", root_path, class: 'uk-logo'
             .uk-navbar-right
               %ul.uk-navbar-nav{:class => "uk-visible@m"}
                 .uk-navbar-item
@@ -33,10 +33,27 @@
                       = link_to  "投稿一覧", items_path
                   .uk-navbar-item
                     %li
-                      = link_to  "仲間を探す", new_item_path, class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
+                      = link_to  "仲間を募る", new_item_path, class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
                   .uk-navbar-item
-                    %li.uk-active
-                      = link_to  "ログアウト", logout_path, method: :delete, class: "uk-button uk-button-default uk-border-rounded uk-text-bold"
+                    .header_nav_btn
+                      - if current_user.avatar.attached?
+                        = image_tag current_user.avatar, alt: 'プロフィール画像',class: 'header_user_image uk-border-circle'
+                      - else
+                        = image_tag '/assets/noimage.png', alt: 'プロフィール画像', class: 'header_user_image uk-border-circle'
+                    %span.fa-caret-down
+                    %div{"uk-dropdown" => "mode: click"}
+                      %ul.uk-nav.uk-dropdown-nav
+                        %li
+                          = link_to 'マイページ', user_path(current_user)
+                        %li
+                          = link_to 'プロフィール設定', edit_user_path(current_user)
+                        %li
+                          %a{:href => "#"} メッセージ管理
+                        %li.uk-nav-divider
+                        %li
+                          = link_to 'ログアウト', logout_path, method: :delete
+
+
                 -else
                   .uk-navbar-item
                     %li
@@ -49,8 +66,9 @@
                       = link_to  "ユーザー登録", signup_path, class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
                   .uk-navbar-item
                     %li.uk-active
-                      = link_to  "ログイン", login_path, class: "uk-button uk-button-default uk-border-rounded uk-text-bold uk-text-primary"
+                      = link_to  "ログイン", login_path, class: "uk-button uk-button-default uk-border-rounded uk-text-bold"
               %a.uk-navbar-toggle.uk-icon.uk-navbar-toggle-icon{:class => "uk-hidden@m", :href => "#offcanvas", "uk-navbar-toggle-icon" => "", "uk-toggle" => ""}
+      %hr/
     - flash.each do |message_type, message|
       %div{class: "uk-alert-#{message_type}"}
         = message
