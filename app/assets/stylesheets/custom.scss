@@ -35,7 +35,10 @@ a:hover {
 .smaller {
   font-size: .55rem;
 }
-
+img {
+  max-width: 100%;
+  height: auto;
+}
 body {
   margin: 0;
   background-color: #fff;
@@ -52,6 +55,8 @@ body {
 }
 
 //header
+$btn-hover: #1e87f0c7;
+
 .uk-navbar-item {
   min-height: 65px;
 }
@@ -59,10 +64,9 @@ body {
 .uk-button-default {
   border-color: #1e87f0;
   color: #1e87f0;
-
-  &:hover {
-    border-color: #acc3ee;
-    color: #acc3ee;
+    &:hover {
+      color: #fff;
+      background: $btn-hover;
   }
 }
 
@@ -101,7 +105,8 @@ body {
 }
 
 // main(TOP)
-$main-color: #1d58b1;
+$main-color: #f1f5fc;
+$title-color: #1e87f0;
 
 main,
 .contents-wrapper {
@@ -111,49 +116,63 @@ main,
   // background-size: contain;
 }
 main {
-  // background-image: image-url("test_haikei.jpg");
-  background: $main-color;
+  // background-image: image-url("test_heikai.jpg");
+  background-color: $main-color;
+  background-size: cover;
   position: relative;
-  height: 278px;
+  height: 455px;
   padding-top: 25px;
-  padding-bottom: 136px;
   margin-bottom: 48px;
   z-index: 10;
 }
+//セクションを斜めに区切る
+// main::after {
+//   content: "";
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   width: 0;
+//   height: 0;
+//   border-style: solid;
+//   border-top: 60px solid transparent;
+//   border-left: 50vw solid transparent;
+//   border-right: 50vw solid #fff;
+//   border-bottom: 60px solid #fff;
+//   z-index: -1;
+// }
+// main::before {
+//   background-color: rgba(255, 254, 254, 0.38);
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//   content: ' ';
+//   z-index: -1;
+// }
 .signup_btn_main {
-    margin: 0;
-    border: none;
-    overflow: visible;
-    font: inherit;
-    color: black;
-    border-radius: 5px;
-    display: inline-block;
-    padding: 0 30px;
-    margin-top: 20px;
-    vertical-align: middle;
-    font-size: .875rem;
-    line-height: 38px;
-    text-align: center;
-    transition: .1s ease-in-out;
-    background-color: #fee71f;
-    ;
+  margin: 0;
+  border: 2px solid #1e87f0;
+  overflow: visible;
+  font: inherit;
+  color: $title-color;
+  font-weight: bold;
+  border-radius: 36px;
+  display: inline-block;
+  padding: 10px 70px;
+  margin-top: 40px;
+  vertical-align: middle;
+  font-size: 1.3rem;
+  line-height: 38px;
+  text-align: center;
+  transition: .1s ease-in-out;
+  background-color: #fff;
+    &:hover {
+      color: #fff;
+      background: $btn-hover;
+    }
 }
-main::after {
-  content:"";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  /*ここで三角形のサイズを決める。
-  必ず幅100vwにして、ブラウザサイズいっぱいにしてください。*/
-   border-top: 60px solid transparent;  /* 透明 */
-  border-left: 50vw solid transparent;  /* 透明 */
-  border-right: 50vw solid #fff;  /* むらさき */
-  border-bottom: 60px solid #fff;  /* むらさき */
-  z-index: -1;
-}
+
 // .protuku_anable {
 //   background-color: #F9FAFF;
 //   margin: 0 calc(50% - 50vw);
@@ -175,37 +194,59 @@ main::after {
 
 //プロつくでできること
 .contents-wrapper {
-  background-color: #69e4f5;
+  background-image: image-url('contents_haikei_test.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative;
-  z-index: 1;
-  padding: 15px;
+  padding-top: 48px;
+  margin-bottom: 40px;
 }
 .contents-wrapper::before {
- content:"";
- position: absolute;
- top: 0;
- left: 0;
- width: 0;
- height: 0;
- border-style: solid;
- /*ここで三角形のサイズを決める。
-  必ず幅100vwにして、ブラウザサイズいっぱいにしてください。*/
- border-top: 60px solid #fff;
- /* 透明 */
- border-left: 50vw solid transparent;
- /* 透明 */
- border-right: 50vw solid #fff;
- /* むらさき */
- border-bottom: 60px solid transparent;
- /* むらさき */
- z-index: -1;
+    z-index: 0;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.801);
 }
+//セクションを斜めに区切る
+// .contents-wrapper::before {
+//  content:"";
+//  position: absolute;
+//  top: 0;
+//  left: 0;
+//  width: 0;
+//  height: 0;
+//  border-style: solid;
+//  border-top: 70px solid #fff;
+//  border-left: 50vw solid transparent;
+//  border-right: 50vw solid #fff;
+//  border-bottom: 70px solid transparent;
+//  z-index: -1;
+// }
+// .contents-wrapper::after {
+//   content: "";
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   width: 0;
+//   height: 0;
+//   border-style: solid;
+//   border-top: 60px solid transparent;
+//   border-left: 50vw solid transparent;
+//   border-right: 50vw solid #fff;
+//   border-bottom: 60px solid #fff;
+//   z-index: -1;
+// }
 .section-title {
-  color: $main-color;
+  color: $title-color;
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: 2.3rem;
   position: relative;
-  margin-bottom: 70px;
+  margin-bottom: 51px;
 }
 .section-title::after {
   content: "";
@@ -216,18 +257,19 @@ main::after {
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #dad1d1;
+  background-color: #d4d2d1;
+}
+.contents-wrapper p {
+  color: black;
+  font-size: 1.0rem;
+  line-height: 1.8;
+  padding-top: 37px;
 }
 .heading-discrption-protuku {
   font-weight: bold;
-  color: #fff;
-  font-size: 1.5rem;
-}
-.contents-wrapper p {
-  color: #fff;
-  font-size: 0.8rem;
-  line-height: 1.7;
-  padding-top: 37px;
+  color: $title-color;
+  font-size: 2.0rem;
+  margin-top: 32px;
 }
 .protuku-content-image {
   // background-image: image-url('haikei_image.jpg');
@@ -235,8 +277,11 @@ main::after {
   display: inline-block;
   width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 50px;
   object-fit: cover;
+}
+.protuku_image_description {
+  z-index: 1;
 }
 
 //新規登録フォーム(TOP)
