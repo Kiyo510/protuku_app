@@ -21,8 +21,8 @@
         .uk-container.uk-container-center
           %nav.uk-navbar.uk-text-light
             .uk-navbar-left
-              %a.uk-navbar-item
-                -# = link_to image_tag('/assets/protuku_logo.png'), root_path, class: 'uk-logo'
+              %a.uk-navbar-item.logo-protuku
+                = link_to image_tag('/assets/protuku_logo.png'), root_path, class: 'logo-protuku'
             .uk-navbar-right
               %ul.uk-navbar-nav{:class => "uk-visible@m"}
                 - if logged_in?
@@ -31,7 +31,7 @@
                       = link_to  "投稿一覧", items_path
                   .uk-navbar-item
                     %li
-                      = link_to  "仲間を募る", new_item_path, class: "uk-button uk-button-primary uk-button-small uk-border-rounded uk-text-bold uk-text-small"
+                      = link_to  "仲間を募る", new_item_path, class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
                   .uk-navbar-item
                     .header_nav_btn
                       - if current_user.avatar.attached?
@@ -66,7 +66,6 @@
                     %li.uk-active
                       = link_to  "ログイン", login_path, class: "uk-button uk-button-default uk-border-rounded uk-text-bold"
               %a.uk-navbar-toggle.uk-icon.uk-navbar-toggle-icon{:class => "uk-hidden@m", :href => "#offcanvas", "uk-navbar-toggle-icon" => "", "uk-toggle" => ""}
-      %hr/
     - flash.each do |message_type, message|
       %div{class: "uk-alert-#{message_type}"}
         = message
