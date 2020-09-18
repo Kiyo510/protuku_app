@@ -971,7 +971,9 @@ footer {
   margin-top: 2.5em;
   margin-bottom: 1rem;
   height: 100%;
-  color:#6783a0;
+  a {
+    color:#6783a0;
+  }
   // .f-grid {
   //   display: grid;
   //   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -1003,6 +1005,7 @@ footer {
 }
 //意見箱
 .btn-feedback {
+  display: inline-block;
   background-color: #f52e14;
   text-align: center;
   color:#fff;

@@ -50,8 +50,6 @@
                         %li.uk-nav-divider
                         %li
                           = link_to 'ログアウト', logout_path, method: :delete
-
-
                 -else
                   .uk-navbar-item
                     %li
@@ -82,17 +80,15 @@
               %li
                 プロつくについて
               %li
-                お問い合わせフォーム
-              %li
                 運営者Twitter
           %nav
             %ul
               %li
-                利用規約
+                = link_to '利用規約', page_path('terms')
               %li
                 プライバシーポリシー
-        .btn-feedback
-          ご意見BOX
+      %div
+        = link_to 'ご意見BOX', 'https://forms.gle/wUnrfPfy8nc2fgey7', class: 'btn-feedback'
       %p.uk-text-center.f-copyright
         Copyright © 2020 プロつく All Rights Reserved
     -# = debug(params) if Rails.env.development?
