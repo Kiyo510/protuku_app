@@ -70,34 +70,32 @@
       %div{class: "uk-alert-#{message_type}"}
         = message
     = yield
-    %footer.uk-margin-top
-      .uk-container.uk-flex.uk-flex-between.uk-flex-center
-        .uk-section-small.uk-flex-column
-          %h2.uk-heading-hero タイトル
-          %p
-            テキストテキストテキストテキスト
-        .uk-section.uk-flex-column
-          .uk-flex
+    %footer.uk-container
+      .uk-flex.uk-flex-between
+        .f-col.f-logo
+          = link_to image_tag('/assets/protuku_logo.png'), root_path, class: 'logo-protuku'
+          %p.small.uk-text-muted
+            WEB開発マッチングサービス
+        .footer-list-box.uk-flex
+          %nav.uk-margin-right
             %ul
               %li
-                テキスト
+                プロつくについて
               %li
-                テキスト
+                お問い合わせフォーム
               %li
-                テキスト
-              %li
-                テキスト
+                運営者Twitter
+          %nav
             %ul
               %li
-                テキスト
+                利用規約
               %li
-                テキスト
-              %li
-                テキスト
-              %li
-                テキスト
-
-    = debug(params) if Rails.env.development?
+                プライバシーポリシー
+        .btn-feedback
+          ご意見BOX
+      %p.uk-text-center.f-copyright
+        Copyright © 2020 プロつく All Rights Reserved
+    -# = debug(params) if Rails.env.development?
     / UIkit JS
     // syntax highlight
     %script{:src => "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"}
