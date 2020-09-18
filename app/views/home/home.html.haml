@@ -8,7 +8,7 @@
     .uk-flex.uk-flex-between
       .heading-discrption-main
         %p.uk-text-normal
-          「プロつく！」はWEB開発する仲間を探すためのオンラインマッチングプラットフォームです。
+          「プロつく！」はWEB開発やプログラミング仲間を探すためのオンラインマッチングプラットフォームです。
         %br/
         %br/
         -# %p.uk-text-normal
@@ -41,13 +41,13 @@
       -# = f.submit "ユーザー登録", class: 'uk-button uk-button-primary uk-text-bold uk-border-rounded'
   %hr.hr
 .uk-container.uk-container-center.uk-margin-large-bottom
-  %h2.section-title.uk-text-center プロつくでできること
+  %h2.section-title.uk-text-center プロつくの特徴
   .uk-flex.uk-flex-between
     .uk-card.content-wrapper
       .protuku_image_description
         = image_tag '/assets/test1.png', alt: '画像', class: 'protuku-content-image'
       %h3.heading-discrption-protuku
-        「実践的な開発を学べる」
+        実践的な開発を学べる
       %p.content-text
         テキストテキストテキストテキストテキストテキストテキストテキストテキスト
         テキストテキストテキストテキストテキストテキストテキストテキストテキスト
@@ -57,7 +57,7 @@
       .protuku_image_description
         = image_tag '/assets/test2.png', alt: '画像', class: 'protuku-content-image'
       %h3.heading-discrption-protuku
-        「起業仲間を見つけられる」
+        起業仲間を見つけられる
       %p.content-text
         テキストテキストテキストテキストテキストテキストテキストテキストテキスト
         テキストテキストテキストテキストテキストテキストテキストテキストテキスト
@@ -67,30 +67,31 @@
       .protuku_image_description
         = image_tag '/assets/test1.png', alt: '画像', class: 'protuku-content-image'
       %h3.heading-discrption-protuku
-        「起業仲間を見つけられる」
+        学習のモチベーションが保てる
       %p.content-text
         テキストテキストテキストテキストテキストテキストテキストテキストテキスト
         テキストテキストテキストテキストテキストテキストテキストテキストテキスト
         テキストテキストテキストテキストテキストテキストテキストテキストテキスト
         テキストテキストテキストテキストテキストテキストテキストテキストテキス
-.uk-container.uk-container-center
-  %h2.section-title.uk-text-center 最近の募集
-  .uk-text-center{"uk-grid" => ""}
-    - @items.each do |item|
-      .uk-width-1-2.uk-text-left
-        .uk-card.uk-card-default
-          .uk-card-header.uk-padding-small
-            .uk-grid-small.uk-flex-middle{"uk-grid" => ""}
-              .uk-width-auto
-                - if item.image.attached?
-                  = image_tag item.image, alt: '投稿画像', size: '50x50', class: 'uk-border-circle'
-                - else
-                  = image_tag '/assets/noimage.png', alt: '投稿画像', size: '50x50', class: 'uk-border-circle'
-              .uk-width-expand
-                %h4.uk-margin-remove-bottom.uk-margin-remove-left
-                  = link_to item.user.nickname, user_path(item.user_id)
-                %p.uk-text-meta.uk-margin-remove-top
-                  = item.created_at
-          .uk-card-body.uk-padding-small
-            %p.uk-text-bold
-              = link_to item.title, item_path(item)
+.content-background
+  .uk-container.uk-container-center
+    %h2.section-title.uk-text-center 最近の募集
+    .uk-text-center{"uk-grid" => ""}
+      - @items.each do |item|
+        .uk-width-1-2.uk-text-left
+          .uk-card.uk-card-default
+            .uk-card-header.uk-padding-small
+              .uk-grid-small.uk-flex-middle{"uk-grid" => ""}
+                .uk-width-auto
+                  - if item.image.attached?
+                    = image_tag item.image, alt: '投稿画像', size: '50x50', class: 'uk-border-circle'
+                  - else
+                    = image_tag '/assets/noimage.png', alt: '投稿画像', size: '50x50', class: 'uk-border-circle'
+                .uk-width-expand
+                  %h4.uk-margin-remove-bottom.uk-margin-remove-left
+                    = link_to item.user.nickname, user_path(item.user_id)
+                  %p.uk-text-meta.uk-margin-remove-top
+                    = item.created_at
+            .uk-card-body.uk-padding-small
+              %p.uk-text-bold
+                = link_to item.title, item_path(item)
