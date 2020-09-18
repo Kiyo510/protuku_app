@@ -1,6 +1,7 @@
 .uk-section.uk-flex.uk-flex-middle.uk-animation-fade{"uk-animation-fade" => "", "uk-height-viewport" => ""}
   .uk-container
     .uk-card.uk-card-default.uk-card-small.uk-card-body.uk-border-rounded.uk-width-large
+      %h2.uk-text-bold.uk-text-center.uk-margin SIGN UP
       = link_to "#",class: 'twitter' do
         .sns-sign-up_item_btn.twitter_btn
           twitterでアカウント登録
@@ -22,5 +23,11 @@
           = f.label :パスワード, class: 'form-label'
           .uk-form-controls
           = f.password_field :password, class: 'form-control'
+        .uk-margin-small
+          %p.uk-text-center
+            = link_to '利用規約', page_path('terms')
+            と
+            = link_to 'プライバシーポリシー', page_path('privacy')
+            をご覧ください。
         .uk-margin-top.uk-text-center.uk-margin-small-bottom
           = f.submit "ユーザー登録", class: 'uk-button uk-button-primary uk-text-bold uk-border-rounded'
