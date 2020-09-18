@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'home#home'
-  post '/', to: 'users#create'
   get 'purchase_histories/index'
   get 'cards/new'
   get 'cards/show'
