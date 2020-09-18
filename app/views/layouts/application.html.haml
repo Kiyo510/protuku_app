@@ -78,7 +78,7 @@
           %nav.uk-margin-right
             %ul
               %li
-                プロつくについて
+                プロつく!について
               %li
                 運営者Twitter
           %nav
@@ -86,11 +86,11 @@
               %li
                 = link_to '利用規約', page_path('terms')
               %li
-                プライバシーポリシー
+                = link_to 'プライバシーポリシー', page_path('privacy')
       %div
-        = link_to 'ご意見BOX', 'https://forms.gle/wUnrfPfy8nc2fgey7', class: 'btn-feedback'
+        = link_to 'お問い合わせ', 'https://forms.gle/wUnrfPfy8nc2fgey7', class: 'btn-feedback'
       %p.uk-text-center.f-copyright
-        Copyright © 2020 プロつく All Rights Reserved
+        Copyright © 2020 プロつく! All Rights Reserved
     -# = debug(params) if Rails.env.development?
     / UIkit JS
     // syntax highlight
