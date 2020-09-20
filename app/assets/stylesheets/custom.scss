@@ -26,7 +26,9 @@ a {
 hr {
   margin: 0;
 }
-
+h4 {
+  margin: 0;
+}
 a:hover {
   text-decoration: none;
   color: #ccc;
@@ -250,15 +252,6 @@ main {
   background-color: #1e87f0;
 }
 
-.content-background {
-  background-color: #edf5ff;
-  padding: 3rem 1rem;
-  margin: 0 calc(50% - 50vw);
-  width: 100vw;
-  max-width: 100%;
-  object-fit: cover;
-}
-
 .heading-title {
   font-size: 2.7rem;
   font-weight: bold;
@@ -372,7 +365,59 @@ main {
   margin-bottom: 25px;
   font-size: 0.8rem;
 }
+//最近の募集
+.content-background {
+  background-color: #edf5ff;
+  padding: 3rem 1rem;
+  max-width: 100%;
+}
 
+// .section-title + .margin-left {
+//   margin-left: 70px;
+// }
+.article-container {
+  max-width: 960px;
+  margin: 0px auto;
+}
+.article-wrapper {
+  margin-top: 1.2rem;
+  column-count: 2;
+  column-gap: 12%;
+}
+.article_items {
+  break-inside: avoid;
+}
+.recent-posts-box {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding: 15px 0px;
+}
+.recent-posts-image {
+  display: inline-block;
+  width: 92px;
+  height: 92px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  font-size: 42px;
+  background: white;
+  border-radius: 12px;
+}
+.recent-post-contents {
+  width: calc(100% - 130px);
+}
+.recent-post-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.recent-post-user {
+  font-size: 0.9rem;
+  margin-left: 8px;
+}
 //新規登録フォーム(TOP)
 // .uk-width-form {
 //   width: 30%;
@@ -987,8 +1032,13 @@ footer {
       line-height: 2;
     }
   }
+  .fa-twitter-square::before {
+    font-family: FontAwesome;
+    content: "\f081";
+    margin-right: .35rem;
+  }
   .f-copyright {
-    color: #81878d;
+    color: #c2c3c4;
     margin-top: 2rem;
     padding: 0.9rem 0px;
     border-top: solid 1px #f5eded;
@@ -1003,7 +1053,7 @@ footer {
   border: 5px solid #e5eeef;
   padding: 70px;
 }
-//意見箱
+//お問い合わせボタン
 .btn-feedback {
   display: inline-block;
   background-color: #f52e14;

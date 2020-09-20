@@ -74,24 +74,28 @@
         テキストテキストテキストテキストテキストテキストテキストテキストテキスト
         テキストテキストテキストテキストテキストテキストテキストテキストテキス
 .content-background
-  .uk-container.uk-container-center
+  .article-container
     %h2.section-title.uk-text-center 最近の募集
-    .uk-text-center{"uk-grid" => ""}
+    .article-wrapper
       - @items.each do |item|
-        .uk-width-1-2.uk-text-left
-          .uk-card.uk-card-default
-            .uk-card-header.uk-padding-small
-              .uk-grid-small.uk-flex-middle{"uk-grid" => ""}
-                .uk-width-auto
-                  - if item.image.attached?
-                    = image_tag item.image, alt: '投稿画像', size: '50x50', class: 'uk-border-circle'
-                  - else
-                    = image_tag '/assets/noimage.png', alt: '投稿画像', size: '50x50', class: 'uk-border-circle'
-                .uk-width-expand
-                  %h4.uk-margin-remove-bottom.uk-margin-remove-left
-                    = link_to item.user.nickname, user_path(item.user_id)
-                  %p.uk-text-meta.uk-margin-remove-top
-                    = item.created_at
-            .uk-card-body.uk-padding-small
-              %p.uk-text-bold
+        .article_items
+          .recent-posts-box
+            .recent-posts-image
+              - if item.image.attached?
+                = image_tag item.image, alt: '投稿画像', class: 'recent-post-image'
+              - else
+                = image_tag '/assets/noimage.png', alt: '投稿画像', class: 'recent-post-image'
+            .recent-post-contents
+              %p.recent-post-title
                 = link_to item.title, item_path(item)
+              .uk-flex
+                .post_user_image_info
+                  - if item.user.avatar.attached?
+                    = image_tag item.user.avatar, alt: '投稿画像', class: 'uk-border-circle'
+                  - else
+                    = image_tag '/assets/noimage.png', alt: '投稿画像', class: 'uk-border-circle'
+                .recent-post-info
+                  %p.recent-post-user
+                    = link_to item.user.nickname, user_path(item.user_id)
+                  %p.uk-text-meta
+                    = item.created_at
