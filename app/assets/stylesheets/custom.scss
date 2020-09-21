@@ -334,13 +334,15 @@ main {
 //   background-color: #d4d2d1;
 // }
 .content-wrapper {
+  width : 33.33333%;
+  width : -webkit-calc(100% / 3);
+  width : calc(100% / 3);
   background: #edf5ff;
   padding: 1.8rem 2.2rem;
   border-radius: 18px;
-  text-align: center;
 }
 .content-wrapper:not(:last-of-type) {
-  margin-right: 52px;
+  margin-right: 30px;
 }
 .heading-discrption-protuku {
   font-weight: 400;
@@ -1056,7 +1058,7 @@ footer {
 //お問い合わせボタン
 .btn-feedback {
   display: inline-block;
-  background-color: #f52e14;
+  background-color: #fa67e1;
   text-align: center;
   position: relative;
   color:#fff;
@@ -1079,7 +1081,7 @@ footer {
   height: 0;
   left: 12px;
   bottom: -9px;
-  border-top: 24px solid #f52e14;
+  border-top: 24px solid #fa67e1;
   border-right: 13px solid transparent;
   border-left: 13px solid transparent;
   z-index: -1;

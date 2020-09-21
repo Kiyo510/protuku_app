@@ -15,10 +15,10 @@
     %script{:src => "https://code.jquery.com/jquery-3.0.0.min.js"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
+  %body.uk-animation-fade
     %header
       .uk-navbar-container.tm-navbar-container
-        .uk-container.uk-container-center
+        .uk-container.uk-container-large.uk-container-center
           %nav.uk-navbar.uk-text-light
             .uk-navbar-left
               %a.uk-navbar-item
@@ -52,11 +52,8 @@
                           = link_to 'ログアウト', logout_path, method: :delete
                 -else
                   .uk-navbar-item
-                    %li
-                      = link_to  "hogehoge", '#'
-                  .uk-navbar-item
                     %li.uk-active
-                      = link_to  "foobar", '#'
+                      = link_to  "プロつくとは？", '#'
                   .uk-navbar-item
                     %li
                       = link_to  "ユーザー登録", signup_path, class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
@@ -73,12 +70,12 @@
         .f-col.f-logo
           = link_to image_tag('/assets/protuku_logo.png'), root_path, class: 'logo-protuku'
           %p.small.uk-text-muted
-            WEB開発マッチングサービス
+            WEB開発者マッチングサービス
         .footer-list-box.uk-flex
           %nav.uk-margin-right
             %ul
               %li
-                プロつく！について
+                = link_to  "プロつくとは？", '#'
               %li
                 = link_to '運営者twitter',"https://twitter.com/Kiyo_Karl2", target: 'blank', class: 'fa-twitter-square'
           %nav
@@ -88,7 +85,7 @@
               %li
                 = link_to 'プライバシーポリシー', page_path('privacy')
       %div
-        = link_to 'お問い合わせ', 'https://forms.gle/wUnrfPfy8nc2fgey7', class: 'btn-feedback'
+        = link_to 'ご意見箱', 'https://forms.gle/wUnrfPfy8nc2fgey7', class: 'btn-feedback'
       %p.uk-text-center.f-copyright
         Copyright © 2020 プロつく! All Rights Reserved
     -# = debug(params) if Rails.env.development?
