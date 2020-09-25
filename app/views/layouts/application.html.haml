@@ -21,8 +21,12 @@
         .uk-container.uk-container-large.uk-container-center
           %nav.uk-navbar.uk-text-light
             .uk-navbar-left
-              %a.uk-navbar-item
-                = link_to image_tag('/assets/protuku_logo.png'), root_path, class: 'logo-protuku'
+              - if logged_in?
+                %a.uk-navbar-item
+                  = link_to image_tag('/assets/protuku_logo.png'), items_path, class: 'logo-protuku'
+              - else
+                %a.uk-navbar-item
+                  = link_to image_tag('/assets/protuku_logo.png'), root_path, class: 'logo-protuku'
             .uk-navbar-right
               %ul.uk-navbar-nav{:class => "uk-visible@m"}
                 - if logged_in?

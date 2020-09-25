@@ -34,6 +34,13 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def forbid_login_user
+    if current_user != nil
+        flash[:danger] = "すでにログインしています"
+        redirect_to items_path
+    end
+  end
+
   def forget(user)
     user.forget
     cookies.delete(:user_id)
