@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Items', type: :request do
   let(:user) { FactoryBot.create(:user) }
-  let(:item) { FactoryBot.create(:item) }
+  let(:item) { FactoryBot.create(:item, user_id: user.id) }
+  let(:other_user) { FactoryBot.create(:other_user) }
 
   describe 'GET /new' do
     # ログイン済みのユーザーはアクセスに成功する
@@ -53,6 +54,14 @@ RSpec.describe 'Items', type: :request do
       it 'redirects to the login page' do
         get edit_item_path(item)
         expect(response).to redirect_to login_path
+      end
+    end
+
+    context 'as an ohter uesr' do
+      it 'redirects to the items page' do
+        sign_in_as other_user
+        get edit_item_path(item)
+        expect(response).to redirect_to items_path
       end
     end
   end

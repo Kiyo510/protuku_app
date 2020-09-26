@@ -37,7 +37,7 @@ RSpec.describe 'User pages', type: :request do
       it 'responds successfully' do
         sign_in_as user
         get edit_user_path(user)
-        expect(response).to have_http_status(:success)
+        expect(response).to items_path
       end
     end
 
