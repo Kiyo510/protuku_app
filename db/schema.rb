@@ -34,11 +34,12 @@ ActiveRecord::Schema.define(version: 2020_09_07_015518) do
   end
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "customer_id", null: false
     t.string "card_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
   create_table "entries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -99,15 +100,6 @@ ActiveRecord::Schema.define(version: 2020_09_07_015518) do
     t.index ["user_id"], name: "index_stocks_on_user_id"
   end
 
-  create_table "tag_maps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "item_id", null: false
-    t.bigint "tag_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_tag_maps_on_item_id"
-    t.index ["tag_id"], name: "index_tag_maps_on_tag_id"
-  end
-
   create_table "tagmaps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "item_id", null: false
     t.bigint "tag_id", null: false
@@ -118,7 +110,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_015518) do
   end
 
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "tag_name"
+    t.string "tag_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tag_name"], name: "index_tags_on_tag_name", unique: true
@@ -141,6 +133,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_015518) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cards", "users"
   add_foreign_key "entries", "rooms"
   add_foreign_key "entries", "users"
   add_foreign_key "items", "users"
@@ -150,8 +143,6 @@ ActiveRecord::Schema.define(version: 2020_09_07_015518) do
   add_foreign_key "purchase_histories", "users"
   add_foreign_key "stocks", "items"
   add_foreign_key "stocks", "users"
-  add_foreign_key "tag_maps", "items"
-  add_foreign_key "tag_maps", "tags"
   add_foreign_key "tagmaps", "items"
   add_foreign_key "tagmaps", "tags"
 end
