@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user, only: %i[show new edit update]
-  before_action :correct_user, only: %i[edit update]
+  before_action :ensure_correct_user, only: %i[edit update]
   # require 'payjp'
 
   def index
@@ -120,5 +120,12 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:title, :content, :price, :region, :image)
+  end
+
+  def ensure_correct_user
+    @item = Item.find(params[:id])
+    if @item.user_id !=  current_user.id
+      redirect_to items_path
+    end
   end
 end
