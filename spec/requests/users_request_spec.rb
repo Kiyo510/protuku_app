@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User pages', type: :request do
   let(:user) { FactoryBot.create(:user) }
-  let(:user) { FactoryBot.create(:other_user) }
+  let(:other_user) { FactoryBot.create(:other_user) }
   describe 'GET /new' do
     # 正常なレスポンスを返すこと
     it 'returns http success' do
@@ -37,7 +37,7 @@ RSpec.describe 'User pages', type: :request do
       it 'responds successfully' do
         sign_in_as user
         get edit_user_path(user)
-        expect(response).to items_path
+        expect(response).to have_http_status(:success)
       end
     end
 
@@ -49,10 +49,10 @@ RSpec.describe 'User pages', type: :request do
     end
 
     context 'as a other_user' do
-      it 'redirects to the login page' do
+      it 'redirects to the items page' do
         sign_in_as other_user
         get edit_user_path(user)
-        expect(response).to redirect_to login_path
+        expect(response).to redirect_to items_path
       end
     end
   end
