@@ -59,12 +59,12 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    @tag_list = @item.tags.pluck(:tag_name).join(",")
+    @tag_list = @item.tags.pluck(:tag_name).join(" ")
   end
 
   def update
     @item = Item.find(params[:id])
-    tag_list = params[:item][:tag_name].split(",")
+    tag_list = params[:item][:tag_name].split(nil)
     if @item.update(item_params)
       @item.save_items(tag_list)
       flash[:success] = '内容を更新しました'

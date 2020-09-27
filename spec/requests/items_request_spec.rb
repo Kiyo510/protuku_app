@@ -65,4 +65,35 @@ RSpec.describe 'Items', type: :request do
       end
     end
   end
+
+  describe "GET /update" do
+    context "as an authorized user" do
+      it "updates a item" do
+        item_params = FactoryBot.attributes_for(:item, content: "NewContent", tag_name: "NewTag" )
+        sign_in_as user
+        patch item_path(item), params: { id: item.id, item: item_params }
+        expect(item.reload.content).to eq "NewContent"
+      end
+    end
+
+    context "as a guest" do
+      it "redirect to the login page" do
+        item_params = FactoryBot.attributes_for(:item, content: "NewContent", tag_name: "NewTag" )
+        patch item_path(item), params: { id: item.id, item: item_params }
+        expect(response).to have_http_status "302"
+        expect(response).to redirect_to login_path
+      end
+    end
+
+    context "as other user" do
+      it "does not update the user" do
+        item_params = FactoryBot.attributes_for(:item, content: "NewContent", tag_name: "NewTag" )
+        item_by_other_user = FactoryBot.create(:item, user_id: other_user.id)
+        sign_in_as other_user
+        patch item_path(item), params: { id: item.id, item: item_params }
+        expect(item.reload.content).to eq item_by_other_user.content
+        expect(response).to redirect_to items_path
+      end
+    end
+  end
 end
