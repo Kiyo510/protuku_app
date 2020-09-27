@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { FactoryBot.create(:user) }
-
+  let!(:user) { FactoryBot.create(:user) }
   describe User do
     # factory_botが有効化どうか検査
     it 'has a valid factory' do
@@ -63,6 +62,18 @@ RSpec.describe User, type: :model do
     it "should be only images file" do
       user.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'test.pdf')), filename: 'test.pdf', content_type: 'application/pdf')
       expect(user).to be_invalid
+    end
+  end
+
+  #ユーザーの退会処理のテスト
+  describe "user_delete" do
+    let!(:item) { FactoryBot.create(:item, user_id: user.id)}
+    it "user successfully delete" do
+      expect{ user.destroy }.to change{ User.count }.by(-1)
+    end
+
+    it 'userを削除すると、userの投稿も削除されること' do
+      expect{ user.destroy }.to change{ Item.count }.by(-1)
     end
   end
 end
