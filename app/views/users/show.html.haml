@@ -28,13 +28,8 @@
           .edit_profile
             - if @user.id == current_user.id
               = link_to 'プロフィールを編集する', edit_user_path(current_user)
-          %p
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            テキストテキストテキストテキストテキストテキストテキストテキストテキスト
+          %p.uk-padding-small
+            = @user.introduction
         .uk-card.uk-card-small.uk-card-default.uk-card-body.uk-margin-bottom.profole_box
           %h2.mypage_content_title.fa-history
             投稿履歴

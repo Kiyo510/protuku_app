@@ -6,7 +6,7 @@
         = form_with(model: @user, local: true) do |f|
           .uk-margin
             = f.label :自己紹介, class: 'form-label'
-            = f.text_area :content, placeholder: "本文を入力",id: "user_introduce_form", class: 'uk-textarea', size: "40x10"
+            = f.text_area :introduction, placeholder: "自己紹介を入力(2000字まで)",id: "user_introduction_form", class: 'uk-textarea', size: "40x10"
           .uk-margin
             = f.label :ニックネーム, class: 'form-label'
             .uk-form-controls
