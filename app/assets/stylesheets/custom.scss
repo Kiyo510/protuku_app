@@ -58,8 +58,8 @@ body {
     sans-serif;
   font-size: .85rem;
   color: rgb(51, 51, 51);
+  display: none;
 }
-
 //header
 $btn-hover: #1e87f0c7;
 
@@ -144,7 +144,7 @@ main {
   border-radius: 50%;
   background-color: rgba(201, 236, 245, 0.219);
   animation: anim-left 25s linear 0s infinite;
-  z-index: -1;
+  overflow: hidden;
 }
 
 .main-wrapper::after {
@@ -157,7 +157,7 @@ main {
   border-radius: 50%;
   background-color: rgba(190, 220, 248, 0.233);
   animation: anim-right 20s linear 0s infinite;
-  z-index: -1;
+  overflow: hidden;
 }
 
 @keyframes anim-left {

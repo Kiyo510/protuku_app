@@ -15,7 +15,7 @@
     %script{:src => "https://code.jquery.com/jquery-3.0.0.min.js"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  %body.uk-animation-fade
+  %body
     %header
       .uk-navbar-container.tm-navbar-container
         .uk-container.uk-container-large.uk-container-center
@@ -94,9 +94,9 @@
         = link_to 'ご意見箱', 'https://forms.gle/wUnrfPfy8nc2fgey7', class: 'btn-feedback'
       %p.uk-text-center.f-copyright
         Copyright © 2020 プロつく! All Rights Reserved
-    -# = debug(params) if Rails.env.development?
-    / UIkit JS
-    // syntax highlight
+    -#= debug(params) if Rails.env.development?
+    :javascript
+      $('body').fadeIn(700);
     %script{:src => "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"}
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
     %script{:src => "https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"}
