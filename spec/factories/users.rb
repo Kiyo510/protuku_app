@@ -10,6 +10,7 @@ FactoryBot.define do
     nickname { 'Bob' }
     sequence(:email) { |m| "exemple#{m}@example.com" }
     password { 'password' }
+    introduction { 'Nice to meet you' }
     activated { true }
   end
 end
