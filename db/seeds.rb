@@ -16,3 +16,20 @@ User.create!(nickname: "Kiyo3",
              password: "password",
              activated: true,
              admin: true)
+
+5.times do
+  User.create!(
+    nickname: Faker::Games::Pokemon.name,
+    email: Faker::Internet.email,
+    password: 'password'
+  )
+end
+
+150.times do |index|
+  Item.create!(
+    user: User.offset(rand(User.count)).first,
+    title: "タイトル#{index}",
+    content: "本文#{index}",
+    region: "東京"
+  )
+end
