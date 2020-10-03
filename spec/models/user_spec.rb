@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let!(:user) { FactoryBot.create(:user) }
   describe User do
-    # factory_botが有効化どうか検査
-    it 'has a valid factory' do
+    it 'factory_botが有効であること' do
       expect(user).to be_valid
     end
   end
@@ -18,18 +17,16 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_length_of(:password).is_at_least(6) }
   it { is_expected.to validate_length_of(:introduction).is_at_most(2000)}
 
-  # 重複したメールアドレスなら無効な状態であること
-  it 'is invalid with a duplicate email adress' do
+  it '重複したメールアドレスなら無効であること' do
     FactoryBot.create(:user, email: 'alice@example.com')
     user = FactoryBot.build(:user, email: 'Alice@example.com')
     user.valid?
     # expect(user.errors[:email]).to include("そのEmailアドレスは既に登録されています。")
   end
 
-  # メールアドレスの有効性
-  describe 'email validation should reject incalid addresses' do
+  describe 'メールアドレスの有効性' do
     # 無効なメールアドレスの場合
-    it 'should be invalid' do
+    it '無効なメールアドレスはバリデーションを通過しないこと' do
       invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
                              foo@bar_baz.com foo@bar+baz.com]
       invalid_addresses.each do |_invalid_address|
@@ -41,7 +38,6 @@ RSpec.describe User, type: :model do
 
   describe 'before_save' do
     describe '#email_downcase' do
-      # let!を使うことでbefore doのように先に実行される
       let!(:user) { create(:user, email: 'ORIGINAL@EXAMPLE.COM') }
       it 'makes email to low case' do
         expect(user.reload.email).to eq 'original@example.com'
@@ -49,31 +45,31 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "user_avatar" do
-    it "should indicate user_avatar" do
+  describe "プロフィール画像登録処理" do
+    it "プロフィール画像が表示されること" do
       user.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'test.jpg')), filename: 'test.jpg', content_type: 'image/jpg')
       expect(user).to be_valid
     end
 
-    it "should not be over than 5MB" do
+    it "5MB以上の画像ファイルは登録できないこと" do
       user.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'test_5mb.jpg')), filename: 'test_5mb.jpg', content_type: 'image/jpg')
       expect(user).to  be_invalid
     end
 
-    it "should be only images file" do
+    it "画像ファイル以外は登録できないこと" do
       user.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'test.pdf')), filename: 'test.pdf', content_type: 'application/pdf')
       expect(user).to be_invalid
     end
   end
 
   #ユーザーの退会処理のテスト
-  describe "user_delete" do
+  describe "userの退会" do
     let!(:item) { FactoryBot.create(:item, user_id: user.id)}
-    it "user successfully delete" do
+    it "userは退会に成功すること" do
       expect{ user.destroy }.to change{ User.count }.by(-1)
     end
 
-    it 'userを削除すると、userの投稿も削除されること' do
+    it 'userが退会すると、userの投稿も削除されること' do
       expect{ user.destroy }.to change{ Item.count }.by(-1)
     end
   end
