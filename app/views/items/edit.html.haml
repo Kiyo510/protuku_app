@@ -4,19 +4,21 @@
       = f.text_field :title, placeholder: "タイトルを入力（35文字まで）", class: 'uk-input'
     .uk-margin-small
       = f.text_field :tag_name, value: @tag_list, class: 'uk-input uk-form-small'
-    .post_region
-      = f.label :投稿者の所在地, class: 'uk-text-bold user_region'
-      = f.select :region, [["非公開"],["東京"],["三重"],["静岡"],["愛知"]]
+    .uk-flex.uk-flex-middle
+      .post_region
+        = f.label :投稿者の所在地, class: 'uk-text-bold user_region'
+        = f.select :region, [["非公開"],["東京"],["三重"],["静岡"],["愛知"]]
+      .post_image
+        = f.label :画像をアップロードする, class: 'uk-text-bold'
+        %span.uk-text-muted
+          (5MB以下)
+        = f.file_field :avatar
     .post_example
       = link_to '投稿例を見る', '#'
     .uk-flex.uk-margin-bottom
-      -# .uk-form-row
-      -#   = f.file_field :image
       .uk-width-2-1
         = f.text_area :content, placeholder: "投稿例を参考に、マークダウン記法を用いてわかりやすく具体的に書きましょう！（10000字まで）",id: "markdown_editor_textarea", class: 'uk-textarea', size: "94x20"
       .uk-width-2-1#markdown_preview
-      -# .uk-form-row
-      -#   = f.text_field :price, placeholder: "価格を入力"
     .uk-text-right.uk-margin-right
       = f.submit "更新する", disable_with: '更新中...', class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
 

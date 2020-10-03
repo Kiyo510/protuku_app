@@ -64,6 +64,7 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
+    @item.image.attach(params[:item][:image])
     tag_list = params[:item][:tag_name].split(nil)
     if @item.update(item_params)
       @item.save_items(tag_list)

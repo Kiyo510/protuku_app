@@ -12,6 +12,10 @@ class Item < ApplicationRecord
   validates :title, presence: true, length: { maximum: 35 }
   validates :content, presence: true, length: { maximum: 10_000 }
   validates :region, presence: true
+  validates :image, content_type: { in: %w[image/jpeg image/gif image/png],
+                                      message: "対応してないファイル形式です。" },
+                     size:         { less_than: 5.megabytes,
+                                      message: "画像サイズは5MB以下にしてください。" }
 
   # 現在ログインしているユーザーidを受け取り、記事をストックする
   def stock(user)
