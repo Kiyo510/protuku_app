@@ -13,6 +13,25 @@ RSpec.feature '投稿機能', type: :system do
       visit items_path
     end
 
+    context "新規投稿したとき" do
+      let(:login_user) { user }
+      it "投稿に成功すること" do
+        expect(Item.count).to eq 1
+      end
+    end
+
+    context "投稿を削除したとき" do
+      let(:login_user) { user }
+      it "投稿の削除に成功すること" do
+        visit item_path(user)
+        page.accept_confirm do
+          click_link '削除'
+        end
+        expect(page).to have_content '投稿を削除しました'
+        expect(Item.count).to eq 0
+      end
+    end
+
     context "userがログインしている時" do
       let(:login_user) { user }
       it 'userが作成した投稿が表示される' do
