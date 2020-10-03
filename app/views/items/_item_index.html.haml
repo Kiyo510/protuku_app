@@ -6,5 +6,5 @@
       %p.post_user_title
         = link_to item.title, item_path(item)
   /10件毎にページネーション
-.paginate
-  = paginate @posted_items
+.mypage_paginate
+  = paginate @posted_items, param_name: 'items_page', theme: 'my_custom_theme'
