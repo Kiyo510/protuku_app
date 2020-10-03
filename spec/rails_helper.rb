@@ -1,5 +1,4 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'database_cleaner'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
@@ -23,16 +22,6 @@ RSpec.configure do |config|
   config.before(:each, type: :system) do
     driven_by :selenium, using: :headless_chrome, screen_size: [1920, 1080],
                         options: { args: %w[headless disable-gpu no-sandbox disable-dev-shm-usage] }
-  end
-  DatabaseCleaner.strategy = :truncation
-  config.before(:suite) do
-    DatabaseCleaner.clean
-  end
-  config.before(:each) do
-    DatabaseCleaner.clean
-  end
-  config.after(:suite) do
-    DatabaseCleaner.clean
   end
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
