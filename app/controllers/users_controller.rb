@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.avatar.attach(params[:avatar])
     if @user.update(user_params)
-      flash[:success] = 'プロフィールを編集しました'
+      flash[:success] = 'プロフィールを更新しました'
       redirect_to @user
     else
       render 'edit'
