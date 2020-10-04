@@ -17,9 +17,9 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     :javascript
-      $(function() {
+      $(document).ready(function() {
         $('body').fadeIn(1000);
-      })
+      });
     %header
       .uk-navbar-container.tm-navbar-container
         .uk-container.uk-container-large.uk-container-center
