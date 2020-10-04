@@ -678,11 +678,9 @@ main {
 }
 
 .uk-pagination>.uk-active.current {
-  border-radius: 50%;
-  background-color: #0366d6;
-  color: white;
-  font-weight: bolder;
-  padding: 0 6px;
+  color:#0366d6;
+  font-weight: 900;
+  top: -1px;
 }
 
 //投稿詳細ページ

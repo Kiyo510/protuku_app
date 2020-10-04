@@ -42,4 +42,5 @@
                 .uk-panel.uk-vertical-align
                   = image_tag item.image, alt: '投稿画像', size: '120x100',class: 'uk-vertical-align-middle'
         -# 10件までページネーション
-        = paginate @items, theme: 'my_custom_theme'
+        .items_index_paginate
+          = paginate @items, theme: 'my_custom_theme'
