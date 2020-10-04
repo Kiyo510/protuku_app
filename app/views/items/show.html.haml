@@ -16,7 +16,7 @@
             %span.fa-edit
               = link_to '編集', edit_item_path(@item)
             %span.fa-trash
-              = link_to '削除', item_path, method: :delete, data: { confirm: "投稿内容はデータから完全に削除されます。本当に削除しますか？" }
+              = link_to '削除', item_path(@item), method: :delete, data: { confirm: "投稿内容はデータから完全に削除されます。本当に削除しますか？" }
       .uk-margin-small
         .post_user_infoBox.uk-flex.uk-flex-middle
           .post_user_image_info
