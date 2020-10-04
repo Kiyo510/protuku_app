@@ -16,6 +16,10 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    :javascript
+      $(function() {
+        $('body').fadeIn(1000);
+      })
     %header
       .uk-navbar-container.tm-navbar-container
         .uk-container.uk-container-large.uk-container-center
@@ -95,8 +99,6 @@
       %p.uk-text-center.f-copyright
         Copyright © 2020 プロつく! All Rights Reserved
     -#= debug(params) if Rails.env.development?
-    :javascript
-      $('body').fadeIn(700);
     %script{:src => "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"}
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
     %script{:src => "https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"}
