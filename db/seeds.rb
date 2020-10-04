@@ -33,3 +33,12 @@ end
     region: "東京"
   )
 end
+
+21.times do |i|
+  user = User.find(1)
+  item = Item.find(i+1)
+  Stock.create!(
+    user: user,
+    item: item,
+  )
+end
