@@ -36,8 +36,7 @@ module SessionsHelper
 
   def forbid_login_user
     if current_user != nil
-        flash[:danger] = "すでにログインしています"
-        redirect_to items_path
+      redirect_to items_path
     end
   end
 
