@@ -7,14 +7,12 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
   get 'password_reset/new'
   get 'password_reset/edit'
-  get 'rooms/index'
-  get 'rooms/show'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  resources :users
+  resources :users, expect: :index
   resources :items do
     collection do
       get  'purchase/:id',to: 'items#purchase', as: 'purchase'

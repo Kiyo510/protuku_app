@@ -3,10 +3,6 @@ class UsersController < ApplicationController
   before_action :correct_user, only: %i[edit update]
   before_action :forbid_login_user, only: %i[new create]
 
-  def index
-    @users = User.all
-  end
-
   def new
     @user = User.new
   end
