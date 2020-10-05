@@ -1,12 +1,25 @@
-%table
-  %thead
-    %tr
-      %th | メッセージ相手
-      %th | メッセージ内容
+.uk-container.uk-container-small.uk-container-center
+  .dm-room_title
+    %h2
+      メッセージ管理
   - @another_entries.each do |entry|
-    %tbody
-      %td= link_to entry.user.nickname, user_path(entry.user)
-      %td
-        = link_to room_path(entry.room) do
-          -#最後に送られたメッセージを表示
-          = Message.find_by(id: entry.room.message_ids.last)&.content
+    -# 最後に送ったメッセージを表示する
+    - latest_message = Message.find_by(id: entry.room.message_ids.last)&.content
+    .uk-margin
+      .uk-card.uk-card-default.uk-card-body.uk-card-small
+        .uk-flex.uk-flex-between
+          .message_user_infoBox.uk-flex.uk-flex-middle
+            .post_user_image_info
+              - if entry.user.avatar.attached?
+                = image_tag entry.user.avatar, alt: 'プロフィール画像', size: '50x80', class: 'uk-border-circle'
+              - else
+                = image_tag '/assets/noimage.png', alt: 'プロフィール画像', class: 'uk-border-circle'
+            .post_user_nickname_info
+              %span.message_user_name
+                = link_to entry.user.nickname, user_path(entry.user)
+            .post_user_dataTime_info
+              = l entry.created_at, format: :short,class: 'uk-text-muted uk-text-normal'
+        .message_box
+          = link_to room_path(entry.room) do
+            -#最後に送られたメッセージを表示
+            = truncate(latest_message,length: 50)

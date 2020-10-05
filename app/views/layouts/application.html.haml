@@ -54,7 +54,7 @@
                         %li
                           = link_to 'プロフィール設定', edit_user_path(current_user)
                         %li
-                          %a{:href => "#"} メッセージ管理
+                          = link_to 'メッセージ管理', rooms_path
                         %li.uk-nav-divider
                         %li
                           = link_to 'ログアウト', logout_path, method: :delete

@@ -735,6 +735,9 @@ main {
 .post_user_nickname_info {
   margin-right: 5px;
   margin-left: 5px;
+   a:hover {
+     color: #666;
+   }
 }
 
 .post_user_dataTime_info {
@@ -1017,6 +1020,17 @@ main {
 
 .message_box {
   margin-top: 5px;
+}
+
+//メッセージ管理
+.message_box {
+  a {
+    color: black;
+    font-weight: 300;
+    &:hover {
+      color: #666;
+    }
+  }
 }
 
 //フッター
