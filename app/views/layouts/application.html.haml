@@ -15,10 +15,11 @@
     %script{:src => "https://code.jquery.com/jquery-3.0.0.min.js"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    %meta{:content => "no-cache", :name => "turbolinks-cache-control"}
   %body
     :javascript
       $(document).ready(function() {
-        $('body').fadeIn(1000);
+        $('body').fadeIn(700);
       });
     %header
       .uk-navbar-container.tm-navbar-container
