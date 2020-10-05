@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
       @tag = Tag.find(params[:tag_id])
       items = @tag.items.order(created_at: :desc)
     else
-      items = Item.all.order(created_at: :desc)
+      items = Item.includes(:user).order('created_at DESC')
     end
     @tag_lists = Tag.all
     @items = Kaminari.paginate_array(items).page(params[:page]).per(10)
