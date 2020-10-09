@@ -1,0 +1,19 @@
+- visitor = notification.visitor
+- visited = notification.visited
+.notification-items.uk-padding-small
+  %span
+    = link_to user_path(visitor) do
+      %strong
+        = visitor.nickname
+    - case notification.action
+    - when 'dm' then
+      = 'さんから'
+      = link_to "メッセージ", room_path(notification.room_id)
+      = 'が来ています'
+    - when 'stock' then
+      = 'さんが'
+      = link_to 'あなたの投稿', item_path(notification.item_id), style: "font-weight: bold;"
+      = 'をお気に入りに入れました'
+  .small.text-muted.text-right
+    = "#{time_ago_in_words(notification.created_at).upcase}前"
+%hr/
