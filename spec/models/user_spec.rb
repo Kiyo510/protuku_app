@@ -1,4 +1,5 @@
 require 'rails_helper'
+include NotificationsHelper
 
 RSpec.describe User, type: :model do
   let!(:user) { FactoryBot.create(:user) }
@@ -15,7 +16,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_length_of(:email).is_at_most(255) }
   it { is_expected.to validate_presence_of :password }
   it { is_expected.to validate_length_of(:password).is_at_least(6) }
-  it { is_expected.to validate_length_of(:introduction).is_at_most(2000)}
+  it { is_expected.to validate_length_of(:introduction).is_at_most(2000) }
 
   it '重複したメールアドレスなら無効であること' do
     FactoryBot.create(:user, email: 'alice@example.com')
@@ -45,32 +46,32 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "プロフィール画像登録処理" do
-    it "プロフィール画像が表示されること" do
+  describe 'プロフィール画像登録処理' do
+    it 'プロフィール画像が表示されること' do
       user.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'test.jpg')), filename: 'test.jpg', content_type: 'image/jpg')
       expect(user).to be_valid
     end
 
-    it "5MB以上の画像ファイルは登録できないこと" do
+    it '5MB以上の画像ファイルは登録できないこと' do
       user.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'test_5mb.jpg')), filename: 'test_5mb.jpg', content_type: 'image/jpg')
-      expect(user).to  be_invalid
+      expect(user).to be_invalid
     end
 
-    it "画像ファイル以外は登録できないこと" do
+    it '画像ファイル以外は登録できないこと' do
       user.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'test.pdf')), filename: 'test.pdf', content_type: 'application/pdf')
       expect(user).to be_invalid
     end
   end
 
-  #ユーザーの退会処理のテスト
-  describe "userの退会" do
-    let!(:item) { FactoryBot.create(:item, user_id: user.id)}
-    it "userは退会に成功すること" do
-      expect{ user.destroy }.to change{ User.count }.by(-1)
+  # ユーザーの退会処理のテスト
+  describe 'userの退会' do
+    let!(:item) { FactoryBot.create(:item, user_id: user.id) }
+    it 'userは退会に成功すること' do
+      expect { user.destroy }.to change { User.count }.by(-1)
     end
 
     it 'userが退会すると、userの投稿も削除されること' do
-      expect{ user.destroy }.to change{ Item.count }.by(-1)
+      expect { user.destroy }.to change { Item.count }.by(-1)
     end
   end
 end

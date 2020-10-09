@@ -1,10 +1,11 @@
 require 'rails_helper'
+include NotificationsHelper
 
-RSpec.describe'UploadImage', type: :system do
+RSpec.describe 'UploadImage', type: :system do
   let(:user) { FactoryBot.create(:user) }
   let(:item) { FactoryBot.create(:item, user_id: user.id) }
 
-  #画像をアップロードして保存する
+  # 画像をアップロードして保存する
   def upload_user_avatar(user)
     valid_login(user)
     visit edit_user_path(user)

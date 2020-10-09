@@ -1,10 +1,11 @@
 require 'rails_helper'
+include NotificationsHelper
 
 RSpec.feature '投稿機能', type: :system do
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:other_user) }
   let!(:item) { FactoryBot.create(:item, content: 'first post', user_id: user.id) }
-  describe "投稿一覧表示機能" do
+  describe '投稿一覧表示機能' do
     before do
       visit login_path
       fill_in 'session[email]', with: login_user.email
@@ -13,16 +14,16 @@ RSpec.feature '投稿機能', type: :system do
       visit items_path
     end
 
-    context "新規投稿したとき" do
+    context '新規投稿したとき' do
       let(:login_user) { user }
-      it "投稿に成功すること" do
+      it '投稿に成功すること' do
         expect(Item.count).to eq 1
       end
     end
 
-    context "投稿を削除したとき" do
+    context '投稿を削除したとき' do
       let(:login_user) { user }
-      it "投稿の削除に成功すること" do
+      it '投稿の削除に成功すること' do
         visit item_path(item)
         page.accept_confirm do
           click_link '削除'
@@ -32,7 +33,7 @@ RSpec.feature '投稿機能', type: :system do
       end
     end
 
-    context "userがログインしている時" do
+    context 'userがログインしている時' do
       let(:login_user) { user }
       it 'userが作成した投稿が表示される' do
         expect(page).to have_content 'first post'
@@ -44,13 +45,13 @@ RSpec.feature '投稿機能', type: :system do
         expect(page).to have_content '削除'
       end
 
-      it "投稿詳細ページにメッセージを送るボタンが表示されない" do
+      it '投稿詳細ページにメッセージを送るボタンが表示されない' do
         visit item_path(item)
         expect(page).not_to have_css '.message_btn'
       end
     end
 
-    context "other_userがログインしている時" do
+    context 'other_userがログインしている時' do
       let(:login_user) { other_user }
       it 'userが作成した投稿が表示される' do
         expect(page).to have_content 'first post'
@@ -62,9 +63,9 @@ RSpec.feature '投稿機能', type: :system do
         expect(page).not_to have_content '削除'
       end
 
-      it "投稿詳細ページにメッセージを送るボタンが表示さる" do
+      it '投稿詳細ページにメッセージを送るボタンが表示さる' do
         visit item_path(item)
-        expect(page).to  have_css '.message_btn'
+        expect(page).to have_css '.message_btn'
       end
     end
   end

@@ -1,4 +1,5 @@
 require 'rails_helper'
+include NotificationsHelper
 
 RSpec.feature 'Login', type: :system do
   let(:user) { FactoryBot.create(:user) }
@@ -23,7 +24,7 @@ RSpec.feature 'Login', type: :system do
     expect(page).to have_content 'パスワードまたはEメールアドレスが間違っています。'
   end
 
-  it "アカウントを有効化していないユーザーはログインに失敗する" do
+  it 'アカウントを有効化していないユーザーはログインに失敗する' do
     invalid_user = FactoryBot.create(:user, activated: false)
     valid_login invalid_user
     expect(current_path).to eq root_path

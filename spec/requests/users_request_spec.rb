@@ -1,4 +1,5 @@
 require 'rails_helper'
+include NotificationsHelper
 
 RSpec.describe 'User pages', type: :request do
   let(:user) { FactoryBot.create(:user) }
