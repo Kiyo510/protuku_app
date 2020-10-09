@@ -37,10 +37,19 @@
                 - if logged_in?
                   .uk-navbar-item
                     %li.uk-active
-                      = link_to  "投稿一覧", items_path
+                      = link_to  "投稿一覧", items_path, class: 'uk-text-bold'
                   .uk-navbar-item
                     %li
                       = link_to  "仲間を募る", new_item_path, class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
+                  .uk-navbar-item
+                    -if unchecked_notifications.any?
+                      %li
+                        = link_to notifications_path do
+                          %span.fa-bell.badge
+                    - else
+                      %li
+                        = link_to notifications_path do
+                          %span.fa-bell
                   .uk-navbar-item
                     .header_nav_btn
                       - if current_user.avatar.attached?
