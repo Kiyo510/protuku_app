@@ -21,7 +21,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.before(:each, type: :system) do
     driven_by :selenium, using: :headless_chrome, screen_size: [1920, 1080],
-                        options: { args: %w[headless disable-gpu no-sandbox disable-dev-shm-usage] }
+                         options: { args: %w[headless disable-gpu no-sandbox disable-dev-shm-usage] }
   end
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!

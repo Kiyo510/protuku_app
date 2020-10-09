@@ -5,7 +5,7 @@ FactoryBot.define do
     room_id { 1 }
     message_id { 1 }
     item_id { 1 }
-    action { "MyString" }
+    action { 'MyString' }
     checked { false }
   end
 end
