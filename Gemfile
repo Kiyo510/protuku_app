@@ -36,11 +36,11 @@ gem 'payjp'
 gem 'redcarpet'
 gem 'rouge'
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
-gem 'rails-i18n'
-gem 'mini_magick'
 gem 'active_storage_validations'
+gem 'bootsnap', '>= 1.4.2', require: false
 gem 'high_voltage', '~> 3.1', '>= 3.1.2'
+gem 'mini_magick'
+gem 'rails-i18n'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
 end
@@ -64,16 +64,16 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
+  gem 'rspec_junit_formatter'
   gem 'shoulda-matchers', '~> 4.3'
   gem 'webdrivers'
-  gem "rspec_junit_formatter"
 end
 
 group :development, :test do
   gem 'factory_bot_rails', '~> 6.0'
-  gem 'rspec-rails', '4.0.0.beta3'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'rspec-rails', '4.0.0.beta3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
