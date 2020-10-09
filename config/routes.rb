@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :rooms, only: [:show, :create, :index]
   resources :stocks, only: %i(index create destroy)
   resources :account_activations, only: [:edit]
+  resources :notifications, only: [:index]
   resources :password_resets,     only: [:new, :edit, :create, :update]
   resources :cards, only: [:new, :show] do
     collection do

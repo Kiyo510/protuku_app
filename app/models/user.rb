@@ -3,12 +3,16 @@ class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
+
   has_many :stocks, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :purchase_histories, dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   has_one_attached :avatar
+
   validates :avatar, content_type: { in: %w[image/jpeg image/gif image/png],
                                       message: "対応してないファイル形式です。" },
                      size:         { less_than: 5.megabytes,

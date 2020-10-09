@@ -5,6 +5,7 @@ class StocksController < ApplicationController
     unless @item.stocked?(current_user)
       # ログインしているユーザーを取得してparamsで渡された記事をストック
       @item.stock(current_user)
+      @item.create_notification_stock!(current_user)
       respond_to do |format|
         format.html { redirect_to request.referer || root_url }
         format.js
