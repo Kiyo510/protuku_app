@@ -114,6 +114,38 @@ $btn-hover: #1e87f0c7;
   }
 }
 
+//通知欄
+.fa-bell {
+  font-family: FontAwesome;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  background-color: #fff;
+  color: #1e87f0;
+  border-radius: 4px;
+  font-size: 1.0rem;
+  position: relative;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+}
+
+.badge:after {
+  content: "";
+  position: absolute;
+  background: red;
+  height: 7px;
+  width: 7px;
+  top: 1px;
+  right: -5px;
+  text-align: center;
+  border-radius: 50%;
+  color: red;
+}
+
+
 // main(TOP)
 $main-color: #f1f5fc;
 $title-color: #1e87f0;
