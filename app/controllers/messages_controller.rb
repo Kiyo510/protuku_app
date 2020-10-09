@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
         visitor_id: current_user.id,
         action: 'dm'
       )
-      #自分に対するメッセージの場合、通知はこないようにする。
+      # 自分に対するメッセージの場合、通知はこないようにする。
       notification.checked = true if notification.visitor_id == notification.visited_id
       notification.save if notification.valid?
       redirect_to room_path(@message.room)

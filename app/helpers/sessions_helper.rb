@@ -35,9 +35,7 @@ module SessionsHelper
   end
 
   def forbid_login_user
-    if current_user != nil
-      redirect_to items_path
-    end
+    redirect_to items_path unless current_user.nil?
   end
 
   def forget(user)

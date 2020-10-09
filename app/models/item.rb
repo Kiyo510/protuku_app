@@ -13,9 +13,9 @@ class Item < ApplicationRecord
   validates :content, presence: true, length: { maximum: 10_000 }
   validates :region, presence: true
   validates :image, content_type: { in: %w[image/jpeg image/gif image/png],
-                                      message: "対応してないファイル形式です。" },
-                     size:         { less_than: 5.megabytes,
-                                      message: "画像サイズは5MB以下にしてください。" }
+                                    message: '対応してないファイル形式です。' },
+                    size: { less_than: 5.megabytes,
+                            message: '画像サイズは5MB以下にしてください。' }
 
   # 現在ログインしているユーザーidを受け取り、記事をストックする
   def stock(user)
@@ -33,12 +33,12 @@ class Item < ApplicationRecord
     stock_users.include?(user)
   end
 
-  #検索メソッド、タイトルと内容をあいまい検索する
+  # 検索メソッド、タイトルと内容をあいまい検索する
   def self.items_serach(search)
     Item.where(['title LIKE ? OR content LIKE ?', "%#{search}%", "%#{search}%"])
   end
 
-  #入力されたタグをTagsテーブルに保存する
+  # 入力されたタグをTagsテーブルに保存する
   def save_items(tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
     old_tags = current_tags - tags
@@ -46,19 +46,19 @@ class Item < ApplicationRecord
 
     # Destroy
     old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(tag_name:old_name)
+      self.tags.delete Tag.find_by(tag_name: old_name)
     end
 
     # Create
     new_tags.each do |new_name|
-      item_tag = Tag.find_or_create_by(tag_name:new_name)
+      item_tag = Tag.find_or_create_by(tag_name: new_name)
       self.tags << item_tag
     end
   end
 
   def create_notification_stock!(current_user)
     # すでにストックされているか検索
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and item_id = ? and action = ? ", current_user.id, user_id, id, 'stock'])
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and item_id = ? and action = ? ', current_user.id, user_id, id, 'stock'])
     # いいねされていない場合のみ、通知レコードを作成
     if temp.blank?
       notification = current_user.active_notifications.build(
@@ -67,9 +67,7 @@ class Item < ApplicationRecord
         action: 'stock'
       )
       # 自分の投稿に対するストックの場合は、通知済みとする
-      if notification.visitor_id == notification.visited_id
-        notification.checked = true
-      end
+      notification.checked = true if notification.visitor_id == notification.visited_id
       notification.save if notification.valid?
     end
   end

@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
     @item.image.attach(params[:item][:image])
     @item.user_id = current_user.id
     if @item.save
-       @item.save_items(tag_list)
+      @item.save_items(tag_list)
       redirect_to items_path
     else
       flash.now[:alert] = '投稿に失敗しました'
@@ -59,7 +59,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    @tag_list = @item.tags.pluck(:tag_name).join(" ")
+    @tag_list = @item.tags.pluck(:tag_name).join(' ')
   end
 
   def update
@@ -125,8 +125,6 @@ class ItemsController < ApplicationController
 
   def ensure_correct_user
     @item = Item.find(params[:id])
-    if @item.user_id !=  current_user.id
-      redirect_to items_path
-    end
+    redirect_to items_path if @item.user_id != current_user.id
   end
 end

@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :forbid_login_user , only: %i[new]
+  before_action :forbid_login_user, only: %i[new]
 
   def new; end
 

@@ -1,4 +1,3 @@
-
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
@@ -14,9 +13,9 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   validates :avatar, content_type: { in: %w[image/jpeg image/gif image/png],
-                                      message: "対応してないファイル形式です。" },
-                     size:         { less_than: 5.megabytes,
-                                      message: "画像サイズは5MB以下にしてください。" }
+                                     message: '対応してないファイル形式です。' },
+                     size: { less_than: 5.megabytes,
+                             message: '画像サイズは5MB以下にしてください。' }
   validates :nickname, presence: true, length: { maximum: 30 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, presence: true, length: { maximum: 255 },
