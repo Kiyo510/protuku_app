@@ -53,8 +53,6 @@ group :development do
   gem 'ast', '~> 2.4', '>= 2.4.1'
   gem 'faker', '~> 2.12'
   gem 'letter_opener'
-  gem 'pry-byebug'
-  gem 'pry-rails'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'spring'
@@ -74,6 +72,8 @@ end
 group :development, :test do
   gem 'factory_bot_rails', '~> 6.0'
   gem 'rspec-rails', '4.0.0.beta3'
+  gem 'pry-byebug'
+  gem 'pry-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
