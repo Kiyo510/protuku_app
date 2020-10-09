@@ -6,8 +6,9 @@ require:
   - rubocop-rails
 
 AllCops:
+  NewCops: enable
   # Rubyバージョン指定
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 2.7
   # 除外
   Exclude:
     - "config.ru"
