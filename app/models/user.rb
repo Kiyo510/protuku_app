@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
-  before_save   :downcase_email
+  before_save   :downcase_email, unless: :uid?
   before_create :create_activation_digest
 
   has_many :stocks, dependent: :destroy
@@ -16,9 +16,9 @@ class User < ApplicationRecord
                                      message: '対応してないファイル形式です。' },
                      size: { less_than: 5.megabytes,
                              message: '画像サイズは5MB以下にしてください。' }
-  validates :nickname, presence: true, length: { maximum: 30 }
+  validates :nickname, presence: true, unless: :uid?, length: { maximum: 30 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
-  validates :email, presence: true, length: { maximum: 255 },
+  validates :email, presence: true, unless: :uid?, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
   has_secure_password
@@ -80,6 +80,19 @@ end
 
   def password_reset_expired?
     # reset_sent_at < 2.hours.ago
+  end
+
+  # twitter認証
+  def self.find_or_create_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+    nickname = auth[:info][:nickname]
+    avatar = auth[:info][:image]
+
+    self.find_or_create_by(provider: provider, uid: uid) do |user|
+      user.nickname = nickname
+      user.avatar = avatar
+    end
   end
 
   private
