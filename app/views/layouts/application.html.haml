@@ -72,43 +72,50 @@
                         %li
                           = link_to '退会', user_path(current_user), method: :delete, data: { confirm: "退会したデータは二度と復元できません。本当に退会しますか？" }
                 -else
-                  .uk-navbar-item
+                  .uk-navbar-item.uk-visible@m
                     %li.uk-active
                       = link_to  "プロつくとは？", '#'
-                  .uk-navbar-item
+                  .uk-navbar-item.uk-visible@s
                     %li
                       = link_to  "ユーザー登録", signup_path, class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
-                  .uk-navbar-item
+                  .uk-navbar-item.uk-visible@s
                     %li.uk-active
                       = link_to  "ログイン", login_path, class: "uk-button uk-button-default uk-border-rounded uk-text-bold"
-              %a.uk-navbar-toggle.uk-icon.uk-navbar-toggle-icon{:class => "uk-hidden@m", :href => "#offcanvas", "uk-navbar-toggle-icon" => "", "uk-toggle" => ""}
+                  -# レスポンシブ対応
+                  .uk-navbar-item.uk-hidden@s
+                    %li
+                      = link_to  "ユーザー登録", signup_path, class: "signup_btn"
+                  .uk-navbar-item.uk-hidden@s
+                    %li.uk-active
+                      = link_to  "ログイン", login_path, class: "login_btn"
+
+
     - flash.each do |message_type, message|
       %div{class: "uk-alert-#{message_type}"}
         = message
     = yield
-    %footer.uk-container
-      .uk-flex.uk-flex-between
-        .f-col.f-logo
-          = link_to image_tag('/assets/protuku_logo.png'), root_path, class: 'logo-protuku'
-          %p.small.uk-text-muted
-            WEB開発者マッチングサービス
-        .footer-list-box.uk-flex
-          %nav.uk-margin-right
-            %ul
-              %li
-                = link_to  "プロつくとは？", '#'
-              %li
-                = link_to '運営者twitter',"https://twitter.com/Kiyo_Karl2", target: 'blank', class: 'fa-twitter-square'
-          %nav
-            %ul
-              %li
-                = link_to '利用規約', page_path('terms')
-              %li
-                = link_to 'プライバシーポリシー', page_path('privacy')
-      %div
-        = link_to 'ご意見箱', 'https://forms.gle/wUnrfPfy8nc2fgey7', class: 'btn-feedback'
-      %p.uk-text-center.f-copyright
-        Copyright © 2020 プロつく! All Rights Reserved
+    %footer
+      .f-col.f-logo
+        = link_to image_tag('/assets/protuku_logo.png'), root_path, class: 'logo-protuku'
+        %p.small.uk-text-muted
+          WEB開発者マッチングサービス
+      .footer-list-box.uk-flex
+        %nav.uk-margin-right
+          %ul
+            %li
+              = link_to  "プロつくとは？", '#'
+            %li
+              = link_to '運営者twitter',"https://twitter.com/Kiyo_Karl2", target: 'blank', class: 'fa-twitter-square'
+        %nav
+          %ul
+            %li
+              = link_to '利用規約', page_path('terms')
+            %li
+              = link_to 'プライバシーポリシー', page_path('privacy')
+    %div
+      = link_to 'ご意見箱', 'https://forms.gle/wUnrfPfy8nc2fgey7', class: 'btn-feedback uk-visible@m'
+    %p.f-copyright
+      Copyright © 2020 プロつく! All Rights Reserved
     -#= debug(params) if Rails.env.development?
     %script{:src => "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"}
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
