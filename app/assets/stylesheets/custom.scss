@@ -689,6 +689,30 @@ $title-color: #1e87f0;
 }
 
 // 投稿一覧ページ
+@media screen and (max-width: 1200px) {
+  .user_avatar img {
+    width: 50px!important;
+    height: 50px!important;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .user_avatar {
+    display: none;
+  }
+
+  .user_avatar_hidden {
+    display: inline-block !important;
+    img {
+       width: 30px !important;
+       height: 30px !important;
+       object-fit: cover;
+    }
+  }
+
+
+}
+
 .search_friend {
   padding: 1em 0;
 }
@@ -697,25 +721,45 @@ $title-color: #1e87f0;
   padding-bottom: 1em
 }
 
-.uk-panel {
+.post_index_infobox {
+  font-weight: bolder;
   p {
     margin: 3px 10px 3px 0;
-    padding-left: 10px;
+    padding-left: 5px;
   }
-
-  font-weight: bolder;
-
   a {
     color: #4f5050;
-
     &:hover {
       color: #ccc;
     }
   }
 }
 
+.post_article_wrapper {
+  display: flex;
+  padding: 20px 10px;
+  margin-bottom: 20px !important;
+  background: #fff;
+  color: #666;
+  position: relative;
+  transition: box-shadow .1s ease-in-out;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+}
+
 .post_index_infobox {
-  width: 600px;
+  width: max(300px,500px);
+  margin-left: 10px
+}
+
+.user_avatar img{
+  width: 70px;
+  height: 70px;
+  background-position: top;
+  background-size: cover;
+}
+
+.user_avatar_hidden {
+  display: none;
 }
 
 .post_user_nickname a {
@@ -749,6 +793,16 @@ $title-color: #1e87f0;
 
 .post_user_image_area {
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.post_image {
+  width: 200px;
+  height: 100px;
+  background-position: top;
+  background-size: cover;
+  object-fit: contain;
 }
 
 //ページネーション

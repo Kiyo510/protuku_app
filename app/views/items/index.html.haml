@@ -18,29 +18,38 @@
       %div{:class => "uk-width-expand@m"}
         %h2.uk-text-bold 仲間を探す
         - @items.each do |item|
-          .uk-card.uk-card-small.uk-card-default.uk-card-body.uk-margin-bottom
-            .uk-flex
-              %div
-                = image_tag '/assets/noimage.png', alt: 'プロフィール画像', size: '80x60', class: 'uk-border-circle'
-              .uk-panel
-                .post_index_infobox
-                  %p.post_user_nickname
-                    = link_to item.user.nickname, user_path(item.user_id)
-                  .uk-flex
-                    %p.post_user_title
-                      = link_to item.title, item_path(item)
-                    %p.tag_list_box
-                      - item.tags.each do |tag|
-                        = link_to "##{tag.tag_name}", items_path(tag), class: 'smaller tag_list'
-                  %hr
-                  %p.post_user_content_introduction
-                    = truncate(item.content,length: 127) do
-                      = link_to '詳細を見る', item_path(item), class: 'more_detail'
-                  %p
-                    = item.region
+          .post_article_wrapper
+            .user_avatar
               - if item.image.attached?
-                .post_user_image_area
-                  = image_tag item.image, alt: '投稿画像', size: '100x120'
+                = image_tag item.user.avatar, alt: 'プロフィール画像', class: 'uk-border-circle'
+              - else
+                = image_tag '/assets/noimage.png', alt: 'プロフィール画像', class: 'uk-border-circle'
+            .post_index_infobox
+              .uk-flex.uk-flex-middle
+                .user_avatar_hidden
+                  - if item.image.attached?
+                    = image_tag item.user.avatar, alt: 'プロフィール画像', class: 'uk-border-circle'
+                  - else
+                    = image_tag '/assets/noimage.png', alt: 'プロフィール画像', class: 'uk-border-circle'
+                %p.post_user_nickname
+                  = link_to item.user.nickname, user_path(item.user_id)
+              .post_title_and_tag_area
+                %p.post_user_title
+                  = link_to item.title, item_path(item)
+                %p.tag_list_box
+                  - item.tags.each do |tag|
+                    = link_to "##{tag.tag_name}", items_path(tag), class: 'smaller tag_list'
+              %hr
+              %p.post_user_content_introduction
+                = truncate(item.content,length: 127) do
+                  = link_to '詳細を見る', item_path(item), class: 'more_detail'
+              %p
+                = item.region
+            - if item.image.attached?
+              .post_user_image_area
+                = image_tag item.image, alt: '投稿画像', class: 'post_image'
         -# 10件までページネーション
         .items_index_paginate
           = paginate @items, theme: 'my_custom_theme'
+:javascript
+  $("").addClass("");
