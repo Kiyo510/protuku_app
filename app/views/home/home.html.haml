@@ -1,46 +1,25 @@
-%main
-  .main-wrapper
-    %h1.heading-title.uk-text-normal
-      プログラミングチームを作ろう。
-      -# %br/
-      -# = "　　チームをつくろう。"
-    .uk-flex.uk-flex-between
-      .heading-discrption-main
-        %p.uk-text-normal
-          「プロつく！」はWEB開発やプログラミング仲間を探すためのオンラインマッチングプラットフォームです。
-        %br/
-        %br/
-        .uk-text-center
-          = link_to '今すぐ仲間を探す', signup_path, class: 'signup_btn_main'
-      .programing_image_child
-        = image_tag '/assets/child_programing_team.png', alt: '子供のプログラミングチーム', class: 'child_programing_image'
-      -# TOPのフォームは一旦削除しておく。（デザイン上の理由）
-      -#   = form_with(model: @user, local: true) do |f|
-      -#     .uk-width-1-1
-      -#       .uk-container
-      -#         %div{:class => "uk-width-1-1@m"}
-      -#           %h3.uk-card-title.uk-text-center 無料登録
-      -#           .uk-margin
-      -#             = f.label :username,class: 'uk-text-bolder'
-      -#             .uk-form-controls
-      -#             = f.text_field :nickname, class: 'uk-input'
-      -#           .uk-margin
-      -#             .uk-form-controls
-      -#             = f.label :email,class: 'uk-text-bolder'
-      -#             = f.email_field :email, class: 'uk-input'
-      -#           .uk-margin
-      -#             .uk-form-controls
-      -#             = f.label :password,class: 'uk-text-bolder'
-      -#             = f.password_field :password, class: 'uk-input'
-      -#           .uk-margin.uk-text-center
-      -# = f.submit "ユーザー登録", class: 'uk-button uk-button-primary uk-text-bold uk-border-rounded'
+.main-wrapper
+  %h1.heading-title.uk-text-normal
+    プログラミングチームを作ろう。
+    -# %br/
+    -# = "　　チームをつくろう。"
+  .main-contents
+    .heading-discrption-main
+      %p.uk-text-normal
+        「プロつく！」はWEB開発やプログラミング仲間を探すためのオンラインマッチングプラットフォームです。
+      %br/
+      %br/
+      .uk-text-center
+        = link_to '今すぐ仲間を探す', signup_path, class: 'signup_btn_main'
+    .programing_image_child
+      = image_tag '/assets/child_programing_team.png', alt: '子供のプログラミングチーム', class: 'child_programing_image'
   %hr.hr
 .uk-container.uk-container-center.uk-margin-large-bottom
   %h2.section-title.uk-text-center プロつくの特徴
-  .uk-flex.uk-flex-between
+  .contents-wrapper
     .content-wrapper
       .protuku_image_description
-        = image_tag '/assets/test1.png', alt: '画像', class: 'protuku-content-image'
+        = image_tag '/assets/test1.png', alt: '画像'
       %h3.heading-discrption-protuku
         実践的な開発を学べる
       %p.content-text
@@ -49,7 +28,7 @@
         バージョン管理ツールの使い方、開発手法など、チーム開発を通して現場で使うスキルを実践的に学ぶことができます。
     .content-wrapper
       .protuku_image_description
-        = image_tag '/assets/test2.png', alt: '画像', class: 'protuku-content-image'
+        = image_tag '/assets/test2.png', alt: '画像'
       %h3.heading-discrption-protuku
         起業仲間を見つけられる
       %p.content-text
@@ -57,15 +36,15 @@
         自分の手で最強のプログラミングチームを作ることができます。
     .content-wrapper
       .protuku_image_description
-        = image_tag '/assets/test1.png', alt: '画像', class: 'protuku-content-image'
+        = image_tag '/assets/test1.png', alt: '画像'
       %h3.heading-discrption-protuku
         最高の学習環境を作れる
       %p.content-text
-        人間の意思というのは本当に弱いです。一人でのプログラミング学習はなかなかモチベーションが続きません。
+        人間の意思は本当に弱いです。一人でのプログラミング学習はモチベーションが続きません。
         しかし、チーム開発は違います。自分一人がサボってしまうと、チームに迷惑をかけてしまいます。チーム開発にジョインすることで、やらざるを得ない環境を作ることができます。
 .content-background
   .article-container
-    %h2.section-title.uk-text-center 最近の募集
+    %h2.section-title 最近の募集
     .article-wrapper
       - @items.each do |item|
         .article_items
