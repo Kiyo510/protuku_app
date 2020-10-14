@@ -2,7 +2,9 @@
 //ユーティリティ
 *,
 *::before,
-*::after {box-sizing: border-box;}
+*::after {
+  box-sizing: border-box;
+}
 
 li {
   list-style: none;
@@ -63,13 +65,60 @@ body {
 //header
 $btn-hover: #1e87f0c7;
 
+@media screen and (max-width: 640px) {
+  //header
+  .uk-navbar-item {
+    padding: 0 7px;
+  }
+
+  .logo-protuku img {
+    display: inline-block;
+    max-width: 110px;
+  }
+
+  .signup_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    color: #fff;
+    border-radius: 4px;
+    border: 2px solid #1e87f0;
+    font-size: 0.8rem;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 0 10px;
+    background-color: #1e87f0;
+    transition: background-color 0.08s ease-in-out;
+  }
+
+  .login_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    color: 1e87f0f;
+    border-radius: 4px;
+    border: 2px solid #1e87f0;
+    font-size: 0.8rem;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 0 10px;
+    background-color: #fff;
+    transition: background-color 0.08s ease-in-out;
+  }
+}
+
 .logo-protuku img  {
   display: inline-block;
-  height: 50px;
+  width: 200px;
 }
 // .uk-navbar-item {
 //   // min-height: 65px;
 // }
+
 
 .uk-button-default {
   border-color: #1e87f0;
@@ -440,18 +489,22 @@ main {
   background: white;
   border-radius: 12px;
 }
+
 .recent-post-contents {
   width: calc(100% - 130px);
 }
+
 .recent-post-title {
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 10px;
 }
+
 .recent-post-user {
   font-size: 0.9rem;
   margin-left: 8px;
 }
+
 //新規登録フォーム(TOP)
 // .uk-width-form {
 //   width: 30%;
@@ -478,7 +531,6 @@ main {
 
 .twitter_btn {
   background-color: #1e87f0;
-  ;
 }
 
 .github_btn {
