@@ -67,12 +67,16 @@ $btn-hover: #1e87f0c7;
 
 @media screen and (max-width: 640px) {
   //header
+  .uk-navbar-container>.uk-container .uk-navbar-left {
+    margin-left: -25px;
+    margin-right: -15px;
+  }
+
   .uk-navbar-item {
     padding: 0 7px;
   }
 
   .logo-protuku img {
-    display: inline-block;
     max-width: 110px;
   }
 
@@ -108,6 +112,11 @@ $btn-hover: #1e87f0c7;
     padding: 0 10px;
     background-color: #fff;
     transition: background-color 0.08s ease-in-out;
+  }
+
+  .fa-pencil{
+    font-family: FontAwesome;
+    content: "\f040";
   }
 }
 
@@ -709,8 +718,6 @@ $title-color: #1e87f0;
        object-fit: cover;
     }
   }
-
-
 }
 
 .search_friend {
