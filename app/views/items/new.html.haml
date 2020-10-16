@@ -3,11 +3,11 @@
     .uk-margin-small
       = f.text_field :title, placeholder: "タイトルを入力（35文字まで）", class: 'uk-input'
     .uk-margin-small
-      = f.text_field :tag_name, placeholder: "プログラミング技術や募集要項に関するタグをスペース区切りで5つまで入力(例 Ruby Rails )", class: 'uk-input uk-form-small'
-    .uk-flex.uk-flex-middle
-      .post_region
-        = f.label :投稿者の所在地, class: 'uk-text-bold user_region'
-        = f.select :region, [["非公開"],["東京"],["三重"],["静岡"],["愛知"]]
+      = f.text_field :tag_name, placeholder: "プログラミング技術や募集に関するタグをスペース区切りで5つまで入力(例 Ruby Rails )", class: 'uk-input uk-form-small'
+    .post_image_and_prefecture_area
+      .post_prefecture
+        = f.label :投稿者の所在地, class: 'uk-text-bold user_prefecture'
+        = f.collection_select(:prefecture_id, Prefecture.all, :id, :name,{include_blank: "------------"})
       .post_image
         = f.label :画像をアップロードする, class: 'uk-text-bold'
         %span.uk-text-muted

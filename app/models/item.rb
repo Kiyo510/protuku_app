@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture
   has_many :purchase_histories, dependent: :destroy
   belongs_to :user
   has_one_attached :image
@@ -10,8 +12,7 @@ class Item < ApplicationRecord
   has_many :tags, through: :tagmaps, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 35 }
-  validates :content, presence: true, length: { maximum: 10_000 }
-  validates :region, presence: true
+  validates :content, presence: true, length: { maximum: 10_0000 }
   validates :image, content_type: { in: %w[image/jpeg image/gif image/png],
                                     message: '対応してないファイル形式です。' },
                     size: { less_than: 5.megabytes,

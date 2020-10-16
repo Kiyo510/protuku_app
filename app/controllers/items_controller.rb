@@ -120,7 +120,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :content, :price, :region, :image)
+    params.require(:item).permit(:title, :content, :price, :prefecture_id, :image)
   end
 
   def ensure_correct_user

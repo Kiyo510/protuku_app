@@ -5,9 +5,9 @@
     .uk-margin-small
       = f.text_field :tag_name, value: @tag_list, class: 'uk-input uk-form-small'
     .uk-flex.uk-flex-middle
-      .post_region
-        = f.label :投稿者の所在地, class: 'uk-text-bold user_region'
-        = f.select :region, [["非公開"],["東京"],["三重"],["静岡"],["愛知"]]
+      .post_prefecture
+        = f.label :投稿者の所在地, class: 'uk-text-bold user_prefecture'
+        = f.collection_select(:prefecture_id, Prefecture.all, :id, :name,{include_blank: "------------"})
       .post_image
         = f.label :画像をアップロードする, class: 'uk-text-bold'
         %span.uk-text-muted
