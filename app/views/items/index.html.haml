@@ -44,10 +44,10 @@
                 = truncate(item.content,length: 127) do
                   = link_to '詳細を見る', item_path(item), class: 'more_detail'
               %p
-                = item.region
+                = item.prefecture.name
             - if item.image.attached?
               .post_user_image_area
-                = image_tag item.image, alt: '投稿画像', class: 'post_image'
+                = image_tag item.image, alt: '投稿画像', class: 'post_image_index'
         -# 10件までページネーション
         .items_index_paginate
           = paginate @items, theme: 'my_custom_theme'
