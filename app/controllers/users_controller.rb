@@ -65,8 +65,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+    user = User.find(params[:id])
+    user.destroy
     flash[:success] = '退会処理が完了しました。またのご利用お待ちしております。'
     redirect_to root_path
   end
