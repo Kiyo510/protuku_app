@@ -1,10 +1,9 @@
 - @posted_items.each do |item|
-  .uk-flex
-    .post_detail
+  .user_post_history
+    .post_history_DataTime
       = l item.created_at, format: :short
-    .uk-panel
-      %p.post_user_title
-        = link_to item.title, item_path(item)
+    .post_user_title_history
+      %p= link_to item.title, item_path(item)
   /10件毎にページネーション
 .mypage_paginate
   = paginate @posted_items, param_name: 'items_page', theme: 'my_custom_theme'
