@@ -45,7 +45,7 @@ RSpec.feature '投稿機能', type: :system do
         expect(page).to have_content '削除'
       end
 
-      it '投稿詳細ページにメッセージを送るボタンが表示されない' do
+      it '投稿詳細ページに「話を聞いてみるボタン」が表示されない' do
         visit item_path(item)
         expect(page).not_to have_css '.message_btn'
       end
@@ -63,7 +63,7 @@ RSpec.feature '投稿機能', type: :system do
         expect(page).not_to have_content '削除'
       end
 
-      it '投稿詳細ページにメッセージを送るボタンが表示さる' do
+      it '投稿詳細ページに「話を聞いてみるボタン」が表示さる' do
         visit item_path(item)
         expect(page).to have_css '.message_btn'
       end
