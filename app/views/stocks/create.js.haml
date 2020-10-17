@@ -1,1 +1,3 @@
 $("#item-#{@item.id} .stock").html("#{escape_javascript(render partial: 'stocks/stock_btn', locals: { item: @item })}");
+
+$("#item-#{@item.id} .stock-below").html("#{escape_javascript(render partial: 'stocks/stock_btn_below', locals: { item: @item })}");

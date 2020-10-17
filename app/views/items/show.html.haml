@@ -1,14 +1,14 @@
 .uk-container.uk-container-center
-  .uk-section.uk-section-small.uk-flex.uk-flex-between
+  .recruiting_items_wrapper
     .sns-share_btn_sticky
-      .sns-share_btn_twitter{"uk-sticky" => "offset: 70; bottom: #top"}
-        = link_to "https://twitter.com/intent/tweet?url=#{request.url}/&hashtags=appname", title: 'Twitter', target: 'blank' do
+      .sns-share_btn_twitter
+        = link_to "https://twitter.com/intent/tweet?text=#{@item.title}&url=#{request.url}&hashtags=プロつく", title: 'Twitter', target: 'blank' do
           = fa_icon 'twitter'
       - if current_user != @item.user && logged_in?
-        %div{:id => "item-#{@item.id}",:class => "stock-btn_inner","uk-sticky" => "offset: 120; bottom: #top"}
+        %div{:id => "item-#{@item.id}",:class => "stock-btn_inner"}
           = render partial: 'stocks/stock_btn', locals: { item: @item }
     .uk-card.uk-card-default.uk-card-body.post_user_box
-      .uk-card-title.uk-flex.uk-flex-between
+      .uk-card-title.atricle-header
         .item_show_title.uk-text-bold
           = @item.title
         - if current_user.id == @item.user_id && logged_in?
@@ -30,6 +30,12 @@
             = "投稿日時:#{l @item.created_at, format: :short,class: 'uk-text-muted uk-text-normal'}"
         .post_user_content.uk-margin-small
           = markdown(@item.content)
+        .sns_share_btn_box_below
+          %div{:id => "item-#{@item.id}",:class => "stock-btn-below_inner"}
+            = render partial: 'stocks/stock_btn_below', locals: { item: @item }
+          .sns-share_btn_twitter_below
+            = link_to "https://twitter.com/intent/tweet?url=#{request.url}/&hashtags=appname", title: 'Twitter', target: 'blank' do
+              = fa_icon 'twitter'
       -#後にカード決済を追加予定
       -# = link_to 'カードで購入する', purchase_items_path(@item)
     .uk-card.uk-card-small.uk-card-body.uk-card-default.uk-margin-small-right.post_user_info_sidebar.uk-text-center
@@ -41,13 +47,15 @@
         - else
           = image_tag '/assets/noimage.png', alt: 'プロフィール画像', class: 'uk-border-circle'
       .user_nickname.uk-margin
-        = link_to @item.user.nickname, user_path(@item.user_id), class: 'uk-text-normal'
+        = link_to @item.user.nickname, user_path(@item.user_id), class: 'uk-text-normal uk-text-bold'
+      .post_user_introduction_info.uk-margin
+        = @item.user.introduction
       .uk-margin
         - unless @item.user_id == current_user.id
           - if @is_room == true
-            = link_to 'メッセージを送る', room_path(@room_id), class: "message_btn"
+            = link_to '話を聞いてみる', room_path(@room_id), class: "message_btn"
           - else
             = form_with model: @room, url: rooms_path, local: true do |f|
               = fields_for @entry do |e|
                 = e.hidden_field :user_id, value: @item.user_id
-                = f.submit 'メッセージを送る', class: "message_btn"
+                = f.submit '話を聞いてみる', class: "message_btn"
