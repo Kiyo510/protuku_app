@@ -30,12 +30,12 @@ end
     user: User.offset(rand(User.count)).first,
     title: "タイトル#{index}",
     content: "本文#{index}",
-    region: "東京"
+    prefecture_id: 1
   )
 end
 
 21.times do |i|
-  user = User.find(1)
+  user = User.find(2)
   item = Item.find(i+1)
   Stock.create!(
     user: user,
