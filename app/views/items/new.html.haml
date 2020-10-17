@@ -17,7 +17,7 @@
       = link_to '投稿例を見る', '#'
     .new_post_edit_box
       .editar_area
-        = f.text_area :content, placeholder: "投稿例を参考に、マークダウン記法を用いてわかりやすく具体的に書きましょう！（10000字まで）",id: "markdown_editor_textarea", class: 'uk-textarea', size: "94x20"
+        = f.text_area :content, placeholder: "投稿例を参考に、マークダウン記法を用いてわかりやすく具体的に書きましょう！（10000字まで）",id: "markdown_editor_textarea", class: 'uk-textarea', size: "94x22"
       #markdown_preview
     .uk-text-right.uk-margin-right
       = f.submit "投稿する", disable_with: '投稿中...', class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
