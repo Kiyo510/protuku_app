@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :item do
     title { 'testtitle' }
     content { 'testcontent' }
-    region { '東京' }
+    association :prefecture
     association :user
   end
 end
