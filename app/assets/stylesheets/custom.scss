@@ -877,13 +877,45 @@ $title-color: #1e87f0;
 }
 
 //投稿詳細ページ
+@media screen and (max-width: 980px) {
+  .sns-share_btn_sticky {
+    display: none;
+  }
+
+  .recruiting_items_wrapper {
+    flex-direction: column;
+    .post_user_box {
+      width: 100% !important;
+      margin-bottom: 15px;
+    }
+    .post_user_info_sidebar {
+      width: 100% !important;
+    }
+    .message_btn {
+      width: 60% !important;
+    }
+  }
+}
+
+.atricle-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recruiting_items_wrapper {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .item_show_title {
-  width: 660px;
+  max-width: 660px;
 }
 
 .edit_post_box {
   font-size: .8rem;
-
   .fa-edit::before {
     font-family: FontAwesome;
     content: "\f044";
@@ -1033,26 +1065,40 @@ $title-color: #1e87f0;
 
 .sns-share_btn_twitter {
   border-radius: 50%;
-  background-color: #fff;
+  background-color: #d1cdcd;
   font-size: 1.2rem;
-  padding: 8px 28px 4px 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  position: fixed;
+  top: 16vh;
+}
+
+.fa-twitter {
+  color: #fff;
 }
 
 .stock-btn_inner {
   border-radius: 50%;
-  background-color: grey;
+  background-color: #d1cdcd;
   font-size: 1.2rem;
-  padding: 8px 28px 4px 10px;
-  margin-top: 10px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 22vh;
 }
 
 .stock-btn {
   color: black;
   border: none;
-  background-color: grey;
+  background-color: #d1cdcd;
   font-size: 1.2rem;
-  padding: 1px 1px;
-
+  padding: 4px 0 0 2px;
   &:focus,
   &:hover {
     color: black;
@@ -1064,10 +1110,9 @@ $title-color: #1e87f0;
 .unstock-btn {
   color: white;
   border: none;
-  background-color: grey;
+  background-color: #d1cdcd;
   font-size: 1.2rem;
-  padding: 1px 1px;
-
+  padding: 0px 0px;
   &:focus,
   &:hover {
     color: white;
@@ -1076,29 +1121,114 @@ $title-color: #1e87f0;
   }
 }
 
+.sns_share_btn_box_below {
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.stock-btn-below {
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: white;
+  background-color: #5D707C;
+  border: 2px solid #5D707C;
+  height: 5vh;
+  width: 100%;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+.unstock-btn-below {
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: #5D707C;
+  background-color: white;
+  border: 2px solid #5D707C;
+  height: 5vh;
+  width: 100%;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+.sns-share_btn_twitter_below {
+  border-radius: 50%;
+  background-color: #aaa;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  margin-left: 10px;
+}
+
+.fa-check-square:before {
+  content: "\f14a";
+}
+
+.fa-check-square-o:before {
+  content: "\f046";
+}
+
 // .fa-bookmark-o::before {}
 
 //マイページ
+@media screen and (max-width: 980px) {
+ .my_page_wrapper {
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   margin-top: 15px;
+ }
+
+ .mypage_sidebar {
+   margin: 15px auto;
+   width: 90% !important;
+   margin-right: auto !important;
+ }
+
+ .profile_box {
+   margin: 0 auto;
+   width: 90% !important;
+ }
+
+ .user_post_history {
+   flex-direction: column;
+   align-items: stretch !important;
+ }
+}
+
+.my_page_wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
 .mypage_sidebar {
-  height: 50vh;
-  min-width: 300px;
+  height: 35vh;
+  width: 300px;
+  margin-right: 15px;
 }
 
 .profile_box {
-  min-width: 850px;
+  width: max(300px, 800px);
 }
 
 .user_image img {
-  width: 10rem;
-  height: 10rem;
+  width: 7rem;
+  height: 7rem;
   display: inline-block;
   object-fit: cover;
 }
 
-.user_nickname {
+.user_nickname a{
   font-size: .95rem;
   color: #777777;
   font-weight: bold;
+    a:hover {
+      color: #666;
+    }
 }
 
 .mypage_content_title {
