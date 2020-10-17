@@ -1,28 +1,25 @@
-.uk-section
-  .uk-container.uk-container-small
-    .edit_user_form
-      %h3.uk-text-bold プロフィール編集ページ
-      .uk-card.uk-card-default.uk-card-small.uk-card-body.uk-border-rounded
-        = form_with(model: @user, local: true) do |f|
-          .uk-margin
-            = f.label :自己紹介, class: 'form-label'
-            = f.text_area :introduction, placeholder: "自己紹介を入力(2000字まで)",id: "user_introduction_form", class: 'uk-textarea', size: "40x10"
-          .uk-margin
-            = f.label :ニックネーム, class: 'form-label'
-            .uk-form-controls
-            = f.text_field :nickname, class: 'form-control'
-          .uk-margin
-            = f.label :アイコン設定, class: 'form-label'
-            .uk-form-controls.uk-background-muted.uk-padding.uk-panel.uk-text-center
-              %p.uk-text-light 画像をアップロードする
-              = f.file_field :avatar
-          .uk-margin
-            = f.label :Eメール,class: 'form-label'
-            .uk-form-controls
-            = f.email_field :email, class: 'form-control'
-          .uk-margin
-            = f.label :パスワード, class: 'form-label'
-            .uk-form-controls
-            = f.password_field :password, class: 'form-control'
-          .uk-margin-top.uk-text-center
-            = f.submit "保存する", class: 'uk-button uk-button-primary uk-text-bold uk-border-rounded'
+.edit_user_form_wrapper
+  %h3.uk-text-bold プロフィール編集ページ
+  .edit_user_form
+    = form_with(model: @user, local: true) do |f|
+      .uk-margin
+        = f.label :自己紹介, class: 'form-label'
+        = f.text_area :introduction, placeholder: "自己紹介を入力(2000字まで)",id: "user_introduction_form", class: 'uk-textarea', size: "40x10"
+      .uk-margin
+        = f.label :ニックネーム, class: 'form-label'
+        .uk-form-controls
+        = f.text_field :nickname, class: 'form-control'
+      .uk-margin
+        = f.label :アイコン設定, class: 'form-label'
+        .uk-form-controls.uk-background-muted.uk-padding.uk-panel.uk-text-center
+          %p.uk-text-light 画像をアップロードする
+          = f.file_field :avatar
+        = f.label :Eメール,class: 'form-label'
+        .uk-form-controls
+        = f.email_field :email, class: 'form-control'
+      .uk-margin
+        = f.label :パスワード, class: 'form-label'
+        .uk-form-controls
+        = f.password_field :password, class: 'form-control'
+      .uk-margin-top.uk-text-center
+        = f.submit "保存する", class: 'uk-button uk-button-primary uk-text-bold uk-border-rounded'
