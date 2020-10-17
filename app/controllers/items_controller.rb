@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user, only: %i[show new edit update]
   before_action :ensure_correct_user, only: %i[edit update]
+  layout 'btn_feedback_class_none', only: %i[new edit]
   # require 'payjp'
 
   def index
