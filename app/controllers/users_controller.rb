@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     # ストック一覧を取得
     stock_items = Stock.get_stock_items(current_user)
     @stock_items = Kaminari.paginate_array(stock_items).page(params[:stocks_page]).per(10)
-    # 投稿した出品一覧を取得
+    # 投稿した履歴を取得
     posted_items = @user.items
     @posted_items = Kaminari.paginate_array(posted_items).page(params[:items_page]).per(10)
     # Entryモデルからログインユーザーのレコードを抽出
