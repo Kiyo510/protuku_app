@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
   root 'home#home'
-  get 'purchase_histories/index'
-  get 'cards/new'
-  get 'cards/show'
   get 'password_resets/new'
   get 'password_resets/edit'
-  get 'password_reset/new'
-  get 'password_reset/edit'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   get 'auth/:provider/callback', to: 'sessions#create'
