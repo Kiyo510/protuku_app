@@ -408,8 +408,9 @@ $title-color: #1e87f0;
 }
 
 .protuku_image_description img {
-  height: auto;
+  height: 100%;
   width: 100%;
+  object-fit: contain;
 }
 
 .content-text {
