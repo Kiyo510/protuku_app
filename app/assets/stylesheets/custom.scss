@@ -146,7 +146,7 @@ $btn-hover: #1e87f0c7;
   background-color: #fff;
 }
 
-.header_user_image {
+.header_user_avatar {
   width: 2rem;
   height: 2rem;
   display: inline-block;
@@ -807,8 +807,7 @@ $title-color: #1e87f0;
 .user_avatar img{
   width: 70px;
   height: 70px;
-  background-position: top;
-  background-size: cover;
+  object-fit: cover;
 }
 
 .user_avatar_hidden {
@@ -851,7 +850,7 @@ $title-color: #1e87f0;
   transition: opacity .2s;
 }
 
-.post_user_image_area {
+.post_user_avatar_area {
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -946,14 +945,14 @@ $title-color: #1e87f0;
   }
 }
 
-.post_user_image_info img {
+.post_user_avatar_info img {
   width: 2rem;
   height: 2rem;
   display: inline-block;
   object-fit: cover;
 }
 
-.post_user_image_info {
+.post_user_avatar_info {
   margin-right: 5px;
 }
 
@@ -1215,7 +1214,7 @@ $title-color: #1e87f0;
   width: max(300px, 800px);
 }
 
-.user_image img {
+.user_avatar_mypage img {
   width: 7rem;
   height: 7rem;
   display: inline-block;

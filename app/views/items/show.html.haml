@@ -19,7 +19,7 @@
               = link_to '削除', item_path(@item), method: :delete, data: { confirm: "投稿内容はデータから完全に削除されます。本当に削除しますか？" }
       .uk-margin-small
         .post_user_infoBox.uk-flex.uk-flex-middle
-          .post_user_image_info
+          .post_user_avatar_info
             - if @item.user.avatar.attached?
               = image_tag @item.user.avatar, alt: 'プロフィール画像', size: '50x80', class: 'uk-border-circle'
             - else
@@ -41,7 +41,7 @@
     .uk-card.uk-card-small.uk-card-body.uk-card-default.uk-margin-small-right.post_user_info_sidebar.uk-text-center
       .uk-text-bolder.uk-text-secondary
         投稿者情報
-      .user_image.uk-margin
+      .user_avatar_mypage.uk-margin
         - if @item.user.avatar.attached?
           = image_tag @item.user.avatar, alt: 'プロフィール画像', class: 'uk-border-circle'
         - else

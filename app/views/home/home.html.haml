@@ -58,7 +58,7 @@
               %p.recent-post-title
                 = link_to item.title, item_path(item)
               .uk-flex
-                .post_user_image_info
+                .post_user_avatar_info
                   - if item.user.avatar.attached?
                     = image_tag item.user.avatar, alt: '投稿画像', class: 'uk-border-circle'
                   - else

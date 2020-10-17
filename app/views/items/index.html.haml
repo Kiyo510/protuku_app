@@ -46,7 +46,7 @@
               %p
                 = item.prefecture.name
             - if item.image.attached?
-              .post_user_image_area
+              .post_user_avatar_area
                 = image_tag item.image, alt: '投稿画像', class: 'post_image_index'
         -# 10件までページネーション
         .items_index_paginate
