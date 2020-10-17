@@ -1263,7 +1263,7 @@ $title-color: #1e87f0;
   display: inline-block;
   font-size: 0.8rem;
   text-align: center;
-  width: 100%;
+  width: 70%;
   background-color: #636262;
   color: rgb(255, 255, 255);
   border: 2px solid #636262;
@@ -1301,19 +1301,50 @@ $title-color: #1e87f0;
   }
 }
 
-.post_detail {
-  width: 170px;
-  height: auto;
-  color: #777777;
-  font-size: .9rem;
-  text-align: center;
-  padding: 2px 0 0 0;
+ .post_history_DataTime {
+  margin-right: 10px;
+ }
+
+.user_post_history {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.post_user_title_history {
+  width: 85%;
+  font-size: 1.0rem;
+  font-weight: bold;
+
+  a {
+    color: #666;
+
+    &:hover {
+      color: #ccc;
+    }
+  }
 }
 
 //ユーザー編集ページ
-.edit_user_form {
-  width: 80%;
+@media screen and (max-width: 640px) {
+  .edit_user_form_wrapper {
+    margin: 0 auto;
+    width: 100% !important;
+  }
+}
+
+.edit_user_form_wrapper {
+  width: 50%;
   margin: 0 auto;
+}
+
+.edit_user_form {
+  border-radius: 5px;
+  padding: 20px 20px;
+  transition: box-shadow .1s ease-in-out;
+  background: #fff;
+  color: #666;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
 }
 
 //DMルーム
