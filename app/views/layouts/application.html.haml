@@ -36,12 +36,19 @@
             .uk-navbar-right
               %ul.uk-navbar-nav
                 - if logged_in?
-                  .uk-navbar-item
+                  .uk-navbar-item.uk-visible@s
                     %li.uk-active
                       = link_to  "投稿一覧", items_path, class: 'uk-text-bold'
-                  .uk-navbar-item
+                  .uk-navbar-item.uk-visible@s
                     %li
                       = link_to  "仲間を募る", new_item_path, class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
+                  .uk-navbar-item.uk-hidden@s
+                    %li.uk-active
+                      = link_to  "投稿一覧", items_path, class: 'uk-text-bold'
+                  .uk-navbar-item.uk-hidden@s
+                    %li
+                      = link_to new_item_path do
+                        %span.fa-pencil
                   .uk-navbar-item
                     -if unchecked_notifications.any?
                       %li
@@ -65,6 +72,8 @@
                         %li
                           = link_to 'プロフィール設定', edit_user_path(current_user)
                         %li
+                          = link_to  "仲間を募集する", new_item_path
+                        %li
                           = link_to 'メッセージ管理', rooms_path
                         %li.uk-nav-divider
                         %li
@@ -72,9 +81,6 @@
                         %li
                           = link_to '退会', user_path(current_user), method: :delete, data: { confirm: "退会したデータは二度と復元できません。本当に退会しますか？" }
                 -else
-                  .uk-navbar-item.uk-visible@m
-                    %li.uk-active
-                      = link_to  "プロつくとは？", '#'
                   .uk-navbar-item.uk-visible@s
                     %li
                       = link_to  "ユーザー登録", signup_path, class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
