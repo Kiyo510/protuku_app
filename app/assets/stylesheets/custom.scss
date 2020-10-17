@@ -584,11 +584,78 @@ $title-color: #1e87f0;
 
 
 //新規投稿ページ
+@media screen and (max-width: 480px) {
+  .post_image_and_prefecture_area {
+    flex-direction: column;
+    align-items: stretch !important;
+    margin-left: 1px;;
+  }
+
+  .post_image {
+    margin-left: 0!important;
+  }
+
+  .new_post_edit_box {
+    flex-direction: column;
+  }
+  .editar_area {
+    width: 100% !important;
+  }
+
+  #markdown_preview {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-top: 10px;
+  }
+}
+
 .new_post_form {
   padding: 5px;
 }
 
+.post_image_and_prefecture_area {
+  display: flex;
+  align-items: center;
+}
+
+.user_prefecture {
+  vertical-align: middle;
+  margin-right: .3em;
+}
+
+#item_prefecture {
+  color: #666;
+  max-width: 100%;
+  padding: 4px 6px;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #e5e5e5
+}
+
+.post_image {
+  margin-left: 10px;
+}
+
+.post_example {
+  margin-top: 5px;
+}
+
+
+.new_post_edit_box {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.editar_area {
+  width: 50%;
+  height: 100%;
+}
+
 #markdown_preview {
+  width: 50%;
+  height: calc(100vh - 260px);
+  overflow: auto;
   border: 1px solid #e5e5e5;
   background-color: #fff;
   margin-left: 10px;
@@ -673,29 +740,6 @@ $title-color: #1e87f0;
     padding: 6px 13px;
     border: 1px solid #b4afaf;
   }
-}
-
-.user_region {
-  vertical-align: middle;
-  margin-right: .3em;
-}
-
-#item_region {
-  color: #666;
-  max-width: 100%;
-  padding: 4px 6px;
-  height: auto;
-  display: inline-block;
-  vertical-align: middle;
-  border: 1px solid #e5e5e5
-}
-
-.post_image {
-  margin-left: 10px;
-}
-
-.post_example {
-  margin-top: 5px;
 }
 
 // 投稿一覧ページ
