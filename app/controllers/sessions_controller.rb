@@ -24,13 +24,14 @@ class SessionsController < ApplicationController
         redirect_to root_url
       end
     else
-      flash.now[:denger] = 'パスワードまたはEメールアドレスが間違っています。'
+      flash.now[:danger] = 'パスワードまたはEメールアドレスが間違っています。'
       render 'new'
     end
   end
 
   def destroy
     log_out if logged_in?
+    flash[:success] = 'ログアウトしました'
     redirect_to root_url
   end
 end
