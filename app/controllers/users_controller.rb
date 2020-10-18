@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       flash[:info] = 'アカウント有効用のメールを送信しました。クリックして有効化をお願い致します。'
       redirect_to root_path
     else
-      flash.now[:denger] = 'ユーザー登録に失敗しました。'
+      flash.now[:danger] = 'ユーザー登録に失敗しました。'
       render 'new'
     end
   end
