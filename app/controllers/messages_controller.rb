@@ -16,8 +16,10 @@ class MessagesController < ApplicationController
       # 自分に対するメッセージの場合、通知はこないようにする。
       notification.checked = true if notification.visitor_id == notification.visited_id
       notification.save if notification.valid?
+      flash[:success] = 'メッセージを送信しました'
       redirect_to room_path(@message.room)
     else
+      flash[:danger] = 'メッセージの送信に失敗しました'
       redirect_back(fallback_location: root_path)
     end
   end
