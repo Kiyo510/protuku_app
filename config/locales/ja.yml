@@ -12,3 +12,19 @@ ja:
       previous: "&lsaquo; 前"
       next: "次 &rsaquo;"
       truncate: "..."
+  activerecord:
+    models:
+      user: ユーザー
+      item: 投稿
+      message: メッセージ
+    attributes:
+      user:
+        nickname: 名前
+        password: パスワード
+        email: Eメール
+      item:
+        title: タイトル
+        content: 内容
+        prefecture_id: 所在地
+      message:
+        content: 内容
