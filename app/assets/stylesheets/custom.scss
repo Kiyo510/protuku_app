@@ -1445,11 +1445,11 @@ footer {
 
 //利用規約
 .term-or-privacy-wrapper {
-  border-radius: 15px;
   margin: 50px 0;
-  background: #edf5ff;
-  border: 5px solid #e5eeef;
-  padding: 70px;
+  padding: 30px;
+  li {
+    list-style-type: decimal;
+  }
 }
 //お問い合わせボタン
 .btn-feedback {
