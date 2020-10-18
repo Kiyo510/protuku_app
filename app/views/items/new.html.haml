@@ -1,5 +1,6 @@
 .uk-form.new_post_form
   = form_with(model: [@tag,@item], local: true) do |f|
+    = render 'layouts/error_messages', model: f.object
     .uk-margin-small
       = f.text_field :title, placeholder: "タイトルを入力（35文字まで）", class: 'uk-input'
     .uk-margin-small
