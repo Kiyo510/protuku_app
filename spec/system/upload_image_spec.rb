@@ -13,7 +13,7 @@ RSpec.describe '画像のアップロード', type: :system do
   def upload_user_avatar(user)
     visit edit_user_path(user)
     attach_file 'user_avatar', "#{Rails.root}/spec/fixtures/images/test.jpg"
-    click_on '保存する'
+    click_on '変更を保存'
   end
 
   it 'userがアップロードした画像がマイページに表示されること' do
@@ -30,14 +30,14 @@ RSpec.describe '画像のアップロード', type: :system do
   it "userが画像の更新に成功すること" do
     visit edit_user_path(user)
     attach_file 'user_avatar', "#{Rails.root}/spec/fixtures/images/updated_test.jpg"
-    click_on '保存する'
+    click_on '変更を保存'
     expect(page).to have_selector("img[src$='updated_test.jpg']")
   end
 
   it "画像をアップロードせずに編集したとき、デフォルトの画像データで上書きされないこと" do
     upload_user_avatar(user)
     visit edit_user_path(user)
-    click_on '保存する'
+    click_on '変更を保存'
     expect(page).to have_selector("img[src$='test.jpg']")
   end
 end
