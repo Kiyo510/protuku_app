@@ -7,7 +7,7 @@
       %strong>= @another_entry.user.nickname
       さんへメッセージを送る
       = form_with model: @message, url: messages_path, local: true do |f|
-        = f.text_area :content, placeholder: "メッセージ内容を入力してください", class: 'uk-textarea', size: "94x10"
+        = f.text_area :content, placeholder: "メッセージ内容を入力してください(2000文字まで)", class: 'uk-textarea', size: "94x10"
         = f.hidden_field :room_id, value: @room.id
         .uk-margin-top.uk-text-center
           = f.submit '送信', class: 'uk-button uk-button-primary uk-border-rounded'

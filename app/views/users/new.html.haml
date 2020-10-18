@@ -10,10 +10,11 @@
     .sign_up_or
       OR
     = form_with(model: @user, local: true) do |f|
+      = render 'layouts/error_messages', model: f.object
       .uk-margin
         = f.label :ニックネーム, class: 'form-label'
         .uk-form-controls
-        = f.text_field :nickname, class: 'form-control'
+        = f.text_field :nickname, placeholder: '30文字以内', class: 'form-control'
       .uk-margin
         = f.label :Eメール,class: 'form-label'
         .uk-form-controls
@@ -21,7 +22,7 @@
       .uk-margin
         = f.label :パスワード, class: 'form-label'
         .uk-form-controls
-        = f.password_field :password, class: 'form-control'
+        = f.password_field :password, placeholder: '6文字以上の半角英数', class: 'form-control'
       .uk-margin-small
         %p.uk-text-center
           = link_to '利用規約', page_path('terms')
