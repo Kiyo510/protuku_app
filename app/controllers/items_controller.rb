@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
       @item.save_items(tag_list)
       redirect_to items_path
     else
-      flash.now[:alert] = '投稿に失敗しました'
+      flash.now[:danger] = '投稿に失敗しました'
       render 'new'
     end
   end
