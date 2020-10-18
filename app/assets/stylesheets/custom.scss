@@ -1205,7 +1205,7 @@ $title-color: #1e87f0;
 }
 
 .mypage_sidebar {
-  height: 35vh;
+  height: 45vh;
   width: 300px;
   margin-right: 15px;
 }
@@ -1380,6 +1380,7 @@ $title-color: #1e87f0;
   a {
     color: black;
     font-weight: 300;
+    cursor: pointer;
     &:hover {
       color: #666;
     }
