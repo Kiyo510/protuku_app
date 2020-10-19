@@ -70,6 +70,7 @@ group :test do
   gem 'rspec_junit_formatter'
   gem 'shoulda-matchers', '~> 4.3'
   gem 'webdrivers'
+  gem 'launchy'
 end
 
 group :development, :test do
