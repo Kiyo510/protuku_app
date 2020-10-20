@@ -468,14 +468,15 @@ $title-color: #1e87f0;
 .recent-posts-image {
   display: inline-block;
   width: 92px;
-  height: 92px;
+  height: 82px;
   display: flex;
   -webkit-box-align: center;
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  font-size: 42px;
-  background: white;
+}
+
+.recent-post-image {
   border-radius: 12px;
 }
 
