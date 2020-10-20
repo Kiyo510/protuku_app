@@ -20,12 +20,12 @@ RSpec.feature 'サインアップ', type: :system do
       expect(current_path).to eq root_path
     end
 
-    # アカウント有効化メールのテストです
+    # アカウント有効化メールのテスト
     mail = ActionMailer::Base.deliveries.last
 
     aggregate_failures do
       expect(mail.to).to eq ['test@example.com']
-      expect(mail.from).to eq ['noreply@example.com']
+      expect(mail.from).to eq ['noreply@protuku.com']
       expect(mail.subject).to eq 'アカウントの有効化をお願いします。'
     end
   end
