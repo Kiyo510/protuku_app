@@ -19,7 +19,7 @@ RSpec.describe 'パスワードリセット機能', type: :system do
       it 'メール送信処理が実行されないこと' do
         fill_in 'password_reset[email]',	with: user.email
         click_button '再設定メールを送信'
-        expect(response).to redirect_to root_path
+        expect(current_path).to eq root_path
       end
     end
   end
