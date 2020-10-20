@@ -467,8 +467,6 @@ $title-color: #1e87f0;
 
 .recent-posts-image {
   display: inline-block;
-  width: 92px;
-  height: 82px;
   display: flex;
   -webkit-box-align: center;
   align-items: center;
@@ -478,6 +476,9 @@ $title-color: #1e87f0;
 
 .recent-post-image {
   border-radius: 12px;
+  width: 82px;
+  height: 82px;
+  object-fit: cover;
 }
 
 .recent-post-contents {
