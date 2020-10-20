@@ -1,31 +1,23 @@
-require 'rails_helper'
-
 RSpec.describe UserMailer, type: :mailer do
-  describe 'account_activation' do
-    let(:mail) { UserMailer.account_activation }
+  let(:user) { FactoryBot.create(:user, email: 'mailer_tester@example.com') }
 
-    it 'renders the headers' do
-      expect(mail.subject).to eq('Account activation')
-      expect(mail.to).to eq(['to@example.org'])
-      expect(mail.from).to eq(['from@example.com'])
+  describe "パスワードリセット処理" do
+    let(:mail) { UserMailer.password_reset(user) }
+    # Base64 encodeをデコードして比較できるようにする
+    let(:mail_body) { mail.body.encoded.split(/\r\n/).map{|i| Base64.decode64(i)}.join }
+
+    it "ヘッダーが正しく表示されること" do
+      user.reset_token = User.new_token
+      expect(mail.to).to eq ["mailer_tester@example.com"]
+      expect(mail.from).to eq ["noreply@protuku.com"]
+      expect(mail.subject).to eq "パスワードの再設定"
     end
 
-    it 'renders the body' do
-      expect(mail.body.encoded).to match('Hi')
-    end
-  end
-
-  describe 'password_reset' do
-    let(:mail) { UserMailer.password_reset }
-
-    it 'renders the headers' do
-      expect(mail.subject).to eq('Password reset')
-      expect(mail.to).to eq(['to@example.org'])
-      expect(mail.from).to eq(['from@example.com'])
-    end
-
-    it 'renders the body' do
-      expect(mail.body.encoded).to match('Hi')
+    # メールプレビューのテスト
+    it "メール文が正しく表示されること" do
+      user.reset_token = User.new_token
+      expect(mail_body).to match user.reset_token
+      expect(mail_body).to match CGI.escape(user.email)
     end
   end
 end
