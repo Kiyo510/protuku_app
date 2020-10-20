@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :tag do
-    tag_name { 'ruby Rails' }
-    association :item
+    sequence(:tag_name) { |n| "test_tag#{n}" }
   end
 end

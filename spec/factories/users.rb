@@ -8,7 +8,7 @@ FactoryBot.define do
   end
   factory :other_user, class: User do
     nickname { 'Bob' }
-    sequence(:email) { |m| "exemple#{m}@example.com" }
+    sequence(:email) { |l| "test#{l}@example.com" }
     password { 'password' }
     introduction { 'Nice to meet you' }
     activated { true }
