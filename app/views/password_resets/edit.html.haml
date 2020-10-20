@@ -1,4 +1,9 @@
 = form_with(model: @user, url: password_reset_path(params[:id]), local: true) do |f|
+  - if @user.errors.any?
+    .uk-alert-danger
+      %ul
+        - @user.errors.full_messages.each do |message|
+          %li= message
   .uk-section.uk-section-muted.uk-flex.uk-flex-middle
     .uk-width-1-1
       .uk-container
