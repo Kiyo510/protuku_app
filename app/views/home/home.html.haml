@@ -67,4 +67,4 @@
                   %p.recent-post-user
                     = link_to item.user.nickname, user_path(item.user_id)
                   %p.uk-text-meta
-                    = item.created_at
+                    = l item.created_at, format: :short
