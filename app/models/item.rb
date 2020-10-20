@@ -1,7 +1,6 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
-  has_many :purchase_histories, dependent: :destroy
   belongs_to :user
   has_one_attached :image
   # アソシエーションを設定する
