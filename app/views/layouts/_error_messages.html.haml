@@ -1,5 +1,5 @@
--if model.errors.any?
+- if model.errors.any?
   .uk-alert-danger
     %ul
-      -model.errors.full_messages.each do |message|
+      - model.errors.full_messages.each do |message|
         %li= message
