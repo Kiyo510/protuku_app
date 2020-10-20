@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :message do
-    user { nil }
-    room { nil }
+    association :user
+    association :room
   end
 end
