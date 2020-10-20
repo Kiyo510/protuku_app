@@ -20,7 +20,8 @@
               .uk-margin
                 .uk-inline.uk-width-1-1
                   %span.uk-form-icon{"uk-icon" => "icon: mail"}
-                  = f.label :新しいパスワードの確認
+                  = f.label :新しいパスワード
+                  %span.uk-text-bold (確認)
                   = f.password_field :password_confirmation, class: 'uk-input uk-form-large'
               .uk-margin
                 = f.submit "パスワードを更新", class: 'uk-button uk-button-primary uk-button-large uk-width-1-1'
