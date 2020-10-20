@@ -1198,6 +1198,10 @@ $title-color: #1e87f0;
    flex-direction: column;
    align-items: stretch !important;
  }
+
+ .post_history_DataTime {
+   width: 85% !important;
+ }
 }
 
 .my_page_wrapper {
@@ -1303,6 +1307,7 @@ $title-color: #1e87f0;
 }
 
  .post_history_DataTime {
+  width: 15%;
   margin-right: 10px;
  }
 
