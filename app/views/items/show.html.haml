@@ -1,0 +1,59 @@
+.uk-container.uk-container-center
+  .recruiting_items_wrapper
+    .sns-share_btn_sticky
+      .sns-share_btn_twitter
+        = link_to "https://twitter.com/intent/tweet?text=#{@item.title}&url=#{request.url}&hashtags=プロつく", title: 'Twitter', target: 'blank' do
+          = fa_icon 'twitter'
+      - if current_user != @item.user && logged_in?
+        %div{:id => "item-#{@item.id}",:class => "stock-btn_inner"}
+          = render partial: 'stocks/stock_btn', locals: { item: @item }
+    .uk-card.uk-card-default.uk-card-body.post_user_box
+      .uk-card-title.atricle-header
+        .item_show_title.uk-text-bold
+          = @item.title
+        - if current_user.id == @item.user_id && logged_in?
+          .edit_post_box
+            %span.fa-edit
+              = link_to '編集', edit_item_path(@item)
+            %span.fa-trash
+              = link_to '削除', item_path(@item), method: :delete, data: { confirm: "投稿内容はデータから完全に削除されます。本当に削除しますか？" }
+      .uk-margin-small
+        .post_user_infoBox.uk-flex.uk-flex-middle
+          .post_user_avatar_info
+            - if @item.user.avatar.attached?
+              = image_tag @item.user.avatar, alt: 'プロフィール画像', size: '50x80', class: 'uk-border-circle'
+            - else
+              = image_tag '/assets/noimage.png', alt: 'プロフィール画像',size: '50x80', class: 'uk-border-circle'
+          .post_user_nickname_info
+            = link_to @item.user.nickname, user_path(@item.user),class:'uk-text-normal'
+          .post_user_dataTime_info
+            = "投稿日時:#{l @item.created_at, format: :short,class: 'uk-text-muted uk-text-normal'}"
+        .post_user_content.uk-margin-small
+          = markdown(@item.content)
+        .sns_share_btn_box_below
+          %div{:id => "item-#{@item.id}",:class => "stock-btn-below_inner"}
+            = render partial: 'stocks/stock_btn_below', locals: { item: @item }
+          .sns-share_btn_twitter_below
+            = link_to "https://twitter.com/intent/tweet?url=#{request.url}/&hashtags=appname", title: 'Twitter', target: 'blank' do
+              = fa_icon 'twitter'
+    .uk-card.uk-card-small.uk-card-body.uk-card-default.uk-margin-small-right.post_user_info_sidebar.uk-text-center
+      .uk-text-bolder.uk-text-secondary
+        投稿者情報
+      .user_avatar_mypage.uk-margin
+        - if @item.user.avatar.attached?
+          = image_tag @item.user.avatar, alt: 'プロフィール画像', class: 'uk-border-circle'
+        - else
+          = image_tag '/assets/noimage.png', alt: 'プロフィール画像', class: 'uk-border-circle'
+      .user_nickname.uk-margin
+        = link_to @item.user.nickname, user_path(@item.user_id), class: 'uk-text-normal uk-text-bold'
+      .post_user_introduction_info.uk-margin
+        = @item.user.introduction
+      .uk-margin
+        - unless @item.user_id == current_user.id
+          - if @is_room == true
+            = link_to '話を聞いてみる', room_path(@room_id), class: "message_btn"
+          - else
+            = form_with model: @room, url: rooms_path, local: true do |f|
+              = fields_for @entry do |e|
+                = e.hidden_field :user_id, value: @item.user_id
+                = f.submit '話を聞いてみる', class: "message_btn"

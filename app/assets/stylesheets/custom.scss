@@ -1,1 +1,1491 @@
-/* 新規登録 */
+
+//ユーティリティ
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+  line-height: 1.5;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+hr {
+  margin: 0;
+}
+h4 {
+  margin: 0;
+}
+a:hover {
+  text-decoration: none;
+  color: #ccc;
+}
+
+.small {
+  font-size: .8rem;
+}
+
+.smaller {
+  font-size: .55rem;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+body {
+  margin: 0 auto;
+  background-color:#fff;
+  letter-spacing: .01em;
+  word-break: break-all;
+  font-family: Ropa Sans,
+    -apple-system,
+    Helvetica Neue,
+    Arial,
+    hiragino kaku gothic pron,
+    sans-serif;
+  font-size: .85rem;
+  color: rgb(51, 51, 51);
+  display: none;
+}
+//header
+$btn-hover: #1e87f0c7;
+
+@media screen and (max-width: 640px) {
+  //header
+  .uk-navbar-container>.uk-container .uk-navbar-left {
+    margin-left: -25px;
+    margin-right: -15px;
+  }
+
+  .uk-navbar-item {
+    padding: 0 7px;
+  }
+
+  .logo-protuku img {
+    max-width: 110px;
+  }
+
+  .signup_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    color: #fff;
+    border-radius: 4px;
+    border: 2px solid #1e87f0;
+    font-size: 0.8rem;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 0 10px;
+    background-color: #1e87f0;
+    transition: background-color 0.08s ease-in-out;
+  }
+
+  .login_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    color: 1e87f0f;
+    border-radius: 4px;
+    border: 2px solid #1e87f0;
+    font-size: 0.8rem;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 0 10px;
+    background-color: #fff;
+    transition: background-color 0.08s ease-in-out;
+  }
+
+  .fa-pencil{
+    font-family: FontAwesome;
+    content: "\f040";
+  }
+}
+
+.logo-protuku img  {
+  display: inline-block;
+  width: 200px;
+}
+// .uk-navbar-item {
+//   // min-height: 65px;
+// }
+
+
+.uk-button-default {
+  border-color: #1e87f0;
+  color: #1e87f0;
+    &:hover {
+      color: #fff;
+      background: $btn-hover;
+  }
+}
+
+.uk-text-white {
+  color: white;
+}
+
+.uk-navbar-container.tm-navbar-container {
+  background-color: #fff;
+}
+
+.header_user_avatar {
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  object-fit: cover;
+}
+
+.fa-caret-down::before {
+  display: block;
+  width: 20px;
+  height: 20px;
+  font-weight: 400;
+  font-family: FontAwesome;
+  content: "\f0d7";
+  margin-left: 7px;
+  cursor: pointer;
+}
+
+.fa-caret-down {
+  color: hsla(180, 3%, 25%, 0.61);
+
+  &:hover {
+    color: #b5babe;
+  }
+}
+
+//通知欄
+.fa-bell {
+  font-family: FontAwesome;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  background-color: #fff;
+  color: #1e87f0;
+  border-radius: 4px;
+  font-size: 1.0rem;
+  position: relative;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+}
+
+.badge:after {
+  content: "";
+  position: absolute;
+  background: red;
+  height: 7px;
+  width: 7px;
+  top: 1px;
+  right: -5px;
+  text-align: center;
+  border-radius: 50%;
+  color: red;
+}
+
+
+// main(TOP)
+$main-color: #f1f5fc;
+$title-color: #1e87f0;
+
+@media screen and (max-width: 640px) {
+//main(TOP)
+  .main-wrapper {
+    padding-right: 20px;
+  }
+
+  .main-contents {
+    margin: 0 auto;
+    flex-direction: column;
+  }
+
+  .heading-title {
+    text-align: center;
+  }
+}
+
+.main-wrapper {
+  position: relative;
+  margin: 0 auto;
+  max-width: 980px;
+  height: 100%;
+  position: relative;
+  padding-top: 73px;
+  padding-left: 20px;
+  margin-bottom: 41px;
+}
+
+@media screen and (min-width: 1200px) {
+  .main-wrapper::before {
+    content: "";
+    position: absolute;
+    width: 376px;
+    height: 380px;
+    right: 0;
+    left: -160px;
+    top: -40px;
+    border-radius: 50%;
+    background-color: rgba(201, 236, 245, 0.219);
+    animation: anim-left 25s linear 0s infinite;
+    overflow: hidden;
+  }
+
+  .main-wrapper::after {
+    content: "";
+    position: absolute;
+    width: 376px;
+    height: 380px;
+    left: 845px;
+    top: -40px;
+    border-radius: 50%;
+    background-color: rgba(190, 220, 248, 0.233);
+    animation: anim-right 20s linear 0s infinite;
+    overflow: hidden;
+  }
+
+  @keyframes anim-left {
+    0% {
+      transform: translateX(0px);
+    }
+    25% {
+      transform: translate(100px, 80px);
+      ;
+    }
+    50% {
+      transform: translate(-40px, 180px);
+    }
+    75% {
+      transform: translate(-100px, 80px);
+    }
+    100% {
+      transform: translate(-20px, 0px);
+    }
+  }
+
+  @keyframes anim-right {
+    0% {
+      transform: translate(-120px, 80px);
+    }
+    25% {
+      transform: translate(-100px, 80px);
+      ;
+    }
+    50% {
+      transform: translate(-40px, 180px);
+    }
+    75% {
+      transform: translate(-150px, 120px);
+    }
+    100% {
+      transform: translate(-120px, 80px);
+    }
+  }
+}
+
+.main-contents {
+  display: flex;
+  justify-content: space-between;
+}
+
+.heading-title {
+  font-weight: bold;
+  letter-spacing: 0.15rem;
+  margin: 20px 0;
+}
+
+.heading-discrption-main {
+  font-size: 1rem;
+}
+
+.signup_btn_main {
+  margin: 0;
+  border: 2px solid #1e87f0;
+  overflow: visible;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 36px;
+  display: inline-block;
+  padding: 5px 55px;
+  margin-top: -1px;
+  vertical-align: middle;
+  line-height: 38px;
+  transition: .1s ease-in-out;
+  text-align: center;
+  background-color: #1e87f0;
+}
+
+.hr {
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+
+.section-title {
+  color: black;
+  font-weight: 600;
+  font-size: 2.0rem;
+  position: relative;
+  margin-bottom: 56px;
+  text-align: center;
+}
+
+
+//プロつくでできること
+@media screen and (max-width: 980px) {
+  .contents-wrapper {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .content-wrapper {
+    margin-bottom: 20px;
+    width: 70% !important;
+    margin: 0 auto;
+  }
+
+  .content-wrapper:not(:last-of-type) {
+    margin-bottom: 25px;
+    margin-right: auto !important;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .content-wrapper {
+    margin-bottom: 20px;
+    width: 85% !important;
+    margin: 0 auto;
+  }
+}
+
+.contents-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-wrapper {
+  width : -webkit-calc(100% / 3);
+  width : calc(100% / 3);
+  background: #edf5ff;
+  padding: 1.8rem 2.2rem;
+  border-radius: 18px;
+}
+
+ .content-wrapper:not(:last-of-type) {
+  margin-right: 20px;
+ }
+
+.heading-discrption-protuku {
+  font-weight: 400;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.protuku_image_description {
+  width: 100%;
+  height: 38%;
+}
+
+.protuku_image_description img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.content-text {
+  line-height: 28px;
+  padding-bottom: 25px;
+  font-size: 0.9rem;
+}
+
+
+//最近の募集
+@media screen and (max-width: 850px) {
+  .article-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .recent-post-contents {
+    width: calc(100% - 103px) !important;
+  }
+
+  .recent-posts-image {
+   width: 80px !important;
+   height: 80px !important;
+  }
+}
+
+.content-background {
+  background-color: #edf5ff;
+  padding: 3rem 1rem;
+  max-width: 100%;
+}
+
+.article-container {
+  max-width: 960px;
+  margin: 0px auto;
+}
+
+.article-wrapper {
+  margin-top: 1.2rem;
+  column-count: 2;
+  column-gap: 6%;
+}
+
+.article_items {
+  break-inside: avoid;
+}
+
+.recent-posts-box {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding: 15px 0px;
+}
+
+.recent-posts-image {
+  display: inline-block;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.recent-post-image {
+  border-radius: 12px;
+  width: 82px;
+  height: 82px;
+  object-fit: cover;
+}
+
+.recent-post-contents {
+  width: calc(100% - 130px);
+}
+
+.recent-post-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.recent-post-user {
+  font-size: 0.9rem;
+  margin-left: 8px;
+}
+
+//新規登録フォーム(TOP)
+// .uk-width-form {
+//   width: 30%;
+// }
+
+// .uk-margin-btn {
+//   margin-bottom: 0;
+// }
+// .signup-btn {
+//   margin-top: 20px;
+// }
+//新規登録、ログインページ
+//新規登録,ログインページ
+
+.signup_or_login_form {
+  margin: 0 auto;
+  padding: 20px 20px;
+  width: 450px;
+  border-radius: 5px;
+  background: #fff;
+  color: #666;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+ }
+
+
+.sns-sign-up_item_btn {
+  color: #fff;
+  text-align: center;
+  padding: 10px 12px;
+  border-radius: 5px;
+  font-size: 13px;
+  letter-spacing: .05em;
+  margin: 10px auto;
+  width: 65%;
+}
+
+.twitter_btn {
+  background-color: #1e87f0;
+}
+
+.github_btn {
+  background-color: #5a4646;
+}
+
+.sign_up_or {
+  display: block;
+  min-width: 100%;
+  color: #81878d;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.form-control {
+  width: 97%;
+  background-color: #fafbfc;
+  padding-top: 4px;
+  padding-left: 9px;
+  padding-bottom: 4px;
+  line-height: 20px;
+  color: #24292e;
+  vertical-align: middle;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(225, 228, 232, .2);
+  &:focus {
+    background-color: #fff;
+    border-color: #0366d6;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(3, 102, 214, .3);
+  }
+}
+
+.form-label {
+  display: inline-block;
+  font-weight: 600;
+  cursor: default;
+  font-family: -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Helvetica,
+    Arial,
+    sans-serif,
+    Apple Color Emoji,
+    Segoe UI Emoji;
+  margin-bottom: 6px;
+}
+
+
+//新規投稿ページ
+@media screen and (max-width: 480px) {
+  .post_image_and_prefecture_area {
+    flex-direction: column;
+    align-items: stretch !important;
+    margin-left: 1px;;
+  }
+
+  .post_image {
+    margin-left: 0!important;
+  }
+
+  .new_post_edit_box {
+    flex-direction: column;
+  }
+  .editar_area {
+    width: 100% !important;
+  }
+
+  #markdown_preview {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-top: 10px;
+  }
+}
+
+.new_post_form {
+  padding: 5px;
+}
+
+.post_image_and_prefecture_area {
+  display: flex;
+  align-items: center;
+}
+
+.user_prefecture {
+  vertical-align: middle;
+  margin-right: .3em;
+}
+
+#item_prefecture {
+  color: #666;
+  max-width: 100%;
+  padding: 4px 6px;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #e5e5e5
+}
+
+.post_image {
+  margin-left: 10px;
+}
+
+.post_example {
+  margin-top: 5px;
+}
+
+
+.new_post_edit_box {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.editar_area {
+  width: 50%;
+  height: 100%;
+}
+
+#markdown_preview {
+  width: 50%;
+  height: 450px;
+  overflow: auto;
+  border: 1px solid #e5e5e5;
+  background-color: #fff;
+  margin-left: 10px;
+  padding: 10px;
+
+  pre {
+    margin: 0 15px 0;
+  }
+
+  li {
+    margin-left: 26px;
+    list-style: disc;
+  }
+
+  ul>li>ul {
+    margin-left: -27px;
+
+    li {
+      list-style-type: circle;
+      margin-left: 35px;
+    }
+  }
+
+  p {
+    padding-left: 10px;
+    margin-top: 0;
+  }
+
+  p+p {
+    margin-top: 1rem;
+  }
+
+  h1 {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 10px 0;
+    padding-bottom: .3em;
+    border-bottom: 1px solid #eaecef;
+    padding-left: 10px;
+  }
+
+  h2,
+  h3 {
+    border: 1px solid #f4f8fa;
+    background: #f4f8fa;
+    padding: 0px 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  h4 {
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  h5 {
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 13px;
+  }
+
+  h6 {
+    margin-left: 10px;
+    margin-top: 5px;
+    font-size: 10px;
+  }
+
+  table {
+    margin-left: 10px;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: 1px solid #b4afaf;
+  }
+
+  th,
+  td {
+    padding: 6px 13px;
+    border: 1px solid #b4afaf;
+  }
+}
+
+// 投稿一覧ページ
+@media screen and (max-width: 1200px) {
+  .user_avatar img {
+    width: 50px!important;
+    height: 50px!important;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .user_avatar {
+    display: none;
+  }
+
+  .user_avatar_hidden {
+    display: inline-block !important;
+    img {
+       width: 30px !important;
+       height: 30px !important;
+       object-fit: cover;
+    }
+  }
+}
+
+.search_friend {
+  padding: 1em 0;
+}
+
+.search_friend_by_categorize {
+  padding-bottom: 1em
+}
+
+.post_index_infobox {
+  font-weight: bolder;
+  margin-right: 5px;
+  p {
+    margin: 3px 10px 3px 0;
+    padding-left: 5px;
+  }
+  a {
+    color: #4f5050;
+    &:hover {
+      color: #ccc;
+    }
+  }
+}
+
+.post_article_wrapper {
+  display: flex;
+  padding: 20px 10px;
+  margin-bottom: 20px !important;
+  background: #fff;
+  color: #666;
+  position: relative;
+  transition: box-shadow .1s ease-in-out;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+}
+
+.post_index_infobox {
+  width: max(300px,500px);
+  margin-left: 10px
+}
+
+.user_avatar img{
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
+
+.user_avatar_hidden {
+  display: none;
+}
+
+.post_user_nickname a {
+  color: #28b7c4;
+}
+
+.tag_list {
+  color: #28b7c4;
+  display: inline-block;
+  font-weight: normal;
+  border: 1px solid #dddbdb;
+  background-color: #dddbdb;
+  padding: 3px;
+  margin: 1px 5px 2px 0;
+}
+
+.post_user_title {
+  font-size: 1.0rem;
+  font-weight: bold;
+  a {
+    color: #666;
+    &:hover {
+      color: #ccc;
+    }
+  }
+}
+
+.post_user_content_introduction {
+  font-size: .75rem;
+}
+
+.more_detail {
+  font-size: .7rem;
+  font-weight: normal;
+  color: #666 !important;
+  transition: opacity .2s;
+}
+
+.post_user_avatar_area {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.post_image_index {
+  width: 200px;
+  height: 100px;
+  background-position: top;
+  background-size: cover;
+  object-fit: contain;
+}
+
+//ページネーション
+.uk-pagination>* {
+  padding-left: 0;
+}
+
+.uk-pagination>.uk-active.current {
+  color:#0366d6;
+  font-weight: 900;
+  top: -1px;
+}
+
+//投稿詳細ページ
+@media screen and (max-width: 980px) {
+  .sns-share_btn_sticky {
+    display: none;
+  }
+
+  .recruiting_items_wrapper {
+    flex-direction: column;
+    .post_user_box {
+      width: 100% !important;
+      margin-bottom: 15px;
+    }
+    .post_user_info_sidebar {
+      width: 100% !important;
+    }
+    .message_btn {
+      width: 60% !important;
+    }
+  }
+}
+
+.atricle-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recruiting_items_wrapper {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item_show_title {
+  max-width: 660px;
+}
+
+.edit_post_box {
+  font-size: .8rem;
+  .fa-edit::before {
+    font-family: FontAwesome;
+    content: "\f044";
+    color: #666;
+  }
+
+  .fa-trash::before {
+    font-family: FontAwesome;
+    content: "\f1f8";
+    color: #666;
+  }
+
+  a {
+    color: #666;
+  }
+}
+
+.post_user_box {
+  width: 69%;
+}
+
+.post_user_infoBox {
+  font-size: 15px;
+  letter-spacing: .05rem;
+
+  a {
+    color: black;
+  }
+}
+
+.post_user_avatar_info img {
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  object-fit: cover;
+}
+
+.post_user_avatar_info {
+  margin-right: 5px;
+}
+
+.post_user_nickname_info {
+  margin-right: 5px;
+  margin-left: 5px;
+   a:hover {
+     color: #666;
+   }
+}
+
+.post_user_dataTime_info {
+  font-size: 0.75rem;
+  margin-right: 5px;
+}
+
+.post_user_content {
+  pre {
+    margin: 0px 10px 0;
+  }
+
+  li {
+    margin-left: 40px;
+    list-style: disc;
+  }
+
+  ul>li>ul {
+    margin-left: -25px;
+
+    li {
+      list-style-type: circle;
+    }
+  }
+
+  p {
+    margin-left: 10px;
+    margin-top: 0;
+  }
+
+  p+p {
+    margin-top: 1rem;
+  }
+
+  h1 {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding-bottom: .3em;
+    border-bottom: 1px solid #eaecef;
+    padding-left: 5px;
+  }
+
+  h2,
+  h3 {
+    border: 1px solid #f4f8fa;
+    background: #f4f8fa;
+    padding: 0px 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  h4 {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  h5 {
+    margin-bottom: 5px;
+    font-size: 13px;
+  }
+
+  h6 {
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+
+  table {
+    margin-left: 10px;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: 1px solid #b4afaf;
+  }
+
+  th,
+  td {
+    padding: 6px 13px;
+    border: 1px solid #b4afaf;
+  }
+}
+
+.posted_user_nickname {
+  font-size: 17px;
+}
+
+.post_user_info_sidebar {
+  width: 25%;
+  height: 100%;
+}
+
+.sns-share_btn_sticky {
+  width: 20px;
+  height: 100%;
+  margin-right: 20px;
+}
+
+.sns-share_btn_twitter {
+  border-radius: 50%;
+  background-color: #d1cdcd;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  position: fixed;
+  top: 16vh;
+}
+
+.fa-twitter {
+  color: #fff;
+}
+
+.stock-btn_inner {
+  border-radius: 50%;
+  background-color: #d1cdcd;
+  font-size: 1.2rem;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 22vh;
+}
+
+.stock-btn {
+  color: black;
+  border: none;
+  background-color: #d1cdcd;
+  font-size: 1.2rem;
+  padding: 4px 0 0 2px;
+  &:focus,
+  &:hover {
+    color: black;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.unstock-btn {
+  color: white;
+  border: none;
+  background-color: #d1cdcd;
+  font-size: 1.2rem;
+  padding: 0px 0px;
+  &:focus,
+  &:hover {
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.sns_share_btn_box_below {
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.stock-btn-below {
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: white;
+  background-color: #5D707C;
+  border: 2px solid #5D707C;
+  height: 5vh;
+  width: 100%;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+.unstock-btn-below {
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: #5D707C;
+  background-color: white;
+  border: 2px solid #5D707C;
+  height: 5vh;
+  width: 100%;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+.sns-share_btn_twitter_below {
+  border-radius: 50%;
+  background-color: #aaa;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  margin-left: 10px;
+}
+
+.fa-check-square:before {
+  content: "\f14a";
+}
+
+.fa-check-square-o:before {
+  content: "\f046";
+}
+
+// .fa-bookmark-o::before {}
+
+//マイページ
+@media screen and (max-width: 980px) {
+ .my_page_wrapper {
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   margin-top: 15px;
+ }
+
+ .mypage_sidebar {
+   margin: 15px auto;
+   width: 90% !important;
+   margin-right: auto !important;
+ }
+
+ .profile_box {
+   margin: 0 auto;
+   width: 90% !important;
+ }
+
+ .user_post_history {
+   flex-direction: column;
+   align-items: stretch !important;
+ }
+
+ .post_history_DataTime {
+   width: 85% !important;
+ }
+}
+
+.my_page_wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.mypage_sidebar {
+  height: 45vh;
+  width: 300px;
+  margin-right: 15px;
+}
+
+.profile_box {
+  width: max(300px, 800px);
+}
+
+.user_avatar_mypage img {
+  width: 7rem;
+  height: 7rem;
+  display: inline-block;
+  object-fit: cover;
+}
+
+.user_nickname a{
+  font-size: .95rem;
+  color: #777777;
+  font-weight: bold;
+    a:hover {
+      color: #666;
+    }
+}
+
+.mypage_content_title {
+  font-size: 1.2rem;
+  color: #504e4e;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.fa-user::before {
+  font-family: FontAwesome;
+  content: "\f05d";
+  color: #1e87f0;
+  margin-right: .5rem;
+}
+
+.fa-history::before {
+  font-family: FontAwesome;
+  content: "\f05d";
+  color: #1e87f0;
+  margin-right: .5rem;
+}
+
+.fa-bookmark-o::before {
+  font-family: FontAwesome;
+  content: "\f05d";
+  color: #1e87f0;
+  margin-right: .5rem;
+}
+
+.edit_profile_btn {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-align: center;
+  width: 70%;
+  background-color: #636262;
+  color: rgb(255, 255, 255);
+  border: 2px solid #636262;
+  font-weight: bold;
+  padding: 4px 0px;
+}
+
+.message_btn {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-align: center;
+  width: 100%;
+  background-color: #1e87f0;
+  color: #fff;
+  border: 1px solid #1e87f0;
+  font-weight: bold;
+  padding: 4px 0px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0f7ae5;
+  }
+}
+
+.edit_profile {
+  text-align: right;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  font-size: .8rem;
+  margin-top: 10px;
+
+  a {
+    color: #666;
+  }
+}
+
+ .post_history_DataTime {
+  width: 15%;
+  margin-right: 10px;
+ }
+
+.user_post_history {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.post_user_title_history {
+  width: 85%;
+  font-size: 1.0rem;
+  font-weight: bold;
+
+  a {
+    color: #666;
+
+    &:hover {
+      color: #ccc;
+    }
+  }
+}
+
+//ユーザー編集ページ
+@media screen and (max-width: 640px) {
+  .edit_user_form_wrapper {
+    margin: 0 auto;
+    width: 100% !important;
+  }
+}
+
+.edit_user_form_wrapper {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.edit_user_form {
+  border-radius: 5px;
+  padding: 20px 20px;
+  transition: box-shadow .1s ease-in-out;
+  background: #fff;
+  color: #666;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+}
+
+//DMルーム
+.dm-room_title {
+  margin-top: 30px;
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+}
+
+.dm-form_box {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.message_user_name a {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.message_time {
+  font-size: .8rem;
+}
+
+.message_box {
+  margin-top: 5px;
+}
+
+//メッセージ管理
+.message_box {
+  a {
+    color: black;
+    font-weight: 300;
+    cursor: pointer;
+    &:hover {
+      color: #666;
+    }
+  }
+}
+
+//フッター
+@media screen and (max-width: 640px) {
+  footer {
+    flex-direction: column;
+  }
+  .footer-list-box {
+    margin-top: 15px;
+  }
+}
+
+footer {
+  max-width: 1200px;
+  box-sizing: content-box;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 2.5em;
+  margin-bottom: 1rem;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  a {
+    color:#6783a0;
+  }
+}
+  // .f-grid {
+  //   display: grid;
+  //   grid-template-columns: 1fr 1fr 1fr 1fr;
+  //   column-gap: 3%;
+  // }
+  ul {
+    margin-top: 0;
+
+    li {
+      margin-bottom: 5px;
+      line-height: 2;
+    }
+  }
+
+  .fa-twitter-square::before {
+    font-family: FontAwesome;
+    content: "\f081";
+    margin-right: .35rem;
+  }
+
+  .f-copyright {
+    color: #b4afaf;
+    text-align: center;
+    margin-top: 2rem;
+    padding: 0.9rem 0px;
+    border-top: solid 1px #f5eded;
+    font-size: 0.8rem;
+  }
+
+//利用規約
+.term-or-privacy-wrapper {
+  margin: 50px 0;
+  padding: 30px;
+  li {
+    list-style-type: decimal;
+  }
+}
+//お問い合わせボタン
+.btn-feedback {
+  display: inline-block;
+  background-color: #fa67e1;
+  text-align: center;
+  position: relative;
+  color:#fff;
+  border-radius: 3px 3px 0 0;
+  font-size: .725rem;
+  min-width: 120px;
+  height: 34px;
+  line-height: 34px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  position: fixed;
+  bottom: 7px;
+  right: 12px;
+}
+.btn-feedback::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  left: 12px;
+  bottom: -9px;
+  border-top: 24px solid #fa67e1;
+  border-right: 13px solid transparent;
+  border-left: 13px solid transparent;
+  z-index: -1;
+}

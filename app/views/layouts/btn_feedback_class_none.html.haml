@@ -1,0 +1,130 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title プロつく！
+    = csrf_meta_tags
+    = csp_meta_tag
+    / UIkit CSS
+    %link{:href => "https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css", :rel => "stylesheet"}/
+    // syntax highlight
+    %link{:href => "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/github.min.css", :rel => "stylesheet"}/
+    / Marked.js
+    %script{:src => "https://cdn.jsdelivr.net/npm/marked/marked.min.js"}
+    / jQuery
+    %script{:src => "https://code.jquery.com/jquery-3.0.0.min.js"}
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    %meta{:content => "no-cache", :name => "turbolinks-cache-control"}
+  %body
+    :javascript
+      $(document).ready(function() {
+        $('body').fadeIn(700);
+      });
+    %header
+      .uk-navbar-container.tm-navbar-container
+        .uk-container.uk-container-large.uk-container-center
+          %nav.uk-navbar.uk-text-light
+            .uk-navbar-left
+              - if logged_in?
+                %a.uk-navbar-item
+                  = link_to image_tag('/assets/protuku_logo.png'), items_path, class: 'logo-protuku'
+              - else
+                %a
+                  = link_to image_tag('/assets/protuku_logo.png'), root_path, class: 'logo-protuku'
+            .uk-navbar-right
+              %ul.uk-navbar-nav
+                - if logged_in?
+                  .uk-navbar-item.uk-visible@s
+                    %li.uk-active
+                      = link_to  "投稿一覧", items_path, class: 'uk-text-bold'
+                  .uk-navbar-item.uk-visible@s
+                    %li
+                      = link_to  "仲間を募る", new_item_path, class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
+                  .uk-navbar-item.uk-hidden@s
+                    %li.uk-active
+                      = link_to  "投稿一覧", items_path, class: 'uk-text-bold'
+                  .uk-navbar-item.uk-hidden@s
+                    %li
+                      = link_to new_item_path do
+                        %span.fa-pencil
+                  .uk-navbar-item
+                    -if unchecked_notifications.any?
+                      %li
+                        = link_to notifications_path do
+                          %span.fa-bell.badge
+                    - else
+                      %li
+                        = link_to notifications_path do
+                          %span.fa-bell
+                  .uk-navbar-item
+                    .header_nav_btn
+                      - if current_user.avatar.attached?
+                        = image_tag current_user.avatar, alt: 'プロフィール画像', class: 'header_user_avatar uk-border-circle'
+                      - else
+                        = image_tag '/assets/noimage.png', alt: 'プロフィール画像', class: 'header_user_avatar uk-border-circle'
+                    %span.fa-caret-down
+                    %div{"uk-dropdown" => "mode: click"}
+                      %ul.uk-nav.uk-dropdown-nav
+                        %li
+                          = link_to 'マイページ', user_path(current_user)
+                        %li
+                          = link_to 'プロフィール設定', edit_user_path(current_user)
+                        %li
+                          = link_to  "仲間を募集する", new_item_path
+                        %li
+                          = link_to 'メッセージ管理', rooms_path
+                        %li.uk-nav-divider
+                        %li
+                          = link_to 'ログアウト', logout_path, method: :delete
+                        %li
+                          = link_to '退会', user_path(current_user), method: :delete, data: { confirm: "退会したデータは二度と復元できません。本当に退会しますか？" }
+                -else
+                  .uk-navbar-item.uk-visible@s
+                    %li
+                      = link_to  "ユーザー登録", signup_path, class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
+                  .uk-navbar-item.uk-visible@s
+                    %li.uk-active
+                      = link_to  "ログイン", login_path, class: "uk-button uk-button-default uk-border-rounded uk-text-bold"
+                  -# レスポンシブ対応
+                  .uk-navbar-item.uk-hidden@s
+                    %li
+                      = link_to  "ユーザー登録", signup_path, class: "signup_btn"
+                  .uk-navbar-item.uk-hidden@s
+                    %li.uk-active
+                      = link_to  "ログイン", login_path, class: "login_btn"
+
+    - flash.each do |message_type, message|
+      %div{class: "uk-alert-#{message_type}"}
+        = message
+    = yield
+    %footer
+      .f-col.f-logo
+        = link_to image_tag('/assets/protuku_logo.png'), root_path, class: 'logo-protuku'
+        %p.small.uk-text-muted
+          WEB開発者マッチングサービス
+      .footer-list-box.uk-flex
+        %nav.uk-margin-right
+          %ul
+            %li
+              = link_to  "プロつくとは？", page_path('about')
+            %li
+              = link_to 'ヘルプ', page_path('help')
+            %li
+              = link_to '運営者twitter',"https://twitter.com/Kiyo_Karl2", target: 'blank', class: 'fa-twitter-square'
+        %nav
+          %ul
+            %li
+              = link_to 'お問い合わせ', 'https://forms.gle/wUnrfPfy8nc2fgey7'
+            %li
+              = link_to '利用規約', page_path('terms')
+            %li
+              = link_to 'プライバシーポリシー', page_path('privacy')
+    %p.f-copyright
+      Copyright © 2020 プロつく! All Rights Reserved
+    -#= debug(params) if Rails.env.development?
+    %script{:src => "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"}
+    %script{src: "https://js.pay.jp/", type: "text/javascript"}
+    %script{:src => "https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"}
+    %script{:src => "https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"}

@@ -1,0 +1,30 @@
+#created_atを〇月/〇日 〇時〇分で表示（日本時間）
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%m/%d %H:%M"
+#ページネーションを日本語表記
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."
+  activerecord:
+    models:
+      user: ユーザー
+      item: 投稿
+      message: メッセージ
+    attributes:
+      user:
+        nickname: 名前
+        password: パスワード
+        email: Eメール
+      item:
+        title: タイトル
+        content: 内容
+        prefecture_id: 所在地
+      message:
+        content: 内容

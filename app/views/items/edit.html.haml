@@ -1,0 +1,43 @@
+.uk-form.new_post_form
+  = form_with(model: [@tag,@item], local: true) do |f|
+    = render 'layouts/error_messages', model: f.object
+    .uk-margin-small
+      = f.text_field :title, placeholder: "タイトルを入力（35文字まで）", class: 'uk-input'
+    .uk-margin-small
+      = f.text_field :tag_name, value: @tag_list, class: 'uk-input uk-form-small'
+    .post_image_and_prefecture_area
+      .post_prefecture
+        = f.label :投稿者の所在地, class: 'uk-text-bold user_prefecture'
+        = f.collection_select(:prefecture_id, Prefecture.all, :id, :name,{include_blank: "------------"})
+      .post_image
+        = f.label :画像をアップロードする, class: 'uk-text-bold'
+        %span.uk-text-muted
+          (5MB以下)
+        = f.file_field :image
+    .post_example
+      = link_to '投稿例を見る', '#'
+    .new_post_edit_box
+      .editar_area
+        = f.text_area :content, placeholder: "投稿例を参考に、マークダウン記法を用いてわかりやすく具体的に書きましょう！（10000字まで）",id: "markdown_editor_textarea", class: 'uk-textarea', size: "94x22"
+      #markdown_preview
+    .uk-text-right.uk-margin-right
+      = f.submit "更新する", disable_with: '更新中...', class: "uk-button uk-button-primary uk-border-rounded uk-text-bold"
+
+:javascript
+  $(function () {
+    marked.setOptions({
+      //改行をそのまま反映
+      breaks: true,
+      //codeタグ使用時にデフォルトでつくlangage- を削除
+      langPrefix: '',
+      //syntax highlight を追加
+      highlight: function (code, lang) {
+        return hljs.highlightAuto(code, [lang]).value
+      }
+    });
+
+    $('#markdown_editor_textarea').keyup(function () {
+      var html = marked($(this).val());
+      $('#markdown_preview').html(html);
+    });
+  });

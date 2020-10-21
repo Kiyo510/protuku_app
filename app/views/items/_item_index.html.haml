@@ -1,0 +1,9 @@
+- @posted_items.each do |item|
+  .user_post_history
+    .post_history_DataTime
+      = l item.created_at, format: :short
+    .post_user_title_history
+      %p= link_to item.title, item_path(item)
+  /10件毎にページネーション
+.mypage_paginate
+  = paginate @posted_items, param_name: 'items_page', theme: 'my_custom_theme'

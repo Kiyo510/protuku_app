@@ -1,0 +1,45 @@
+.main-wrapper
+  %h1.heading-title.uk-text-normal
+    プログラミングチームを作ろう。
+    -# %br/
+    -# = "　　チームをつくろう。"
+  .main-contents
+    .heading-discrption-main
+      %h2.uk-text-normal
+        「プロつく！」はWEB開発やプログラミング仲間を探すためのオンラインマッチングプラットフォームです。
+      %h2.uk-text-normal
+        完全無料でご利用頂けます。
+
+  %hr.hr
+.uk-container.uk-container-center.uk-margin-large-bottom
+  %h2.section-title.uk-text-center プロつくの特徴
+  .contents-wrapper
+    .content-wrapper
+      .protuku_image_description
+        = image_tag '/assets/free_lance.png', alt: '画像'
+      %h3.heading-discrption-protuku
+        実践的な開発を学べる
+      %p.content-text
+        プロつく！はチーム開発する仲間を募集することも可能です。
+        もし、あなたがエンジニア転職を目指しているのなら、チーム開発の経験は必ず役に立ちます。
+        バージョン管理ツールの使い方、開発手法など、チーム開発を通して現場で使うスキルを実践的に学ぶことができます。
+    .content-wrapper
+      .protuku_image_description
+        = image_tag '/assets/momotaro.png', alt: '画像'
+      %h3.heading-discrption-protuku
+        起業仲間を見つけられる
+      %p.content-text
+        自分がつくりたいサービスのコンセプトや使用技術を明確にすれば、それに共感できる仲間をピンポイントで集めることができます。
+        自分の手で最強のプログラミングチームを作ることができます。
+    .content-wrapper
+      .protuku_image_description
+        = image_tag '/assets/test1.png', alt: '画像'
+      %h3.heading-discrption-protuku
+        最高の学習環境を作れる
+      %p.content-text
+        人間の意思は本当に弱いです。一人でのプログラミング学習はモチベーションが続きません。
+        仲間と共に励まし合いながら頑張ることで、挫折しにくく、成長しやすい環境を作ることができます。
+.uk-container.uk-container-center.uk-margin-large-bottom
+  %h2.section-title.uk-text-center さぁ、仲間と協力して新しい未来を切り開いていきませんか？
+  .uk-text-center
+    = link_to '今すぐ仲間を探す', signup_path, class: 'signup_btn_main'

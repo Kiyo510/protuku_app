@@ -1,0 +1,15 @@
+= form_with(url: password_resets_path, scope: :password_reset, local: true) do |f|
+  .uk-section.uk-section-muted.uk-flex.uk-flex-middle
+    .uk-width-1-1
+      .uk-container
+        .uk-grid-margin.uk-grid.uk-grid-stack{"uk-grid" => ""}
+          %div{:class => "uk-width-1-1@m"}
+            .uk-margin.uk-width-large.uk-margin-auto.uk-card.uk-card-default.uk-card-body.uk-box-shadow-large
+              %h3.uk-card-title.uk-text-center 登録に使用したEメールを入力してください
+              .uk-margin
+                .uk-inline.uk-width-1-1
+                  %span.uk-form-icon{"uk-icon" => "icon: mail"}
+                  = f.label :Eメール
+                  = f.email_field :email, class: 'uk-input uk-form-large'
+              .uk-margin
+                = f.submit "再設定メールを送信", class: 'uk-button uk-button-primary uk-button-large uk-width-1-1"'

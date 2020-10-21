@@ -1,0 +1,32 @@
+.uk-section.uk-flex.uk-flex-middle
+  .signup_or_login_form
+    .uk-magrin-bottom.uk-text-center
+      %h2.uk-text-bold LOGIN
+    = link_to "/auth/twitter", class: 'twitter' do
+      .sns-sign-up_item_btn.twitter_btn
+        twitterアカウントでログイン
+    = link_to "#",class: 'github' do
+      .sns-sign-up_item_btn.github_btn
+        githubアカウントでログイン
+    .sign_up_or
+      OR
+    = form_with(url: login_path, scope: :session, local: true) do |f|
+      .uk-margin
+        = f.label :Eメール,class: 'form-label'
+        .uk-form-controls
+        = f.email_field :email, class: 'form-control'
+      .uk-margin
+        = f.label :パスワード, class: 'form-label'
+        .uk-form-controls
+        = f.password_field :password, class: 'form-control'
+      .uk-margin
+        .uk-inline.uk-width-1-1
+          = f.check_box :remember_me, class: "uk-checkbox"
+          %span.uk-text-small 次回から自動ログインする
+      .uk-margin-top.uk-text-center.uk-margin-small-bottom
+        = f.submit "ログイン", class: 'uk-button uk-button-primary uk-text-bold uk-border-rounded'
+      .uk-margin-small.uk-text-center
+        = link_to 'パスワードを忘れた方はこちら' , password_resets_new_path
+      .uk-text-small.uk-text-center
+        %p
+          アカウントをお持ちでない場合は#{link_to "こちら", signup_path}

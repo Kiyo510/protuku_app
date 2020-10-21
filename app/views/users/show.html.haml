@@ -1,0 +1,38 @@
+.my_page_wrapper
+  .uk-card.uk-card-small.uk-card-body.uk-card-default.mypage_sidebar.uk-text-center
+    .user_avatar_mypage.uk-margin
+      - if @user.avatar.attached?
+        = image_tag @user.avatar, alt: 'プロフィール画像',class: 'uk-border-circle'
+      - else
+        = image_tag '/assets/noimage.png', alt: 'プロフィール画像', class: 'uk-border-circle'
+    .user_nickname.uk-margin
+      %p= @user.nickname
+    .uk-margin-remove-top
+      - if @user.id == current_user.id
+        = link_to 'プロフィールの編集', edit_user_path(current_user), class: 'edit_profile_btn'
+    .uk-margin
+      - unless @user.id == current_user.id
+        - if @is_room == true
+          = link_to 'メッセージを送る', room_path(@room_id), class: "message_btn"
+        - else
+          = form_with model: @room, url: rooms_path, local: true do |f|
+            = fields_for @entry do |e|
+              = e.hidden_field :user_id, value: @user.id
+              = f.submit 'メッセージを送る', class: 'message_btn'
+  .profile_box
+    .uk-card.uk-card-small.uk-card-default.uk-card-body.uk-margin-bottom
+      %h2.mypage_content_title.fa-user
+        自己紹介
+      .edit_profile
+        - if @user.id == current_user.id
+          = link_to 'プロフィールの編集', edit_user_path(current_user)
+      %p
+        = @user.introduction
+    .uk-card.uk-card-small.uk-card-default.uk-card-body.uk-margin-bottom.profole_box
+      %h2.mypage_content_title.fa-history
+        投稿履歴
+      = render 'items/item_index'
+    .uk-card.uk-card-small.uk-card-default.uk-card-body.uk-margin-bottom.profole_box
+      %h2.mypage_content_title.fa-bookmark-o
+        お気に入り一覧
+      = render 'stocks/stock'
