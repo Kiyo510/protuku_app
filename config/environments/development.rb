@@ -9,7 +9,7 @@ Rails.application.configure do
   config.log_level = :debug
   # Do not eager load code on boot.
   config.eager_load = false
-
+  config.hosts.clear
   # Show full error reports.
   config.consider_all_requests_local = true
   config.web_console.whitelisted_ips = '0.0.0.0/0'
