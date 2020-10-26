@@ -13,7 +13,7 @@
               - if entry.user.avatar.attached?
                 = image_tag entry.user.avatar, alt: 'プロフィール画像', size: '50x80', class: 'uk-border-circle'
               - else
-                = image_tag '/assets/noimage.png', alt: 'プロフィール画像', class: 'uk-border-circle'
+                = image_tag asset_path('noimage.png'), alt: 'プロフィール画像', class: 'uk-border-circle'
             .post_user_nickname_info
               %span.message_user_name
                 = link_to entry.user.nickname, user_path(entry.user)
