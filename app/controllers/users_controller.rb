@@ -9,9 +9,15 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    auth = request.env['omniauth.auth']
+    if auth.present?
+      user = User.find_or_create_from_auth(request.env['omniauth.auth'])
+      session[:user_id] = user.id
+      redirect_to user
+    end
     if @user.save
       @user.send_activation_email
-      flash[:info] = 'アカウント有効用のメールを送信しました。クリックして有効化をお願い致します。'
+      flash[:success] = 'アカウント有効用のメールを送信しました。クリックして有効化をお願い致します。'
       redirect_to root_path
     else
       flash.now[:danger] = 'ユーザー登録に失敗しました。'
