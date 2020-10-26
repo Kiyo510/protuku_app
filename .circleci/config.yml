@@ -4,7 +4,7 @@ orbs:
   aws-ecs: circleci/aws-ecs@1.1.0
 
 jobs:
-  build:
+  test:
     working_directory: ~/my-app
     docker:
       - image: circleci/ruby:2.7.1-node-browsers
@@ -77,7 +77,6 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
-
 workflows:
   version: 2
   test_and_deploy:
