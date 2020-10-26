@@ -1,4 +1,8 @@
 version: 2
+orbs:
+  aws-ecr: circleci/aws-ecr@6.7.0
+  aws-ecs: circleci/aws-ecs@1.1.0
+
 jobs:
   build:
     working_directory: ~/my-app
@@ -73,3 +77,33 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
+      # ビルドした後にイメージをECRへプッシュ
+      - aws-ecr/build-and-push-image:
+          requires:
+            - test
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: ./Dockerfile.prod
+          repo: "${MY_APP_PREFIX}-rails"
+          tag: "${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only:
+                - master
+      # ECSのサービスを更新してタスクを再定義
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          family: "${MY_APP_PREFIX}-task"
+          cluster-name: "${MY_APP_PREFIX}-cluster"
+          service-name: "${MY_APP_PREFIX}-service"
+          container-image-name-updates: "container=app,tag=${CIRCLE_SHA1}"
