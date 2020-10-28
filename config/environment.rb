@@ -1,17 +1,18 @@
 # Load the Rails application.
 require_relative 'application'
 # Initialize the Rails application.
-gmail_user_name = ENV['GMAIL_USER_NAME']
-gmail_app_password = ENV['GMAIL_APP_PASSWORD']
-
-ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.smtp_settings = {
-  address: 'smtp.gmail.com',
-  domain: 'gmail.com',
-  port: 587,
-  user_name: gmail_user_name,
-  password: gmail_app_password,
-  authentication: :login,
-  enable_starttls_auto: true
-}
+Rails.application.configure do
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'protuku.com' }
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    domain: 'smtp.gmail.com',
+    port: 587,
+    user_name: ENV['GMAIL_USER_NAME'],
+    password: ENV['GMAIL_APP_PASSWORD'],
+    authentication: :login,
+    enable_starttls_auto: true
+  }
+end
 Rails.application.initialize!
