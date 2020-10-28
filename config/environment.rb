@@ -1,8 +1,6 @@
 # Load the Rails application.
 require_relative 'application'
 # Initialize the Rails application.
-Rails.application.initialize!
-
 gmail_user_name = ENV['GMAIL_USER_NAME']
 gmail_app_password = ENV['GMAIL_APP_PASSWORD']
 
@@ -16,3 +14,4 @@ ActionMailer::Base.smtp_settings = {
   authentication: :login,
   enable_starttls_auto: true
 }
+Rails.application.initialize!
