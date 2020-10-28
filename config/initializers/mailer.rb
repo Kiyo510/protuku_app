@@ -8,6 +8,6 @@ ActionMailer::Base.smtp_settings = {
   port: 587,
   user_name: gmail_user_name,
   password: gmail_app_password,
-  authentication: 'plain',
+  authentication: :login,
   enable_starttls_auto: true
 }
