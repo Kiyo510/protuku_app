@@ -40,7 +40,7 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'localhost' } #自分のホスト名
+  config.action_mailer.default_url_options = { host: '127.0.0.1' } #自分のホスト名
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
