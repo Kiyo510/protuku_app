@@ -25,7 +25,7 @@ RSpec.feature 'サインアップ', type: :system do
 
     aggregate_failures do
       expect(mail.to).to eq ['test@example.com']
-      expect(mail.from).to eq ['noreply@protuku.com']
+      expect(mail.from).to eq ['miraishida00510@gmail.com']
       expect(mail.subject).to eq 'アカウントの有効化をお願いします。'
     end
   end
