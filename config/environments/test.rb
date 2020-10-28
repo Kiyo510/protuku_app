@@ -41,6 +41,18 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'localhost' } #自分のホスト名
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+  address: 'smtp.gmail.com',
+  domain: 'gmail.com',
+  port: 587,
+  user_name: ENV['GMAIL_USER_NAME'],
+  password: ENV['GMAIL_APP_PASSWORD'],
+  authentication: :login,
+  enable_starttls_auto: true
+}
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
