@@ -69,12 +69,14 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { :host => 'protuku.com' }
+  gmail_user_name = ENV['GMAIL_USER_NAME']
+  gmail_app_password = ENV['GMAIL_APP_PASSWORD']
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     domain: 'gmail.com',
     port: 587,
-    user_name: ENV['GMAIL_USER_NAME'],
-    password: ENV['GMAIL_APP_PASSWORD'],
+    user_name: gmail_user_name,
+    password: gmail_app_password,
     authentication: :login,
     enable_starttls_auto: true
   }
