@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 2020_10_23_144209) do
     t.text "introduction"
     t.string "uid"
     t.string "provider"
-    t.string "avatar"
+    t.string "profile_image_url"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

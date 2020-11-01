@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  require 'open-uri'
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email, unless: :uid?
   before_create :create_activation_digest
@@ -59,7 +60,7 @@ class User < ApplicationRecord
   end
 
   # アカウントを有効にする
-  def activate
+  def activate!
     update_columns(activated: true, activated_at: Time.zone.now)
   end
 
@@ -86,15 +87,30 @@ class User < ApplicationRecord
     provider = auth[:provider]
     uid = auth[:uid]
     nickname = auth[:info][:nickname]
-    avatar = auth[:info][:image]
+    email = User.dummy_email(auth)
+    password = SecureRandom.urlsafe_base64
+    # Twitterのオリジナルサイズのプロフィール画像パスを取得
+    profile_image_url = auth.info.image.gsub("_normal","")
 
     self.find_or_create_by(provider: provider, uid: uid) do |user|
       user.nickname = nickname
-      user.avatar = avatar
+      user.email = email
+      user.password = password
+      user.download_and_attach_avatar(profile_image_url)
     end
   end
 
   private
+
+  # twitterAPIで取得した画像データをopen-uriでダウンロードし、IOインスタンスを直接アタッチする
+  def download_and_attach_avatar(profile_image_url)
+    return unless profile_image_url
+
+    file = open(profile_image_url)
+    avatar.attach(io: file,
+                  filename: "profile_image.#{file.content_type_parse.first.split("/").last}",
+                  content_type: file.content_type_parse.first)
+  end
 
   def downcase_email
     self.email = email.downcase
@@ -103,5 +119,9 @@ class User < ApplicationRecord
   def create_activation_digest
     self.activation_token = User.new_token
     self.activation_digest = User.digest(activation_token)
+  end
+
+  def self.dummy_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
   end
 end
