@@ -1,13 +1,13 @@
-module OmniAuthMocks
-  def twitter_mock(nickname, email)
+module OmniauthMocks
+  def twitter_mock
     OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
       "provider" => "twitter",
       "uid" => "12345",
       "info" => {
-        "nickname" => nickname,
+        "nickname" => "Mock User",
         "image" => "https://twitter.com/mock_image",
         "location" => "",
-        "email" => email,
+        "email" => "mock_user@example.com",
         "urls" => {
           "Twitter" => "https://twitter.com/MockUser123",
           "Website" => ""
