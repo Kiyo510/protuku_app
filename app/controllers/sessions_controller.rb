@@ -8,24 +8,27 @@ class SessionsController < ApplicationController
     if auth.present?
       user = User.find_or_create_from_auth(request.env['omniauth.auth'])
       session[:user_id] = user.id
+      user.activate!
+      flash[:success] = 'Twitterログインに成功しました。'
       redirect_to user
-    end
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user&.authenticate(params[:session][:password])
-      if user.activated?
-        log_in user
-        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-        flash[:success] = 'ログインに成功しました。'
-        redirect_to user
-      else
-        message  = 'アカウントが有効化されていません。 '
-        message += 'Eメールのアカウント有効化リンクをクリックしてください。'
-        flash[:warning] = message
-        redirect_to root_url
-      end
     else
-      flash.now[:danger] = 'パスワードまたはEメールアドレスが間違っています。'
-      render 'new'
+      user = User.find_by(email: params[:session][:email].downcase)
+      if user&.authenticate(params[:session][:password])
+        if user.activated?
+          log_in user
+          params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+          flash[:success] = 'ログインに成功しました。'
+          redirect_to user
+        else
+          message  = 'アカウントが有効化されていません。 '
+          message += 'Eメールのアカウント有効化リンクをクリックしてください。'
+          flash[:warning] = message
+          redirect_to root_url
+        end
+      else
+        flash.now[:danger] = 'パスワードまたはEメールアドレスが間違っています。'
+        render 'new'
+      end
     end
   end
 
