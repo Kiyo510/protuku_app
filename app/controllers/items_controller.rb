@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  include SetRoom
   before_action :authenticate_user, only: %i[show new edit update]
   before_action :ensure_correct_user, only: %i[edit update]
   layout 'btn_feedback_class_none', only: %i[new edit]
@@ -40,20 +41,7 @@ class ItemsController < ApplicationController
     # Entryモデルからメッセージ相手のレコードを抽出
     @another_entry = Entry.where(user_id: @item.user_id)
     unless @item.user_id == current_user.id
-      @current_entry.each do |current|
-        @another_entry.each do |another|
-          # ルームが存在する場合
-          if current.room_id == another.room_id
-            @is_room = true
-            @room_id = current.room_id
-          end
-        end
-      end
-      # ルームが存在しない場合は新規作成
-      unless @is_room
-        @room = Room.new
-        @entry = Entry.new
-      end
+      set_room
     end
   end
 

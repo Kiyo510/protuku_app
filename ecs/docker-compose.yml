@@ -18,6 +18,7 @@ services:
         awslogs-region: ap-northeast-1
         awslogs-group: protuku-app-production/app
         awslogs-stream-prefix: protuku-app-production
+    mem_limit: 268435456
   nginx:
     image: ${ECR_REPOSITORY_URI_NGINX}
     ports:
@@ -33,3 +34,4 @@ services:
         awslogs-region: ap-northeast-1
         awslogs-group: protuku-app-production/nginx
         awslogs-stream-prefix: protuku-app-production
+    mem_limit: 268435456
