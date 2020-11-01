@@ -90,7 +90,7 @@ class User < ApplicationRecord
     email = User.dummy_email(auth)
     password = SecureRandom.urlsafe_base64
     # Twitterのオリジナルサイズのプロフィール画像パスを取得
-    profile_image_url = auth.info.image.gsub("_normal","")
+    profile_image_url = auth.info.image.gsub("_normal","") if profile_image_url.present?
 
     self.find_or_create_by(provider: provider, uid: uid) do |user|
       user.nickname = nickname
@@ -99,8 +99,6 @@ class User < ApplicationRecord
       user.download_and_attach_avatar(profile_image_url)
     end
   end
-
-  private
 
   # twitterAPIで取得した画像データをopen-uriでダウンロードし、IOインスタンスを直接アタッチする
   def download_and_attach_avatar(profile_image_url)
@@ -111,6 +109,8 @@ class User < ApplicationRecord
                   filename: "profile_image.#{file.content_type_parse.first.split("/").last}",
                   content_type: file.content_type_parse.first)
   end
+
+  private
 
   def downcase_email
     self.email = email.downcase
