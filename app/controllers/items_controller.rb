@@ -40,9 +40,7 @@ class ItemsController < ApplicationController
     @current_entry = Entry.where(user_id: current_user.id)
     # Entryモデルからメッセージ相手のレコードを抽出
     @another_entry = Entry.where(user_id: @item.user_id)
-    unless @item.user_id == current_user.id
-      set_room
-    end
+    set_room unless @item.user_id == current_user.id
   end
 
   def edit

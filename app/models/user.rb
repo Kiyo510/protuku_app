@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   require 'open-uri'
   attr_accessor :remember_token, :activation_token, :reset_token
+
   before_save   :downcase_email, unless: :uid?
   before_create :create_activation_digest
 
@@ -90,9 +91,9 @@ class User < ApplicationRecord
     email = User.dummy_email(auth)
     password = SecureRandom.urlsafe_base64
     # Twitterのオリジナルサイズのプロフィール画像パスを取得
-    profile_image_url = auth.info.image.gsub("_normal","") if profile_image_url.present?
+    profile_image_url = auth.info.image.gsub('_normal', '') if profile_image_url.present?
 
-    self.find_or_create_by(provider: provider, uid: uid) do |user|
+    find_or_create_by(provider: provider, uid: uid) do |user|
       user.nickname = nickname
       user.email = email
       user.password = password
@@ -106,7 +107,7 @@ class User < ApplicationRecord
 
     file = open(profile_image_url)
     avatar.attach(io: file,
-                  filename: "profile_image.#{file.content_type_parse.first.split("/").last}",
+                  filename: "profile_image.#{file.content_type_parse.first.split('/').last}",
                   content_type: file.content_type_parse.first)
   end
 
