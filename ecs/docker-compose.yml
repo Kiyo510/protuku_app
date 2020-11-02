@@ -1,6 +1,8 @@
 version: 2
 services:
   app:
+    env_file:
+    - ../.env
     image: ${ECR_REPOSITORY_URI_RAILS}
     command: bash -c "bundle exec rails db:migrate && bundle exec rails assets:precompile && bundle exec puma -C config/puma.rb"
     environment:
