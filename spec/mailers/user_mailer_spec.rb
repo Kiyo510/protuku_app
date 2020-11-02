@@ -9,7 +9,7 @@ RSpec.describe UserMailer, type: :mailer do
     it "ヘッダーが正しく表示されること" do
       user.reset_token = User.new_token
       expect(mail.to).to eq ["mailer_tester@example.com"]
-      expect(mail.from).to eq ["noreply@protuku.com"]
+      expect(mail.from).to eq ["miraishida00510@gmail.com"]
       expect(mail.subject).to eq "パスワードの再設定"
     end
 
