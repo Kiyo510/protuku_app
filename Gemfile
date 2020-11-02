@@ -37,13 +37,13 @@ gem 'omniauth-twitter'
 gem 'redcarpet'
 gem 'rouge'
 # Reduces boot times through caching; required in config/boot.rb
+gem 'active_hash'
 gem 'active_storage_validations'
+gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'high_voltage', '~> 3.1', '>= 3.1.2'
 gem 'mini_magick'
 gem 'rails-i18n'
-gem 'active_hash'
-gem "aws-sdk-s3", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -68,10 +68,10 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
+  gem 'launchy'
   gem 'rspec_junit_formatter'
   gem 'shoulda-matchers', '~> 4.3'
   gem 'webdrivers'
-  gem 'launchy'
 end
 
 group :development, :test do

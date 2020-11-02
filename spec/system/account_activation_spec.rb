@@ -11,7 +11,7 @@ RSpec.feature 'アカウント有効化メール', type: :system do
     body[/http[^"]+/]
   end
 
-  describe "ユーザー登録画面" do
+  describe 'ユーザー登録画面' do
     it 'ユーザーはアカウントの有効化に成功すること' do
       pending('手動では動くが、テストが何故か失敗する。原因調査中')
       visit root_path

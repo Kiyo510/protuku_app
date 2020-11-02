@@ -47,7 +47,7 @@ class PasswordResetsController < ApplicationController
   def valid_user
     unless @user&.activated? &&
            @user&.authenticated?(:reset, params[:id])
-      flash[:danger] = "無効なURLです。再度メールアドレスを入力してください"
+      flash[:danger] = '無効なURLです。再度メールアドレスを入力してください'
       redirect_to new_password_reset_url
     end
   end
