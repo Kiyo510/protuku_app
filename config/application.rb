@@ -21,6 +21,5 @@ module Webapp
     config.generators.system_tests = nil
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
-    config.hosts << IPAddr.new('10.0.0.0/16')
   end
 end
