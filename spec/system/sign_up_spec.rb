@@ -15,6 +15,7 @@ RSpec.feature 'サインアップ', type: :system do
         fill_in 'user[nickname]', with: 'Example'
         fill_in 'user[email]', with: 'test@example.com'
         fill_in 'user[password]', with: 'test123'
+        check 'user[accepted]'
         click_button 'ユーザー登録'
       end.to change(User, :count).by(1)
 

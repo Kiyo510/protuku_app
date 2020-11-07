@@ -24,10 +24,11 @@
         .uk-form-controls
         = f.password_field :password, placeholder: '6文字以上の半角英数', class: 'form-control'
       .uk-margin-small
-        %p.uk-text-center
+        %p
+          = f.check_box :accepted , {}, checked_value = "true", unchecked_value = "false"
           = link_to '利用規約', page_path('terms')
           と
           = link_to 'プライバシーポリシー', page_path('privacy')
-          をご覧ください。
+          に同意する。
       .uk-margin-top.uk-text-center.uk-margin-small-bottom
         = f.submit "ユーザー登録", class: 'uk-button uk-button-primary uk-text-bold uk-border-rounded'
