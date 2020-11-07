@@ -19,9 +19,10 @@ ja:
       message: メッセージ
     attributes:
       user:
-        nickname: 名前
+        nickname: ニックネーム
         password: パスワード
         email: Eメール
+        accepted: 利用規約、及び、個人情報の取扱に同意する
       item:
         title: タイトル
         content: 内容
