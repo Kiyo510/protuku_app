@@ -29,6 +29,12 @@ RSpec.describe User, type: :model do
         expect(user).to_not be_valid
       end
     end
+
+    it '重複したメールアドレスなら無効であること' do
+      FactoryBot.create(:user, email: 'alice@example.com')
+      user = FactoryBot.build(:user, email: 'alice@example.com')
+      expect(user).to_not be_valid
+    end
   end
 
   describe 'before_save' do
