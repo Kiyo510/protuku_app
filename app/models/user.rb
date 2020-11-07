@@ -91,13 +91,13 @@ class User < ApplicationRecord
     email = User.dummy_email(auth)
     password = SecureRandom.urlsafe_base64
     # Twitterのオリジナルサイズのプロフィール画像パスを取得
-    profile_image_url = auth.info.image.gsub('_normal', '') if profile_image_url.present?
+    profile_image_url = auth.info.image.gsub('_normal', '')
 
     find_or_create_by(provider: provider, uid: uid) do |user|
       user.nickname = nickname
       user.email = email
       user.password = password
-      user.download_and_attach_avatar(profile_image_url)
+      user.download_and_attach_avatar(profile_image_url) if profile_image_url.present?
     end
   end
 
