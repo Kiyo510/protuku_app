@@ -23,14 +23,14 @@
               - if item.user.avatar.attached?
                 = image_tag item.user.avatar, alt: 'プロフィール画像', class: 'uk-border-circle'
               - else
-                = image_tag '/assets/noimage.png', alt: 'プロフィール画像', class: 'uk-border-circle'
+                = image_tag asset_path('noimage.png'), alt: 'プロフィール画像', class: 'uk-border-circle'
             .post_index_infobox
               .uk-flex.uk-flex-middle
                 .user_avatar_hidden
                   - if item.user.avatar.attached?
                     = image_tag item.user.avatar, alt: 'プロフィール画像', class: 'uk-border-circle'
                   - else
-                    = image_tag '/assets/noimage.png', alt: 'プロフィール画像', class: 'uk-border-circle'
+                    = image_tag asset_path('noimage.png'), alt: 'プロフィール画像', class: 'uk-border-circle'
                 %p.post_user_nickname
                   = link_to item.user.nickname, user_path(item.user_id)
               .post_title_and_tag_area

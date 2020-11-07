@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include SetRoom
   before_action :authenticate_user, only: %i[show edit update]
   before_action :correct_user, only: %i[edit update]
   before_action :forbid_login_user, only: %i[new create]
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      flash[:info] = 'アカウント有効用のメールを送信しました。クリックして有効化をお願い致します。'
+      flash[:success] = 'アカウント有効用のメールを送信しました。クリックして有効化をお願い致します。'
       redirect_to root_path
     else
       flash.now[:danger] = 'ユーザー登録に失敗しました。'
@@ -31,22 +32,7 @@ class UsersController < ApplicationController
     @current_entry = Entry.where(user_id: current_user.id)
     # Entryモデルからメッセージ相手のレコードを抽出
     @another_entry = Entry.where(user_id: @user.id)
-    unless @user.id == current_user.id
-      @current_entry.each do |current|
-        @another_entry.each do |another|
-          # ルームが存在する場合
-          if current.room_id == another.room_id
-            @is_room = true
-            @room_id = current.room_id
-          end
-        end
-      end
-      # ルームが存在しない場合は新規作成
-      unless @is_room
-        @room = Room.new
-        @entry = Entry.new
-      end
-    end
+    set_room unless @user.id == current_user.id
   end
 
   def edit
@@ -76,8 +62,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:nickname, :email, :password, :avatar, :introduction, :accepted)
   end
-
-  # def set_user
-  #   @user = User.find(params[:id])
-  # end
 end

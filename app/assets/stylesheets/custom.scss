@@ -275,20 +275,20 @@ $title-color: #1e87f0;
 
   @keyframes anim-left {
     0% {
-      transform: translateX(0px);
+      transform: translate(0px);
     }
     25% {
-      transform: translate(100px, 80px);
+      transform: translate(-100px, 80px);
       ;
     }
     50% {
-      transform: translate(-40px, 180px);
+      transform: translate(-100px, 180px);
     }
     75% {
       transform: translate(-100px, 80px);
     }
     100% {
-      transform: translate(-20px, 0px);
+      transform: translate(0px);
     }
   }
 

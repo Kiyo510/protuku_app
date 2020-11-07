@@ -8,6 +8,11 @@ module LoginSupport
     click_button 'ログイン'
   end
 
+  def log_out
+    find('.fa-caret-down').click
+    click_link 'ログアウト'
+  end
+
   def is_logged_in?
     !current_user.nil?
   end
