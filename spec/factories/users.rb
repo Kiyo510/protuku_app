@@ -4,6 +4,7 @@ FactoryBot.define do
     sequence(:email) { |n| "exemple#{n}@example.com" }
     password { 'password' }
     introduction { 'Nice to meet you' }
+    accepted { true }
     activated { true }
   end
   factory :other_user, class: User do
@@ -11,6 +12,7 @@ FactoryBot.define do
     sequence(:email) { |l| "test#{l}@example.com" }
     password { 'password' }
     introduction { 'Nice to meet you' }
+    accepted { true }
     activated { true }
   end
   factory :twitter_client, class: User do

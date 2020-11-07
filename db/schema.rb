@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_164913) do
+ActiveRecord::Schema.define(version: 2020_11_07_122431) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_164913) do
     t.string "uid"
     t.string "provider"
     t.string "profile_image_url"
+    t.boolean "accepted", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
