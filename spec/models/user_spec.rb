@@ -2,7 +2,7 @@ require 'rails_helper'
 include NotificationsHelper
 
 RSpec.describe User, type: :model do
-  let!(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
   describe User do
     it 'factory_botが有効であること' do
       expect(user).to be_valid
@@ -17,13 +17,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of :password }
   it { is_expected.to validate_length_of(:password).is_at_least(6) }
   it { is_expected.to validate_length_of(:introduction).is_at_most(2000) }
-
-  it '重複したメールアドレスなら無効であること' do
-    FactoryBot.create(:user, email: 'alice@example.com')
-    user = FactoryBot.build(:user, email: 'Alice@example.com')
-    user.valid?
-    # expect(user.errors[:email]).to include("そのEmailアドレスは既に登録されています。")
-  end
+  it { should validate_presence_of(:accepted). with_message('をチェックしてください') }
 
   describe 'メールアドレスの有効性' do
     # 無効なメールアドレスの場合
