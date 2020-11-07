@@ -1,75 +1,105 @@
-version: 2
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@6.7.0
+  aws-ecs: circleci/aws-ecs@1.1.0
+
 jobs:
-  build:
-    working_directory: ~/my-app
+  test:
     docker:
       - image: circleci/ruby:2.7.1-node-browsers
         environment:
-          BUNDLE_RETRY: 3
-          BUNDLE_PATH: vendor/bundle
-          RAILS_ENV: test
+          - BUNDLER_VERSION: 2.1.4
+          - RAILS_ENV: 'test'
+
       - image: circleci/mysql:5.7
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          - MYSQL_ROOT_HOST: '%'
+          - MYSQL_ROOT_HOST: '127.0.0.1'
+
+    working_directory: ~/project
+
     steps:
       - checkout
-      - run:
-          name: Install System Dependencies
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y libappindicator1 fonts-liberation
-            export CHROME_BIN=/usr/bin/google-chrome
-            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            sudo dpkg -i google-chrome*.deb
+
       - restore_cache:
           keys:
-            - my-app-bundle-v1-{{ checksum "Gemfile.lock" }}
-            - my-app-bundle-v1-
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          - v1-dependencies-
+
       - run:
-          name: Bundlerをinstall
+          name: install dependencies
           command: |
-            gem update --system
-            gem install bundler
-      - run:
-          name: Bundle Install
-          command: bundle check || bundle install
+            gem install bundler -v 2.1.4
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
       - save_cache:
-          key: my-app-bundle-v1-{{ checksum "Gemfile.lock" }}
           paths:
-            - vendor/bundle
-      - restore_cache:
-          keys:
-            - rails-demo-yarn-{{ checksum "yarn.lock" }}
-            - rails-demo-yarn-
+          - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run: mv ./config/database.yml.ci ./config/database.yml
+
       - run:
-          name: yarn install
-          command: yarn install --cache-folder ~/.cache/yarn
+          name: setup database
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:schema:load
+
       - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
-      - run: mv config/database.yml.ci config/database.yml
+          name: install yarn
+          command: yarn install
+
       - run:
-          name: Database setup
-          command: bundle exec rake db:create db:schema:load --trace
+          name: install webpack
+          command: bundle exec rails webpacker:install
+
       - run:
-          name: run tests
+          name: run rspec
           command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
+          no_output_timeout: 30m
 
-              bundle exec rspec \
-                --format progress \
-                --format RspecJunitFormatter \
-                --out /tmp/test-results/rspec.xml \
-                --format progress \
-                $TEST_FILES
-          no_output_timeout: 15m
-
-      # collect reports
       - store_test_results:
           path: /tmp/test-results
+
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
+      # ビルドした後にイメージをECRへプッシュ
+      - aws-ecr/build-and-push-image:
+          requires:
+            - test
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: ./Dockerfile.prod
+          repo: "${MY_APP_PREFIX}-rails"
+          tag: "${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only:
+                - master
+      # ECSのサービスを更新してタスクを再定義
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          family: "${MY_APP_PREFIX}-task"
+          cluster-name: "${MY_APP_PREFIX}-cluster-4"
+          service-name: "${MY_APP_PREFIX}-service"
+          container-image-name-updates: "container=app,tag=${CIRCLE_SHA1}"

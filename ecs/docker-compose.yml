@@ -1,0 +1,35 @@
+version: 2
+services:
+  app:
+    image: ${ECR_REPOSITORY_URI_RAILS}
+    command: bash -c "bundle exec rails db:migrate && bundle exec rails assets:precompile && bundle exec puma -C config/puma.rb"
+    environment:
+      RAILS_ENV: ${RAILS_ENV}
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+      DB_DATABASE: ${DB_DATABASE}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_HOST: ${DATABASE_HOST}
+      TZ: Japan
+    working_dir: /protuku-app
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: ap-northeast-1
+        awslogs-group: protuku-app-production/app
+        awslogs-stream-prefix: protuku-app-production
+  nginx:
+    image: ${ECR_REPOSITORY_URI_NGINX}
+    ports:
+      - 80:80
+    links:
+      - app
+    volumes_from:
+      - app
+    working_dir: /protuku-app
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: ap-northeast-1
+        awslogs-group: protuku-app-production/nginx
+        awslogs-stream-prefix: protuku-app-production

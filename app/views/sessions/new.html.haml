@@ -5,9 +5,9 @@
     = link_to "/auth/twitter", class: 'twitter' do
       .sns-sign-up_item_btn.twitter_btn
         twitterアカウントでログイン
-    = link_to "#",class: 'github' do
-      .sns-sign-up_item_btn.github_btn
-        githubアカウントでログイン
+    -# = link_to "#",class: 'github' do
+    -#   .sns-sign-up_item_btn.github_btn
+    -#     githubアカウントでログイン
     .sign_up_or
       OR
     = form_with(url: login_path, scope: :session, local: true) do |f|

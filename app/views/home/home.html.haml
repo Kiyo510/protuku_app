@@ -12,14 +12,14 @@
       .uk-text-center
         = link_to '今すぐ仲間を探す', signup_path, class: 'signup_btn_main'
     .programing_image_child
-      = image_tag '/assets/child_programing_team.png', alt: '子供のプログラミングチーム', class: 'child_programing_image'
+      = image_tag asset_path('child_programing_team.png'), alt: '子供のプログラミングチーム', class: 'child_programing_image'
   %hr.hr
 .uk-container.uk-container-center.uk-margin-large-bottom
   %h2.section-title.uk-text-center プロつくの特徴
   .contents-wrapper
     .content-wrapper
       .protuku_image_description
-        = image_tag '/assets/free_lance.png', alt: '画像'
+        = image_tag asset_path('free_lance.png'), alt: '画像'
       %h3.heading-discrption-protuku
         実践的な開発を学べる
       %p.content-text
@@ -28,7 +28,7 @@
         バージョン管理ツールの使い方、開発手法など、チーム開発を通して現場で使うスキルを実践的に学ぶことができます。
     .content-wrapper
       .protuku_image_description
-        = image_tag '/assets/momotaro.png', alt: '画像'
+        = image_tag asset_path('momotaro.png'), alt: '画像'
       %h3.heading-discrption-protuku
         起業仲間を見つけられる
       %p.content-text
@@ -36,7 +36,7 @@
         自分の手で最強のプログラミングチームを作ることができます。
     .content-wrapper
       .protuku_image_description
-        = image_tag '/assets/programing_cat.png', alt: '画像'
+        = image_tag asset_path('programing_cat.png'), alt: '画像'
       %h3.heading-discrption-protuku
         最高の学習環境を作れる
       %p.content-text
@@ -53,7 +53,7 @@
               - if item.image.attached?
                 = image_tag item.image, alt: '投稿画像', class: 'recent-post-image'
               - else
-                = image_tag '/assets/noimage.png', alt: '投稿画像', class: 'recent-post-image'
+                = image_tag asset_path('noimage.png'), alt: '投稿画像', class: 'recent-post-image'
             .recent-post-contents
               %p.recent-post-title
                 = link_to item.title, item_path(item)
@@ -62,7 +62,7 @@
                   - if item.user.avatar.attached?
                     = image_tag item.user.avatar, alt: '投稿画像', class: 'uk-border-circle'
                   - else
-                    = image_tag '/assets/noimage.png', alt: '投稿画像', class: 'uk-border-circle'
+                    = image_tag asset_path('noimage.png'), alt: '投稿画像', class: 'uk-border-circle'
                 .recent-post-info
                   %p.recent-post-user
                     = link_to item.user.nickname, user_path(item.user_id)

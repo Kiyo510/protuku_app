@@ -29,10 +29,10 @@
             .uk-navbar-left
               - if logged_in?
                 %a.uk-navbar-item
-                  = link_to image_tag('/assets/protuku_logo.png'), items_path, class: 'logo-protuku'
+                  = link_to image_tag(asset_path('protuku_logo.png')), items_path, class: 'logo-protuku'
               - else
                 %a
-                  = link_to image_tag('/assets/protuku_logo.png'), root_path, class: 'logo-protuku'
+                  = link_to image_tag(asset_path('protuku_logo.png')), root_path, class: 'logo-protuku'
             .uk-navbar-right
               %ul.uk-navbar-nav
                 - if logged_in?
@@ -63,7 +63,7 @@
                       - if current_user.avatar.attached?
                         = image_tag current_user.avatar, alt: 'プロフィール画像',class: 'header_user_avatar uk-border-circle'
                       - else
-                        = image_tag '/assets/noimage.png', alt: 'プロフィール画像', class: 'header_user_avatar uk-border-circle'
+                        = image_tag asset_path('noimage.png'), alt: 'プロフィール画像', class: 'header_user_avatar uk-border-circle'
                     %span.fa-caret-down
                     %div{"uk-dropdown" => "mode: click"}
                       %ul.uk-nav.uk-dropdown-nav
@@ -100,7 +100,7 @@
     = yield
     %footer
       .f-col.f-logo
-        = link_to image_tag('/assets/protuku_logo.png'), root_path, class: 'logo-protuku'
+        = link_to image_tag(asset_path('protuku_logo.png')), root_path, class: 'logo-protuku'
         %p.small.uk-text-muted
           WEB開発者マッチングサービス
       .footer-list-box.uk-flex

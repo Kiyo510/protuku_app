@@ -1,2 +1,17 @@
-%h1 アプリ名
-= link_to 'アカウントの有効化', edit_account_activation_url(@user.activation_token, email: @user.email)
+%h3
+  #{@user.nickname}様
+%p
+  ご登録いただきありがとうございます！
+%p
+  現在はまだ仮登録の状態です。
+  %br/
+  以下のリンクをクリックしてアカウントの有効化をお願い致します。
+  %br/
+%p
+  = link_to 'アカウントの有効化', edit_account_activation_url(@user.activation_token, email: @user.email)
+%br/
+%br/
+%p
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  %br/
+  COPYRIGHT (C) 2020 プロつく, Inc. ALL RIGHTS RESERVED.

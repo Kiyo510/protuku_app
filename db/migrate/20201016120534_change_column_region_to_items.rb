@@ -1,6 +1,5 @@
 class ChangeColumnRegionToItems < ActiveRecord::Migration[6.0]
   def change
-    change_column :items, :prefecture_id, :integer, null: false
+    rename_column :items, :region, :prefecture_id
   end
-  add_index :items, :prefecture_id
 end
