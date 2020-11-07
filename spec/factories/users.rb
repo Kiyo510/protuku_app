@@ -15,4 +15,11 @@ FactoryBot.define do
     accepted { true }
     activated { true }
   end
+  factory :twitter_client, class: User do
+    nickname { 'Smith' }
+    sequence(:email) { |m| "test#{m}@example.com" }
+    password { 'password' }
+    introduction { 'Nice to meet you' }
+    activated { false }
+  end
 end
