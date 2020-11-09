@@ -102,7 +102,7 @@ class User < ApplicationRecord
       user.nickname = nickname
       user.email = email
       user.password = password
-      user.download_and_attach_avatar(profile_image_url) if profile_image_url.present?
+      user.download_and_attach_avatar(profile_image_url)
     end
   end
 
@@ -110,13 +110,13 @@ class User < ApplicationRecord
   def download_and_attach_avatar(profile_image_url)
     return unless profile_image_url
 
-    file = open(profile_image_url)
+    file = URI.open(profile_image_url)
     avatar.attach(io: file,
                   filename: "profile_image.#{file.content_type_parse.first.split('/').last}",
                   content_type: file.content_type_parse.first)
   end
 
-  private
+
 
   def downcase_email
     self.email = email.downcase
