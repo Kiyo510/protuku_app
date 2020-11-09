@@ -7,8 +7,9 @@ class SessionsController < ApplicationController
     auth = request.env['omniauth.auth']
     if auth.present?
       user = User.find_or_create_from_auth(request.env['omniauth.auth'])
-      session[:user_id] = user.id
+      user.accepts_terms!
       user.activate!
+      log_in user
       flash[:success] = 'Twitterログインに成功しました。'
       redirect_to user
     else
