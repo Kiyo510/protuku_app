@@ -17,8 +17,6 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
-OmniAuth.config.test_mode = true
-
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
@@ -33,7 +31,6 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
   config.include LoginSupport # 作成したヘルパーを追加
-  #config.include OmniauthMocks
 end
 
 Shoulda::Matchers.configure do |config|

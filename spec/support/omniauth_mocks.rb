@@ -5,7 +5,7 @@ module OmniauthMocks
       'uid' => '12345',
       'info' => {
         'nickname' => 'Mock User',
-        'image' => 'https://twitter.com/mock_image',
+        'image' => 'https://pbs.twimg.com/profile_images/1278677722751852546/8rLnjK4k_400x400.jpg',
         'location' => '',
         'email' => 'mock_user@example.com',
         'urls' => {
