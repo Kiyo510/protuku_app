@@ -4,7 +4,7 @@
       メッセージルーム
   .dm-form_box
     .uk-card.uk-card-default.uk-card-body
-      %strong>= @another_entry.user.nickname
+      %strong>= @another_user_entry.user.nickname
       さんへメッセージを送る
       = form_with model: @message, url: messages_path, local: true do |f|
         = f.text_area :content, placeholder: "メッセージ内容を入力してください(2000文字まで)", class: 'uk-textarea', size: "94x10"
