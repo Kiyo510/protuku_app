@@ -4,14 +4,16 @@
       .sns-share_btn_twitter
         = link_to "https://twitter.com/intent/tweet?text=#{@item.title}&url=#{request.url}&hashtags=プロつく", title: 'Twitter', target: 'blank' do
           = fa_icon 'twitter'
-      - if current_user != @item.user && logged_in?
-        %div{:id => "item-#{@item.id}",:class => "stock-btn_inner"}
-          = render partial: 'stocks/stock_btn', locals: { item: @item }
+        -# ゲストユーザーには表示しない
+        - if logged_in? && current_user.id != @item.user_id
+          %div{:id => "item-#{@item.id}",:class => "stock-btn_inner"}
+            = render partial: 'stocks/stock_btn', locals: { item: @item }
     .uk-card.uk-card-default.uk-card-body.post_user_box
       .uk-card-title.atricle-header
         .item_show_title.uk-text-bold
           = @item.title
-        - if current_user.id == @item.user_id && logged_in?
+          -# ゲストユーザーには表示しない
+        - if logged_in? && current_user.id == @item.user_id
           .edit_post_box
             %span.fa-edit
               = link_to '編集', edit_item_path(@item)
@@ -31,8 +33,9 @@
         .post_user_content.uk-margin-small
           = markdown(@item.content)
         .sns_share_btn_box_below
-          %div{:id => "item-#{@item.id}",:class => "stock-btn-below_inner"}
-            = render partial: 'stocks/stock_btn_below', locals: { item: @item }
+          - unless @item.user_id == current_user.id
+            %div{:id => "item-#{@item.id}",:class => "stock-btn-below_inner"}
+              = render partial: 'stocks/stock_btn_below', locals: { item: @item }
           .sns-share_btn_twitter_below
             = link_to "https://twitter.com/intent/tweet?url=#{request.url}/&hashtags=appname", title: 'Twitter', target: 'blank' do
               = fa_icon 'twitter'
@@ -49,11 +52,15 @@
       .post_user_introduction_info.uk-margin
         = @item.user.introduction
       .uk-margin
-        - unless @item.user_id == current_user.id
-          - if @is_room == true
-            = link_to '話を聞いてみる', room_path(@room_id), class: "message_btn"
-          - else
-            = form_with model: @room, url: rooms_path, local: true do |f|
-              = fields_for @entry do |e|
-                = e.hidden_field :user_id, value: @item.user_id
-                = f.submit '話を聞いてみる', class: "message_btn"
+        - if logged_in?
+          - unless @item.user_id == current_user.id
+            - if @is_room == true
+              = link_to '話を聞いてみる', room_path(@room_id), class: "message_btn"
+            - else
+              = form_with model: @room, url: rooms_path, local: true do |f|
+                = fields_for @entry do |e|
+                  = e.hidden_field :user_id, value: @item.user_id
+                  = f.submit '話を聞いてみる', class: "message_btn"
+        - else
+          -# ゲストユーザーにもダミーとして表示させ、クリックしたらログインを促す
+          = link_to '話を聞いてみる', rooms_path, class: "message_btn"
