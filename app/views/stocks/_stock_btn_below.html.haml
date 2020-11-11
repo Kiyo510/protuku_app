@@ -5,7 +5,7 @@
     / stocksコントローラーのdestoryアクションにmethod: :deleteで指定して送信
     = form_with model: item.stocks.find_by(user_id: current_user.id), method: :delete do
       = button_tag type: 'submit', class: "stock-btn-below" do
-        = fa_icon 'check-square'
+        = fa_icon 'check-square-o'
         = 'お気に入りに追加'
     / ストックしていない記事であれば「ストックボタン」を表示
   - else
@@ -14,5 +14,5 @@
       / hiddenでitem_idを送信
       %div= hidden_field_tag :item_id, item.id
       = button_tag type: 'submit', class: "unstock-btn-below" do
-        = fa_icon 'check-square-o'
+        = fa_icon 'check-square'
         = 'お気に入りに追加'

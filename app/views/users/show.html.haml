@@ -8,10 +8,10 @@
     .user_nickname.uk-margin
       %p= @user.nickname
     .uk-margin-remove-top
-      - if @user.id == current_user.id
+      - if logged_in? && @user.id == current_user.id
         = link_to 'プロフィールの編集', edit_user_path(current_user), class: 'edit_profile_btn'
     .uk-margin
-      - unless @user.id == current_user.id
+      - if logged_in? && @user.id != current_user.id
         - if @is_room == true
           = link_to 'メッセージを送る', room_path(@room_id), class: "message_btn"
         - else
@@ -24,7 +24,7 @@
       %h2.mypage_content_title.fa-user
         自己紹介
       .edit_profile
-        - if @user.id == current_user.id
+        - if logged_in? && @user.id == current_user.id
           = link_to 'プロフィールの編集', edit_user_path(current_user)
       %p
         = @user.introduction
