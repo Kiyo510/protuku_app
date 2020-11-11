@@ -4,9 +4,9 @@ class RoomsController < ApplicationController
   def create
     @room = Room.create
     # Entryモデルにログインユーザーのレコードを作成
-    current_entry = Entry.create(user_id: current_user.id, room_id: @room.id)
+    current_user_entry = Entry.create(user_id: current_user.id, room_id: @room.id)
     # Entryモデルにメッセージ相手のレコードを作成
-    another_entry = Entry.create(user_id: params[:entry][:user_id], room_id: @room.id)
+    another_user_entry = Entry.create(user_id: params[:entry][:user_id], room_id: @room.id)
     redirect_to room_path(@room)
   end
 
@@ -26,7 +26,7 @@ class RoomsController < ApplicationController
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @message = Message.new
       # メッセージ相手を抽出
-      @another_entry = @room.entries.find_by('user_id != ?', current_user.id)
+      @another_user_entry = @room.entries.find_by('user_id != ?', current_user.id)
     else
       redirect_back(fallback_location: root_path)
     end

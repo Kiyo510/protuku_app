@@ -1,9 +1,9 @@
-module SetRoom
+module SetRoomForDirectMessage
   extend ActiveSupport::Concern
 
-  def set_room
-    @current_entry.each do |current|
-      @another_entry.each do |another|
+  def set_room_for_direct_message
+    @current_user_entry.each do |current|
+      @another_user_entry.each do |another|
         # ルームが存在する場合
         if current.room_id == another.room_id
           @is_room = true

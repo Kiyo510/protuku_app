@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  include SetRoom
+  include SetRoomForDirectMessage
   before_action :authenticate_user, only: %i[show edit update]
   before_action :correct_user, only: %i[edit update]
   before_action :forbid_login_user, only: %i[new create]
@@ -29,10 +29,10 @@ class UsersController < ApplicationController
     posted_items = @user.items
     @posted_items = Kaminari.paginate_array(posted_items).page(params[:items_page]).per(10)
     # Entryモデルからログインユーザーのレコードを抽出
-    @current_entry = Entry.where(user_id: current_user.id)
+    @current_user_entry = Entry.where(user_id: current_user.id)
     # Entryモデルからメッセージ相手のレコードを抽出
-    @another_entry = Entry.where(user_id: @user.id)
-    set_room unless @user.id == current_user.id
+    @another_user_entry = Entry.where(user_id: @user.id)
+    set_room_for_direct_message unless @user.id == current_user.id
   end
 
   def edit
