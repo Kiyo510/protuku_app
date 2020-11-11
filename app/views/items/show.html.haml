@@ -33,9 +33,8 @@
         .post_user_content.uk-margin-small
           = markdown(@item.content)
         .sns_share_btn_box_below
-          - unless @item.user_id == current_user.id
-            %div{:id => "item-#{@item.id}",:class => "stock-btn-below_inner"}
-              = render partial: 'stocks/stock_btn_below', locals: { item: @item }
+          %div{:id => "item-#{@item.id}",:class => "stock-btn-below_inner"}
+            = render partial: 'stocks/stock_btn_below', locals: { item: @item }
           .sns-share_btn_twitter_below
             = link_to "https://twitter.com/intent/tweet?url=#{request.url}/&hashtags=appname", title: 'Twitter', target: 'blank' do
               = fa_icon 'twitter'
