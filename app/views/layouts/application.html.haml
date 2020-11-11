@@ -17,6 +17,8 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     %meta{:content => "no-cache", :name => "turbolinks-cache-control"}
+    = favicon_link_tag('protuku_favicon.png')
+
   %body
     :javascript
       $(document).ready(function() {
