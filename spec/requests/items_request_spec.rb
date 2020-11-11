@@ -37,7 +37,7 @@ RSpec.describe 'Items', type: :request do
     context 'as a guest' do
       it 'redirects to the login page' do
         get item_path(item)
-        expect(response).to redirect_to login_path
+        expect(response).to have_http_status(:success)
       end
     end
   end

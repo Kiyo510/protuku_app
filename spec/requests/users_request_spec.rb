@@ -25,10 +25,10 @@ RSpec.describe 'User pages', type: :request do
 
     # ログインしていないユーザーの場合
     context 'as a guest' do
-      # ログイン画面にリダイレクトすること
+      # アクセスに成功すること
       it 'redirects to the login page' do
         get user_path(user)
-        expect(response).to redirect_to login_path
+        expect(response).to have_http_status(:success)
       end
     end
   end
@@ -45,7 +45,7 @@ RSpec.describe 'User pages', type: :request do
     context 'as a guest' do
       it 'redirects to the login page' do
         get edit_user_path(user)
-        expect(response).to redirect_to login_path
+        expect(response).to have_http_status(:success)
       end
     end
 
