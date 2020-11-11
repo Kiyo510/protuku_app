@@ -1,24 +1,26 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %meta{:content => "no-cache", :name => "turbolinks-cache-control"}
     %title プロつく！
     = csrf_meta_tags
     = csp_meta_tag
     / UIkit CSS
-    %link{:href => "https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css", :rel => "stylesheet"}/
+    %link{:href => "https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css", :rel => "stylesheet"}
     // syntax highlight
-    %link{:href => "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/github.min.css", :rel => "stylesheet"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/github.min.css", :rel => "stylesheet"}
     / Marked.js
     %script{:src => "https://cdn.jsdelivr.net/npm/marked/marked.min.js"}
     / jQuery
     %script{:src => "https://code.jquery.com/jquery-3.0.0.min.js"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    %meta{:content => "no-cache", :name => "turbolinks-cache-control"}
     = favicon_link_tag('protuku_favicon.png')
-
+    - if Rails.env.production?
+      = render 'layouts/google_analytics'
+      
   %body
     :javascript
       $(document).ready(function() {
