@@ -2,6 +2,7 @@
   %h3.uk-text-bold プロフィール編集ページ
   .edit_user_form
     = form_with(model: @user, local: true) do |f|
+      = render 'layouts/error_messages', model: f.object
       .uk-margin
         = f.label :自己紹介, class: 'form-label'
         = f.text_area :introduction, placeholder: "自己紹介を入力(2000字まで)",id: "user_introduction_form", class: 'uk-textarea', size: "40x10"
