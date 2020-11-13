@@ -23,9 +23,9 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: true }
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
   validates :introduction, length: { maximum: 2000 }
-  validates :accepted, presence: { message: 'をチェックしてください' }
+  validates :accepted, acceptance: { message: 'をチェックしてください' }, on: :create
 
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
