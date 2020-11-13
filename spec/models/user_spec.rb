@@ -3,6 +3,8 @@ include NotificationsHelper
 
 RSpec.describe User, type: :model do
   let(:user) { FactoryBot.create(:user) }
+  let(:other_user) { FactoryBot.create(:other_user) }
+
   describe User do
     it 'factory_botが有効であること' do
       expect(user).to be_valid
@@ -17,7 +19,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of :password }
   it { is_expected.to validate_length_of(:password).is_at_least(6) }
   it { is_expected.to validate_length_of(:introduction).is_at_most(2000) }
-  it { should validate_presence_of(:accepted). with_message('をチェックしてください') }
+  it { should validate_acceptance_of(:accepted). with_message('をチェックしてください') }
 
   describe 'メールアドレスの有効性' do
     # 無効なメールアドレスの場合
