@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+# rubocop:disable all
+
 module SetRoomForDirectMessage
   extend ActiveSupport::Concern
 
@@ -12,9 +15,8 @@ module SetRoomForDirectMessage
       end
     end
     # ルームが存在しない場合は新規作成
-    unless @is_room
-      @room = Room.new
-      @entry = Entry.new
-    end
+    return if @is_room
+    @room = Room.new
+    @entry = Entry.new
   end
 end
