@@ -45,9 +45,6 @@ gem 'high_voltage', '~> 3.1', '>= 3.1.2'
 gem 'mini_magick'
 gem 'rails-i18n'
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -57,8 +54,6 @@ group :development do
   gem 'ast', '~> 2.4', '>= 2.4.1'
   gem 'faker', '~> 2.12'
   gem 'letter_opener'
-  gem 'rubocop', require: false
-  gem 'rubocop-rails', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
@@ -79,6 +74,10 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails', '4.0.0.beta3'
+  gem 'rubocop'
+  gem 'rubocop-packaging'
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
