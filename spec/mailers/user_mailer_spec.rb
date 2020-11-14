@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe UserMailer, type: :mailer do
   let(:user) { FactoryBot.create(:user, email: 'mailer_tester@example.com') }
 

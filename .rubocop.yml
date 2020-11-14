@@ -1,14 +1,21 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+
 AllCops:
   Exclude:
     - "tmp/**/*"
     - "config/initializers/*"
     - "vendor/**/*"
-    - "db/schema.rb"
+    - 'db/**/*'
     - "node_modules/**/*"
     - "db/migrate/*.rb"
     - "bin/*"
   DisplayCopNames: true
   TargetRubyVersion: 2.7.1
+  TargetRailsVersion: 6.0
 
 Style/AndOr:
   EnforcedStyle: conditionals
@@ -30,3 +37,18 @@ Bundler/OrderedGems:
 
 Lint/ShadowedException:
   Enabled: false
+
+Metrics/BlockLength:
+  CountComments: false
+  Exclude:
+    - 'config/routes.rb'
+    - 'spec/**/*'
+
+Layout/LineLength:
+  Max: 150
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 15
+  Exclude:
+    - 'spec/**/*'

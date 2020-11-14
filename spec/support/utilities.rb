@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ログインする
 def sign_in_as(user)
   post login_path, params: { session: { email: user.email,

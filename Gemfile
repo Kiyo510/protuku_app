@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -44,7 +46,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'high_voltage', '~> 3.1', '>= 3.1.2'
 gem 'mini_magick'
 gem 'rails-i18n'
-
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   include SetRoomForDirectMessage
   before_action :authenticate_user, only: %i[edit update]

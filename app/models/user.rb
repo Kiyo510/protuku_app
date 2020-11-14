@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   require 'open-uri'
   attr_accessor :remember_token, :activation_token, :reset_token

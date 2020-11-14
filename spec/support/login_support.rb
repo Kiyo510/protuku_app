@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # 新しいモジュールを作成
 module LoginSupport
   def valid_login(user)

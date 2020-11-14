@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
-include NotificationsHelper
 
 RSpec.describe 'Items', type: :request do
   let(:user) { FactoryBot.create(:user) }
