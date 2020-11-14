@@ -1,36 +1,32 @@
-# 将来的には対応する規約の読込
-inherit_from: .rubocop_todo.yml
-
-# 追加した規約ファイル読込
-require:
-  - rubocop-rails
-
 AllCops:
-  NewCops: enable
-  # Rubyバージョン指定
-  TargetRubyVersion: 2.7
-  # 除外
   Exclude:
-    - "config.ru"
-    - "bin/**"
-    - "lib/**"
-    - "db/**/*"
-    - "config/**/*"
-    - "script/**/*"
-    - !ruby/regexp /old_and_unused\.rb$/
+    - "tmp/**/*"
+    - "config/initializers/*"
+    - "vendor/**/*"
+    - "db/schema.rb"
+    - "node_modules/**/*"
+    - "db/migrate/*.rb"
+    - "bin/*"
+  DisplayCopNames: true
+  TargetRubyVersion: 2.7.1
 
-# 日本語でのコメントを許可
-AsciiComments:
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+Style/AsciiComments:
   Enabled: false
 
-# クラスのコメント必須を無視
-Documentation:
+Style/Documentation:
   Enabled: false
 
-# モジュール名::クラス名の定義を許可
-ClassAndModuleChildren:
+Style/NumericLiterals:
   Enabled: false
 
-# 文字リテラルのイミュータブル宣言を無視（freezeになるのはRuby3以降）
-Style/FrozenStringLiteralComment:
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Lint/ShadowedException:
   Enabled: false
