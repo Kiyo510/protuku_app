@@ -30,13 +30,13 @@ class UsersController < ApplicationController
     # 投稿した履歴を取得
     posted_items = @user.items
     @posted_items = Kaminari.paginate_array(posted_items).page(params[:items_page]).per(10)
-    if logged_in?
+    return unless logged_in?
+
     # Entryモデルからログインユーザーのレコードを抽出
-      @current_user_entry = Entry.where(user_id: current_user.id)
-      # Entryモデルからメッセージ相手のレコードを抽出
-      @another_user_entry = Entry.where(user_id: @user.id)
-      set_room_for_direct_message unless @user.id == current_user.id
-    end
+    @current_user_entry = Entry.where(user_id: current_user.id)
+    # Entryモデルからメッセージ相手のレコードを抽出
+    @another_user_entry = Entry.where(user_id: @user.id)
+    set_room_for_direct_message unless @user.id == current_user.id
   end
 
   def edit

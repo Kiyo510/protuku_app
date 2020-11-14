@@ -63,15 +63,15 @@ class Item < ApplicationRecord
     # すでにストックされているか検索
     temp = Notification.where(['visitor_id = ? and visited_id = ? and item_id = ? and action = ? ', current_user.id, user_id, id, 'stock'])
     # ストックされていない場合のみ、通知レコードを作成
-    if temp.blank?
-      notification = current_user.active_notifications.build(
-        item_id: id,
-        visited_id: user_id,
-        action: 'stock'
-      )
-      # 自分の投稿に対するストックの場合は、通知済みとする
-      notification.checked = true if notification.visitor_id == notification.visited_id
-      notification.save if notification.valid?
-    end
+    return if temp.present?
+
+    notification = current_user.active_notifications.build(
+      item_id: id,
+      visited_id: user_id,
+      action: 'stock'
+    )
+    # 自分の投稿に対するストックの場合は、通知済みとする
+    notification.checked = true if notification.visitor_id == notification.visited_id
+    notification.save if notification.valid?
   end
 end

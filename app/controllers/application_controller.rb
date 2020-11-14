@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include SessionsHelper
 
   def authenticate_user
-    unless logged_in?
-      flash[:danger] = 'ログインが必要です。'
-      redirect_to login_url
-    end
+    return if logged_in?
+
+    flash[:danger] = 'ログインが必要です。'
+    redirect_to login_url
   end
 
   def correct_user
