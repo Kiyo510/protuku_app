@@ -7,17 +7,8 @@ class MessagesController < ApplicationController
     @room = @message.room
     if @message.save
       @room_member_not_me = Entry.where(room_id: @room.id).where.not(user_id: current_user.id)
-      @theid = @room_member_not_me.find_by(room_id: @room.id)
-      notification = current_user.active_notifications.build(
-        room_id: @room.id,
-        message_id: @message.id,
-        visited_id: @theid.user_id,
-        visitor_id: current_user.id,
-        action: 'dm'
-      )
-      # 自分に対するメッセージの場合、通知はこないようにする。
-      notification.checked = true if notification.visitor_id == notification.visited_id
-      notification.save if notification.valid?
+      @another_user = @room_member_not_me.find_by(room_id: @room.id)
+      create_notification_message!(@room, @message, @another_user, current_user)
       flash[:success] = 'メッセージを送信しました'
       redirect_to room_path(@message.room)
     else
@@ -37,5 +28,18 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:room_id, :content)
+  end
+
+  def create_notification_message!(room, message, another_user, current_user)
+    notification = current_user.active_notifications.build(
+        room_id: room.id,
+        message_id: message.id,
+        visited_id: another_user.user_id,
+        visitor_id: current_user.id,
+        action: 'dm'
+      )
+      # 自分に対するメッセージの場合、通知はこないようにする。
+      notification.checked = true if notification.visitor_id == notification.visited_id
+      notification.save if notification.valid?
   end
 end
