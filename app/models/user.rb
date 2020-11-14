@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   require 'open-uri'
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -115,8 +117,6 @@ class User < ApplicationRecord
                   filename: "profile_image.#{file.content_type_parse.first.split('/').last}",
                   content_type: file.content_type_parse.first)
   end
-
-
 
   def downcase_email
     self.email = email.downcase

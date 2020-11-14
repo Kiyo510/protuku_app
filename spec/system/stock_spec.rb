@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.feature 'ストック（お気に入り）機能', type: :system do
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:other_user) }
