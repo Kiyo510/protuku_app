@@ -118,6 +118,8 @@ class User < ApplicationRecord
                   content_type: file.content_type_parse.first)
   end
 
+  private
+
   def downcase_email
     self.email = email.downcase
   end
