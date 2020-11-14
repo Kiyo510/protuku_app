@@ -39,12 +39,12 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    if logged_in?
-      @current_user_entry = Entry.where(user_id: current_user.id)
-      # Entryモデルからメッセージ相手のレコードを抽出
-      @another_user_entry = Entry.where(user_id: @item.user_id)
-      set_room_for_direct_message unless @item.user_id == current_user.id
-    end
+    return unless logged_in?
+
+    @current_user_entry = Entry.where(user_id: current_user.id)
+    # Entryモデルからメッセージ相手のレコードを抽出
+    @another_user_entry = Entry.where(user_id: @item.user_id)
+    set_room_for_direct_message unless @item.user_id == current_user.id
   end
 
   def edit

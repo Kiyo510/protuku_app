@@ -56,9 +56,9 @@ class PasswordResetsController < ApplicationController
 
   # トークンが期限切れかどうか確認する
   def check_expiration
-    if @user.password_reset_expired?
-      flash[:danger] = 'パスワード再設定リンクの有効期限が切れてます。お手数ですが、もう一度やり直してください。'
-      redirect_to new_password_reset_url
-    end
+    return unless @user.password_reset_expired?
+
+    flash[:danger] = 'パスワード再設定リンクの有効期限が切れてます。お手数ですが、もう一度やり直してください。'
+    redirect_to new_password_reset_url
   end
 end
