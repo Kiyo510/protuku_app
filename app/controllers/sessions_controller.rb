@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable all
 
 class SessionsController < ApplicationController
   before_action :forbid_login_user, only: %i[new]
