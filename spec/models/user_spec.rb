@@ -43,7 +43,7 @@ RSpec.describe User, type: :model do
   describe 'before_save' do
     describe '#email_downcase' do
       let!(:user) { create(:user, email: 'ORIGINAL@EXAMPLE.COM') }
-      it 'makes email to low case' do
+      it '大文字は小文字に変換されること' do
         expect(user.reload.email).to eq 'original@example.com'
       end
     end

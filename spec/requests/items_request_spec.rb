@@ -8,18 +8,16 @@ RSpec.describe 'Items', type: :request do
   let(:other_user) { FactoryBot.create(:other_user) }
 
   describe 'GET /new' do
-    # ログイン済みのユーザーはアクセスに成功する
-    context 'as an authenticated user ' do
-      it 'returns http success' do
+    context 'ログイン済みのユーザーのとき ' do
+      it 'アクセスに成功すること' do
         sign_in_as user
         get new_item_path
         expect(response).to have_http_status(:success)
       end
     end
 
-    # ログインしてないユーザーはログイン画面へリダイレクト
-    context 'as a guest' do
-      it 'redirects to the login page' do
+    context 'ログインしてないユーザーのとき' do
+      it 'ログイン画面へリダイレクトすること' do
         get new_item_path
         expect(response).to redirect_to login_path
       end
@@ -27,16 +25,16 @@ RSpec.describe 'Items', type: :request do
   end
 
   describe 'GET /show' do
-    context 'as an authenticated user' do
-      it 'returns http success' do
+    context 'ログイン済みのユーザーのとき' do
+      it 'アクセスに成功すること' do
         sign_in_as user
         get item_path(item)
         expect(response).to have_http_status(:success)
       end
     end
 
-    context 'as a guest' do
-      it 'redirects to the login page' do
+    context 'ログインしていないユーザーのとき' do
+      it 'アクセスに成功すること' do
         get item_path(item)
         expect(response).to have_http_status(:success)
       end
@@ -44,23 +42,23 @@ RSpec.describe 'Items', type: :request do
   end
 
   describe 'GET /edit' do
-    context 'as an authenticated user' do
-      it 'returns http success' do
+    context '権限を持ったユーザーのとき' do
+      it 'アクセスに成功すること' do
         sign_in_as user
         get edit_item_path(item)
         expect(response).to have_http_status(:success)
       end
     end
 
-    context 'as a guest' do
-      it 'redirects to the login page' do
+    context 'ログインしていないユーザーのとき' do
+      it 'ログイン画面へリダイレクトすること' do
         get edit_item_path(item)
         expect(response).to redirect_to login_path
       end
     end
 
-    context 'as an ohter uesr' do
-      it 'redirects to the items page' do
+    context '権限を持ってないユーザーのとき' do
+      it '投稿一覧ページへリダイレクトすること' do
         sign_in_as other_user
         get edit_item_path(item)
         expect(response).to redirect_to items_path
@@ -69,8 +67,8 @@ RSpec.describe 'Items', type: :request do
   end
 
   describe 'GET /update' do
-    context 'as an authorized user' do
-      it 'updates a item' do
+    context '権限を持ったユーザーのとき' do
+      it '投稿の更新に成功すること' do
         item_params = FactoryBot.attributes_for(:item, content: 'NewContent', tag_name: 'NewTag')
         sign_in_as user
         patch item_path(item), params: { id: item.id, item: item_params }
@@ -78,8 +76,8 @@ RSpec.describe 'Items', type: :request do
       end
     end
 
-    context 'as a guest' do
-      it 'redirect to the login page' do
+    context 'ログインしていないユーザーのとき' do
+      it 'ログイン画面へリダイレクトすること' do
         item_params = FactoryBot.attributes_for(:item, content: 'NewContent', tag_name: 'NewTag')
         patch item_path(item), params: { id: item.id, item: item_params }
         expect(response).to have_http_status '302'
@@ -87,8 +85,8 @@ RSpec.describe 'Items', type: :request do
       end
     end
 
-    context 'as other user' do
-      it 'does not update the user' do
+    context '権限を持ってないユーザーのとき' do
+      it '他のuserの投稿の更新に失敗すること' do
         item_params = FactoryBot.attributes_for(:item, content: 'NewContent', tag_name: 'NewTag')
         item_by_other_user = FactoryBot.create(:item, user_id: other_user.id)
         sign_in_as other_user
