@@ -55,7 +55,7 @@ jobs:
 
       - run:
           name: Rubocop
-          command: bundle exec rubocop
+          command: bundle exec rubocop -a
 
       - run:
           name: run rspec
