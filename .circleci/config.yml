@@ -54,6 +54,10 @@ jobs:
           command: bundle exec rails webpacker:install
 
       - run:
+          name: run rubocop
+          command: bundle exec rubocop
+
+      - run:
           name: run rspec
           command: |
             mkdir /tmp/test-results
