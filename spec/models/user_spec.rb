@@ -78,17 +78,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-
-#  describe "when password doesn't match confirmation" do
-#   #一致する場合
-#   it "is valid when password confirmation matches password" do
-#     user = FactoryBot.build(:user, password: "password", password_confirmation: "password")
-#     expect(user).to be_valid
-#   end
-
-#   #一致しない場合
-#   it "is not valid when password confirmation is not matches password" do
-#     user = FactoryBot.build(:user, password: "password", password_confirmation: "passward")
-#     user.valid?
-#       expect(user.errors[:password_confirmation]).to include("パスワードの確認が一致していません。")
-#   end
