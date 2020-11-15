@@ -1,4 +1,4 @@
-<mxfile modified="2020-11-15T00:09:51.392Z" host="app.diagrams.net" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="3YE4huMuJvaGkpyEWaTH" version="13.9.8" type="github" pages="2">
+<mxfile modified="2020-11-15T00:44:03.840Z" host="app.diagrams.net" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="S8-diSdiqTbFLsJUOXgN" version="13.9.8" type="github" pages="2">
   <diagram id="Ht1M8jgEwFfnCIfOTk4-" name="Page-1">
     <mxGraphModel dx="3206" dy="460" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -49,11 +49,14 @@
         <mxCell id="-92ZV4daiyxFBbVo8Tsq-26" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.mysql_db_instance;fillColor=#2E73B8;gradientColor=none;" vertex="1" parent="1">
           <mxGeometry x="-830" y="600" width="60" height="64.5" as="geometry" />
         </mxCell>
+        <mxCell id="E1KZ1MN90wB9BR8Y0uBz-1" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/cloud-72/64/platform-developer-programming-cloud-big-data-128.png" vertex="1" parent="1">
+          <mxGeometry x="-1470" y="20" width="128" height="128" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="z92bab9wf8--5bxln02p" name="Page-2">
-    <mxGraphModel dx="868" dy="460" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1695" dy="460" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="-ivl8A8YhL6A30Lmzu8i-0" />
         <mxCell id="-ivl8A8YhL6A30Lmzu8i-1" parent="-ivl8A8YhL6A30Lmzu8i-0" />
@@ -62,6 +65,12 @@
         </mxCell>
         <mxCell id="pZJ2bOHo9bR8bqc-_nNZ-0" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;image=https://engineers.weddingpark.co.jp/wp-content/uploads/2018/06/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88-2018-06-19-10.09.42.png;" vertex="1" parent="-ivl8A8YhL6A30Lmzu8i-1">
           <mxGeometry x="420" y="20" width="470" height="312.73" as="geometry" />
+        </mxCell>
+        <mxCell id="pZJ2bOHo9bR8bqc-_nNZ-1" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;image=https://user-images.githubusercontent.com/48108735/62868041-ae8c3100-bd4f-11e9-87a3-9af880a5c2c2.png;" vertex="1" parent="-ivl8A8YhL6A30Lmzu8i-1">
+          <mxGeometry x="-10" y="340" width="520" height="403" as="geometry" />
+        </mxCell>
+        <mxCell id="ylb_CQy5ygpK4mYqSWBx-0" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;image=https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F131949%2F0252749a-67e6-6e53-02c7-0fe56e9b1c33.png?ixlib=rb-1.2.2&amp;auto=format&amp;gif-q=60&amp;q=75&amp;w=1400&amp;fit=max&amp;s=2706d86f859f19166c8e6d1f0c0627f7;" vertex="1" parent="-ivl8A8YhL6A30Lmzu8i-1">
+          <mxGeometry x="510" y="400" width="395.89" height="223.07" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
