@@ -118,6 +118,10 @@ class User < ApplicationRecord
                   content_type: file.content_type_parse.first)
   end
 
+  def self.dummy_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
+  end
+
   private
 
   def downcase_email
@@ -127,9 +131,5 @@ class User < ApplicationRecord
   def create_activation_digest
     self.activation_token = User.new_token
     self.activation_digest = User.digest(activation_token)
-  end
-
-  def self.dummy_email(auth)
-    "#{auth.uid}-#{auth.provider}@example.com"
   end
 end
