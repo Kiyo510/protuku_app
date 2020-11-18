@@ -43,7 +43,7 @@ RSpec.describe User, type: :model do
   describe 'before_save' do
     describe '#email_downcase' do
       let!(:user) { create(:user, email: 'ORIGINAL@EXAMPLE.COM') }
-      it 'makes email to low case' do
+      it '大文字は小文字に変換されること' do
         expect(user.reload.email).to eq 'original@example.com'
       end
     end
@@ -51,23 +51,23 @@ RSpec.describe User, type: :model do
 
   describe 'プロフィール画像登録処理' do
     it 'プロフィール画像が表示されること' do
-      user.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'test.jpg')), filename: 'test.jpg', content_type: 'image/jpg')
+      user.avatar.attach(io: File.open(Rails.root.join('spec/fixtures/images/test.jpg')), filename: 'test.jpg', content_type: 'image/jpg')
       expect(user).to be_valid
     end
 
     it '5MB以上の画像ファイルは登録できないこと' do
-      user.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'test_5mb.jpg')), filename: 'test_5mb.jpg', content_type: 'image/jpg')
+      user.avatar.attach(io: File.open(Rails.root.join('spec/fixtures/images/test_5mb.jpg')), filename: 'test_5mb.jpg', content_type: 'image/jpg')
       expect(user).to be_invalid
     end
 
     it '画像ファイル以外は登録できないこと' do
-      user.avatar.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'test.pdf')), filename: 'test.pdf', content_type: 'application/pdf')
+      user.avatar.attach(io: File.open(Rails.root.join('spec/fixtures/images/test.pdf')), filename: 'test.pdf', content_type: 'application/pdf')
       expect(user).to be_invalid
     end
   end
 
   # ユーザーの退会処理のテスト
-  describe 'userの退会' do
+  describe 'userの退会処理' do
     let!(:item) { FactoryBot.create(:item, user_id: user.id) }
     it 'userは退会に成功すること' do
       expect { user.destroy }.to change { User.count }.by(-1)
@@ -78,17 +78,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-
-#  describe "when password doesn't match confirmation" do
-#   #一致する場合
-#   it "is valid when password confirmation matches password" do
-#     user = FactoryBot.build(:user, password: "password", password_confirmation: "password")
-#     expect(user).to be_valid
-#   end
-
-#   #一致しない場合
-#   it "is not valid when password confirmation is not matches password" do
-#     user = FactoryBot.build(:user, password: "password", password_confirmation: "passward")
-#     user.valid?
-#       expect(user.errors[:password_confirmation]).to include("パスワードの確認が一致していません。")
-#   end

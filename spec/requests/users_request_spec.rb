@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
-include NotificationsHelper
 
 RSpec.describe 'User pages', type: :request do
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:other_user) }
-  describe 'GET /new' do
+
+  describe '新規登録画面' do
     it '正常なレスポンスを返すこと' do
       get signup_path
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe 'GET /show' do
+  describe 'マイページ' do
     context 'ログイン済みのユーザーのとき' do
       it '正常なレスポンスを返すこと' do
         sign_in_as user
@@ -20,9 +22,7 @@ RSpec.describe 'User pages', type: :request do
       end
     end
 
-    # ログインしていないユーザーの場合
     context 'ゲストユーザーのとき' do
-      # アクセスに成功すること
       it '正常なレスポンスを返すこと' do
         get user_path(user)
         expect(response).to have_http_status(:success)
