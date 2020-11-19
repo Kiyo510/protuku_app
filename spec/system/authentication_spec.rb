@@ -7,7 +7,6 @@ RSpec.describe 'Twitterログイン', type: :system do
     before do
       visit login_path
       OmniAuth.config.test_mode = true
-      OmniAuth.config.mock_auth[:twitter] = nil
     end
 
     context '有効なユーザーだったとき' do
