@@ -47,12 +47,12 @@ class Item < ApplicationRecord
     old_tags = current_tags - tags
     new_tags = tags - current_tags
 
-    # Destroy
+    # 既存のタグは削除
     old_tags.each do |old_name|
       self.tags.delete Tag.find_by(tag_name: old_name)
     end
 
-    # Create
+    # 既存のタグでなければ配列に追加
     new_tags.each do |new_name|
       item_tag = Tag.find_or_create_by(tag_name: new_name)
       self.tags << item_tag
