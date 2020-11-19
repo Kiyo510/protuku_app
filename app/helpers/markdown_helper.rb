@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rouge/plugins/redcarpet'
 
 class HTML < Redcarpet::Render::HTML

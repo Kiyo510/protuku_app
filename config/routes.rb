@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'home#home'
   get 'password_resets/new'
@@ -10,10 +12,10 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   resources :users, expect: :index
   resources :items
-  resources :messages, only: %i(create destroy)
-  resources :rooms, only: %i(show create index)
-  resources :stocks, only: %i(index create destroy)
-  resources :account_activations, only: %i(edit)
-  resources :notifications, only: %i(index)
-  resources :password_resets, only: %i(new edit create update)
+  resources :messages, only: %i[create destroy]
+  resources :rooms, only: %i[show create index]
+  resources :stocks, only: %i[index create destroy]
+  resources :account_activations, only: %i[edit]
+  resources :notifications, only: %i[index]
+  resources :password_resets, only: %i[new edit create update]
 end

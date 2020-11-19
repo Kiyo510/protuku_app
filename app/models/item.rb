@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
@@ -45,12 +47,12 @@ class Item < ApplicationRecord
     old_tags = current_tags - tags
     new_tags = tags - current_tags
 
-    # Destroy
+    # 既存のタグは削除
     old_tags.each do |old_name|
       self.tags.delete Tag.find_by(tag_name: old_name)
     end
 
-    # Create
+    # 既存のタグでなければ配列に追加
     new_tags.each do |new_name|
       item_tag = Tag.find_or_create_by(tag_name: new_name)
       self.tags << item_tag
@@ -61,15 +63,15 @@ class Item < ApplicationRecord
     # すでにストックされているか検索
     temp = Notification.where(['visitor_id = ? and visited_id = ? and item_id = ? and action = ? ', current_user.id, user_id, id, 'stock'])
     # ストックされていない場合のみ、通知レコードを作成
-    if temp.blank?
-      notification = current_user.active_notifications.build(
-        item_id: id,
-        visited_id: user_id,
-        action: 'stock'
-      )
-      # 自分の投稿に対するストックの場合は、通知済みとする
-      notification.checked = true if notification.visitor_id == notification.visited_id
-      notification.save if notification.valid?
-    end
+    return if temp.present?
+
+    notification = current_user.active_notifications.build(
+      item_id: id,
+      visited_id: user_id,
+      action: 'stock'
+    )
+    # 自分の投稿に対するストックの場合は、通知済みとする
+    notification.checked = true if notification.visitor_id == notification.visited_id
+    notification.save if notification.valid?
   end
 end

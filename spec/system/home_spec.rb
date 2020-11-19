@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
-include NotificationsHelper
 
 RSpec.feature 'Homes', type: :system do
   let(:user) { FactoryBot.create(:user) }

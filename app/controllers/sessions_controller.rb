@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+# rubocop:disable all
+
 class SessionsController < ApplicationController
   before_action :forbid_login_user, only: %i[new]
 
   def new; end
 
   def create
-    auth = request.env['omniauth.auth']
-    if auth.present?
-      user = User.find_or_create_from_auth(request.env['omniauth.auth'])
+    if auth_hash.present?
+      user = User.find_or_create_from_auth(auth_hash)
       user.accepts_terms!
       user.activate!
       log_in user
@@ -38,4 +40,11 @@ class SessionsController < ApplicationController
     flash[:success] = 'ログアウトしました'
     redirect_to root_url
   end
+
+  protected
+
+  def auth_hash
+    request.env['omniauth.auth']
+  end
+
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.feature 'タグ機能', type: :system do
   let(:user) { FactoryBot.create(:user) }
   let!(:tag) { FactoryBot.create(:tag) }

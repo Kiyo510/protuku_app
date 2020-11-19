@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
-include NotificationsHelper
 
 RSpec.feature 'アカウント有効化メール', type: :system do
   background do

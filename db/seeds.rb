@@ -1,19 +1,21 @@
-#管理ユーザー（メイン）を作成
-User.create!(nickname: "Kiyosuke",
-             email: "kiyosuke@yahoo.co.jp",
-             password: "password",
+# frozen_string_literal: true
+
+# 管理ユーザー（メイン）を作成
+User.create!(nickname: 'Kiyosuke',
+             email: 'kiyosuke@yahoo.co.jp',
+             password: 'password',
              activated: true,
              admin: true)
 
-User.create!(nickname: "Kiyo2",
-             email: "kiyo2@yahoo.co.jp",
-             password: "password",
+User.create!(nickname: 'Kiyo2',
+             email: 'kiyo2@yahoo.co.jp',
+             password: 'password',
              activated: true,
              admin: true)
 
-User.create!(nickname: "Kiyo3",
-             email: "kiyo3@yahoo.co.jp",
-             password: "password",
+User.create!(nickname: 'Kiyo3',
+             email: 'kiyo3@yahoo.co.jp',
+             password: 'password',
              activated: true,
              admin: true)
 
@@ -36,9 +38,9 @@ end
 
 21.times do |i|
   user = User.find(2)
-  item = Item.find(i+1)
+  item = Item.find(i + 1)
   Stock.create!(
     user: user,
-    item: item,
+    item: item
   )
 end

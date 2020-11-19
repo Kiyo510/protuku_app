@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SessionsHelper
   # 渡されたユーザーでログインをする
   def log_in(user)

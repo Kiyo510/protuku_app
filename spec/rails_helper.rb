@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
@@ -17,6 +19,8 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
+OmniAuth.config.test_mode = true
+
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
@@ -31,6 +35,8 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
   config.include LoginSupport # 作成したヘルパーを追加
+  config.include NotificationsHelper
+  config.include OmniauthMocks
 end
 
 Shoulda::Matchers.configure do |config|

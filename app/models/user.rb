@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   require 'open-uri'
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -9,8 +11,8 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :items, dependent: :destroy
-  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
-  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy, inverse_of: :visitor
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy, inverse_of: :visited
   has_one_attached :avatar
 
   validates :avatar, content_type: { in: %w[image/jpeg image/gif image/png],
@@ -23,9 +25,9 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: true }
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
   validates :introduction, length: { maximum: 2000 }
-  validates :accepted, presence: { message: 'をチェックしてください' }
+  validates :accepted, acceptance: { message: 'をチェックしてください' }, on: :create
 
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
@@ -116,7 +118,11 @@ class User < ApplicationRecord
                   content_type: file.content_type_parse.first)
   end
 
+  def self.dummy_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
+  end
 
+  private
 
   def downcase_email
     self.email = email.downcase
@@ -125,9 +131,5 @@ class User < ApplicationRecord
   def create_activation_digest
     self.activation_token = User.new_token
     self.activation_digest = User.digest(activation_token)
-  end
-
-  def self.dummy_email(auth)
-    "#{auth.uid}-#{auth.provider}@example.com"
   end
 end

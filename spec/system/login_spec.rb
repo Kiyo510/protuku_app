@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
-include NotificationsHelper
 
 RSpec.feature 'Login', type: :system do
   let(:user) { FactoryBot.create(:user) }
-  # ログインに成功すること
+
   it 'ログインに成功すること' do
     valid_login(user)
     expect(current_path).to eq user_path(user)
