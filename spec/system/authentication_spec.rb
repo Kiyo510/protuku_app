@@ -6,7 +6,6 @@ RSpec.describe 'Twitterログイン', type: :system do
   describe 'Twitterログイン処理' do
     before do
       visit login_path
-      OmniAuth.config.test_mode = true
     end
 
     after do
