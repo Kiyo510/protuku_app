@@ -19,6 +19,8 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
+OmniAuth.config.test_mode = true
+
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
