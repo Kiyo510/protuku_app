@@ -33,10 +33,3 @@ RSpec.configure do |config|
   config.include NotificationsHelper
   config.include OmniauthMocks
 end
-
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
-end
