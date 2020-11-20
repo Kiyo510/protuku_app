@@ -2,7 +2,7 @@
 
 RSpec.describe UserMailer, type: :mailer do
   let(:user) { FactoryBot.create(:user, email: 'mailer_tester@example.com') }
-   # Base64 でエンコードされたものをデコードして比較できるようにする
+  # Base64でエンコードされたものをデコードして比較できるようにする
   let(:mail_body) { mail.body.encoded.split(/\r\n/).map { |i| Base64.decode64(i) }.join }
 
   describe 'パスワードリセット処理' do
