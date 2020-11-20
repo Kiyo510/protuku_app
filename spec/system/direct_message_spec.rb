@@ -15,7 +15,7 @@ RSpec.feature 'Homes', type: :system do
 
   describe 'DMルーム' do
     context 'userがメッセージを送信したとき' do
-      it 'othe_userへのメッセージの送信が成功すること' do
+      it 'othe_userへのメッセージの送信が成功すること', js: true do
         expect(page).to have_content "#{other_user.nickname}さんへメッセージを送る"
         expect do
           fill_in 'message[content]',	with: 'こんにちは'
