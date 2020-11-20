@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.feature 'サインアップ', type: :system, js: true do
-
   it 'ユーザーはサインアップに成功すること' do
     visit root_path
     click_on 'ユーザー登録'
