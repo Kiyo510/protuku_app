@@ -22,7 +22,7 @@ RSpec.feature '投稿機能', type: :system do
       end
     end
 
-    context '投稿を削除したとき' do
+    context '投稿を削除したとき', js: true do
       let(:login_user) { user }
       it '投稿の削除に成功すること' do
         visit item_path(item)

@@ -15,7 +15,7 @@ RSpec.feature 'Homes', type: :system do
 
   describe 'DMルーム' do
     context 'userがメッセージを送信したとき' do
-      it 'othe_userへのメッセージの送信が成功すること' do
+      it 'othe_userへのメッセージの送信が成功すること', js: true do
         expect(page).to have_content "#{other_user.nickname}さんへメッセージを送る"
         expect do
           fill_in 'message[content]',	with: 'こんにちは'
@@ -44,7 +44,7 @@ RSpec.feature 'Homes', type: :system do
           fill_in 'message[content]',	with: '　'
           click_on '送信'
         end.to change(Message, :count).by(0)
-                                      .and change(Notification, :count).by(0)
+           .and change(Notification, :count).by(0)
 
         expect(page).to have_content 'メッセージの送信に失敗しました'
       end
@@ -57,7 +57,7 @@ RSpec.feature 'Homes', type: :system do
           fill_in 'message[content]',	with: 'a' * 2001
           click_on '送信'
         end.to change(Message, :count).by(0)
-                                      .and change(Notification, :count).by(0)
+           .and change(Notification, :count).by(0)
 
         expect(page).to have_content 'メッセージの送信に失敗しました'
       end
