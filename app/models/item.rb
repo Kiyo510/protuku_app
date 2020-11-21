@@ -2,10 +2,11 @@
 
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+
   belongs_to_active_hash :prefecture
   belongs_to :user
   has_one_attached :image
-  # アソシエーションを設定する
+
   has_many :stocks, dependent: :destroy
   # 投稿記事が誰にストックされているかを取得できる
   has_many :stock_users, through: :stocks, source: :user
@@ -30,8 +31,7 @@ class Item < ApplicationRecord
     stocks.find_by(user_id: user.id).destroy
   end
 
-  # 記事がストック済みであるかを判定
-  # 取得済みであれば true を返す
+  # 記事がストック済みであるかを判定、取得済みであれば true を返す
   def stocked?(user)
     stock_users.include?(user)
   end
@@ -70,6 +70,7 @@ class Item < ApplicationRecord
       visited_id: user_id,
       action: 'stock'
     )
+
     # 自分の投稿に対するストックの場合は、通知済みとする
     notification.checked = true if notification.visitor_id == notification.visited_id
     notification.save if notification.valid?
