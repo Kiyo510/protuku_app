@@ -14,13 +14,15 @@ class RoomsController < ApplicationController
 
   def index
     # ログインユーザーが属しているルームのIDを全て抽出して配列化
-    current_entries = current_user.entries
+    current_entries = current_user.entries.eager_load(:room)
     my_room_ids = []
-    current_entries.each do |entry|
+    current_entries.find_each do |entry|
       my_room_ids << entry.room.id
     end
     # さらにuser_idがログインユーザーでは無いレコードを抽出
-    @another_entries = Entry.where(room_id: my_room_ids).where.not(user_id: current_user.id)
+    @another_entries = Entry.eager_load(:room, :user, user: { avatar_attachment: :blob })
+                            .where(room_id: my_room_ids)
+                            .where.not(user_id: current_user.id)
   end
 
   def show
@@ -28,6 +30,7 @@ class RoomsController < ApplicationController
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @message = Message.new
       # メッセージ相手を抽出
+      @messages = @room.messages.eager_load(:user, user: { avatar_attachment: :blob })
       @another_user_entry = @room.entries.find_by('user_id != ?', current_user.id)
     else
       redirect_back(fallback_location: root_path)

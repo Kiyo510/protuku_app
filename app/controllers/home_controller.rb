@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   before_action :forbid_login_user
 
   def home
-    @items = Item.includes(:user).order('created_at DESC').limit(20)
+    @items = Item.preload(:user, user: { avatar_attachment: :blob })
+                 .with_attached_image.order('items.created_at DESC').limit(20)
   end
 end
