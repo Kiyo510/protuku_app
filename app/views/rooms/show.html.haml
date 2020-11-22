@@ -11,7 +11,7 @@
         = f.hidden_field :room_id, value: @room.id
         .uk-margin-top.uk-text-center
           = f.submit '送信', class: 'uk-button uk-button-primary uk-border-rounded'
-  - @room.messages.all.reverse_order.each do |message|
+  - @messages.reverse_order.each do |message|
     .uk-margin
       .uk-card.uk-card-default.uk-card-body.uk-card-small
         .uk-flex.uk-flex-between

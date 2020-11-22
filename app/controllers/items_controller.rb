@@ -8,14 +8,14 @@ class ItemsController < ApplicationController
 
   def index
     if params[:search].present?
-      items = Item.items_serach(params[:search])
+      items = Item.join_tables_to_items.items_serach(params[:search])
     elsif params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
-      items = @tag.items.order(created_at: :desc)
+      items = @tag.items.join_tables_to_items
     else
-      items = Item.includes(:user).order('created_at DESC')
+      items = Item.join_tables_to_items
     end
-    @tag_lists = Tag.all
+    @tag_lists = Tag.eager_load(:tagmaps).order('tags.created_at DESC')
     @items = Kaminari.paginate_array(items).page(params[:page]).per(10)
   end
 

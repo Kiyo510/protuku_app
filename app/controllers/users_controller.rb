@@ -25,10 +25,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     # ストック一覧を取得
-    stock_items = Stock.get_stock_items(@user)
+    stock_items = Stock.eager_load(item: :user).get_stock_items(@user)
     @stock_items = Kaminari.paginate_array(stock_items).page(params[:stocks_page]).per(10)
     # 投稿した履歴を取得
-    posted_items = @user.items
+    posted_items = @user.items.order('created_at DESC')
     @posted_items = Kaminari.paginate_array(posted_items).page(params[:items_page]).per(10)
     return unless logged_in?
 

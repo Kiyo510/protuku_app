@@ -59,6 +59,10 @@ class Item < ApplicationRecord
     end
   end
 
+  def self.join_tables_to_items
+    eager_load(:tagmaps, :tags, :user, user: { avatar_attachment: :blob }).with_attached_image.order('items.created_at DESC')
+  end
+
   def create_notification_stock!(current_user)
     # すでにストックされているか検索
     temp = Notification.where(['visitor_id = ? and visited_id = ? and item_id = ? and action = ? ', current_user.id, user_id, id, 'stock'])
