@@ -60,8 +60,7 @@ class Item < ApplicationRecord
   end
 
   def self.join_tables_to_items
-    eager_load(:tagmaps, :tags, :user, user: { avatar_attachment: :blob })
-              .with_attached_image.order('items.created_at DESC')
+    eager_load(:tagmaps, :tags, :user, user: { avatar_attachment: :blob }).with_attached_image.order('items.created_at DESC')
   end
 
   def create_notification_stock!(current_user)
