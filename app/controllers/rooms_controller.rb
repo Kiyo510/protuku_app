@@ -30,7 +30,7 @@ class RoomsController < ApplicationController
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @message = Message.new
       # メッセージ相手を抽出
-      @messages = @room.messages.eager_load(:user,  user: { avatar_attachment: :blob })
+      @messages = @room.messages.eager_load(:user, user: { avatar_attachment: :blob })
       @another_user_entry = @room.entries.find_by('user_id != ?', current_user.id)
     else
       redirect_back(fallback_location: root_path)
