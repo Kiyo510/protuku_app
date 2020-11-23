@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   has_many :tags, through: :tagmaps, dependent: :destroy
 
   validates :prefecture_id, presence: true
-  validates :title, presence: true, length: { maximum: 35 }
+  validates :title, presence: true, length: { maximum: 50 }
   validates :content, presence: true, length: { maximum: 10_000 }
   validates :image, content_type: { in: %w[image/jpeg image/gif image/png],
                                     message: '対応してないファイル形式です。' },

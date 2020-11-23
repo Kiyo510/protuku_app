@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
   let(:item) { FactoryBot.create(:item) }
 
   it { is_expected.to validate_presence_of :title }
-  it { is_expected.to validate_length_of(:title).is_at_most(35) }
+  it { is_expected.to validate_length_of(:title).is_at_most(50) }
   it { is_expected.to validate_presence_of :prefecture_id }
   it { is_expected.to validate_length_of(:content) }
   it { is_expected.to validate_length_of(:content).is_at_most(10_000) }

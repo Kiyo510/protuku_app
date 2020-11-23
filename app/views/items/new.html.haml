@@ -2,7 +2,7 @@
   = form_with(model: [@tag,@item], local: true) do |f|
     = render 'layouts/error_messages', model: f.object
     .uk-margin-small
-      = f.text_field :title, placeholder: "タイトルを入力（35文字まで）", class: 'uk-input'
+      = f.text_field :title, placeholder: "タイトルを入力（50文字まで）", class: 'uk-input'
     .uk-margin-small
       = f.text_field :tag_name, placeholder: "プログラミング技術や募集に関するタグをスペース区切りで5つまで入力(例 Ruby Rails )", class: 'uk-input uk-form-small'
     .post_image_and_prefecture_area
