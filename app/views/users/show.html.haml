@@ -27,7 +27,7 @@
         - if logged_in? && @user.id == current_user.id
           = link_to 'プロフィールの編集', edit_user_path(current_user)
       %p
-        = @user.introduction
+        = safe_join(@user.introduction.split("\n"),tag(:br)) unless @user.introduction.nil?
     .uk-card.uk-card-small.uk-card-default.uk-card-body.uk-margin-bottom.profole_box
       %h2.mypage_content_title.fa-history
         投稿履歴
