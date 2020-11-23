@@ -49,7 +49,7 @@
       .user_nickname.uk-margin
         = link_to @item.user.nickname, user_path(@item.user_id), class: 'uk-text-normal uk-text-bold'
       .post_user_introduction_info.uk-margin
-        = @item.user.introduction
+        = safe_join(@item.user.introduction.split("\n"),tag(:br)) unless @item.user.introduction.nil?
       .uk-margin
         - if logged_in?
           - unless @item.user_id == current_user.id
