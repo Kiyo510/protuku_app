@@ -29,6 +29,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'high_voltage', '~> 3.1', '>= 3.1.2'
 gem 'mini_magick'
 gem 'rails-i18n'
+gem 'meta-tags'
 
 group :development do
   gem 'bullet'
