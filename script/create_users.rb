@@ -30,9 +30,9 @@ end
 
 # 採用担当者様専用アカウント
 User.create(
-    nickname: "プロつく太郎",
-    password: "guest123",
-    email: "guest@guest.com",
-    activated: true,
-    accepted: true
-  )
+  nickname: 'プロつく太郎',
+  password: 'guest123',
+  email: 'guest@guest.com',
+  activated: true,
+  accepted: true
+)
