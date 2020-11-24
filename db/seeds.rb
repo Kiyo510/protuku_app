@@ -1,22 +1,24 @@
 # frozen_string_literal: true
 
-# 管理ユーザー（メイン）を作成
 User.create!(nickname: 'Kiyosuke',
              email: 'kiyosuke@yahoo.co.jp',
              password: 'password',
              activated: true,
+             accepted: :true,
              admin: true)
 
 User.create!(nickname: 'Kiyo2',
              email: 'kiyo2@yahoo.co.jp',
              password: 'password',
              activated: true,
+             accepted: :true,
              admin: true)
 
 User.create!(nickname: 'Kiyo3',
              email: 'kiyo3@yahoo.co.jp',
              password: 'password',
              activated: true,
+             accepted: :true,
              admin: true)
 
 5.times do
