@@ -10,12 +10,12 @@ users = [
   'Koro', 'どにち_たいやき', 'Light'
 ]
 
-emails = [
-  'u-ji', 'moko', 'gappai', 'watanabe', 'karen', 'mitu', 'oyabun',
-  'shin', 'masa', 'azuki', 'resuto', 'rindou', 'kenbo', 'mayu-n', 'nonko', 'yuki',
-  'namuru', 'mon', 'noeru', 'ta-bou', 'yuuri', 'c-janmen', 'tuhuyobigun',
-  'nisemonokaihatu', 'papaji-ji', 'aki', 'apori', 'gto', 'hopstep', 'natsu',
-  'emiri-mama', 'remoned', 'andou', 'syuuya', 'koro', 'doniti_taiyaki', 'light'
+emails = %w[
+  u-ji moko gappai watanabe karen mitu oyabun
+  shin masa azuki resuto rindou kenbo mayu-n nonko yuki
+  namuru mon noeru ta-bou yuuri c-janmen tuhuyobigun
+  nisemonokaihatu papaji-ji aki apori gto hopstep natsu
+  emiri-mama remoned andou syuuya koro doniti_taiyaki light
 ]
 
 users.zip(emails) do |user, email|
