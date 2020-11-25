@@ -1,3 +1,4 @@
+- set_meta_tags title: 'パスワードの再設定'
 = form_with(url: password_resets_path, scope: :password_reset, local: true) do |f|
   .uk-section.uk-section-muted.uk-flex.uk-flex-middle
     .uk-width-1-1
@@ -12,4 +13,4 @@
                   = f.label :Eメール
                   = f.email_field :email, class: 'uk-input uk-form-large'
               .uk-margin
-                = f.submit "再設定メールを送信", class: 'uk-button uk-button-primary uk-button-large uk-width-1-1"'
+                = f.submit '再設定メールを送信', class: 'uk-button uk-button-primary uk-button-large uk-width-1-1'
