@@ -167,6 +167,8 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     marked-rails (0.3.2.0)
+    meta-tags (2.13.0)
+      actionpack (>= 3.2.0, < 6.1)
     method_source (1.0.0)
     mimemagic (0.3.5)
     mini_magick (4.10.1)
@@ -371,6 +373,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.2)
   marked-rails
+  meta-tags
   mini_magick
   mysql2 (>= 0.4.4)
   omniauth

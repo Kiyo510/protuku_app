@@ -3,7 +3,8 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %title プロつく！
+    %meta{:content => "no-cache", :name => "turbolinks-cache-control"}
+    %title 新規投稿ページ
     = csrf_meta_tags
     = csp_meta_tag
     / UIkit CSS
@@ -16,7 +17,7 @@
     %script{:src => "https://code.jquery.com/jquery-3.0.0.min.js"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    %meta{:content => "no-cache", :name => "turbolinks-cache-control"}
+    = favicon_link_tag('protuku_favicon.png')
   %body
     :javascript
       $(document).ready(function() {

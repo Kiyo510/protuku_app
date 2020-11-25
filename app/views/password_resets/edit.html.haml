@@ -1,3 +1,4 @@
+- set_meta_tags title: 'パスワードの変更'
 = form_with(model: @user, url: password_reset_path(params[:id]), local: true) do |f|
   - if @user.errors.any?
     .uk-alert-danger

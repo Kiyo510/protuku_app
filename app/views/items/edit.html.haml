@@ -1,3 +1,4 @@
+- set_meta_tags title: '投稿編集ページ'
 .uk-form.new_post_form
   = form_with(model: [@tag,@item], local: true) do |f|
     = render 'layouts/error_messages', model: f.object
