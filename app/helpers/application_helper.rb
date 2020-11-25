@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable all
 
 module ApplicationHelper
   def default_meta_tags
