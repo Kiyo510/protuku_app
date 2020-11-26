@@ -80,8 +80,6 @@
                         %li.uk-nav-divider
                         %li
                           = link_to 'ログアウト', logout_path, method: :delete
-                        %li
-                          = link_to '退会', user_path(current_user), method: :delete, data: { confirm: "退会したデータは二度と復元できません。本当に退会しますか？" }
                 -else
                   .uk-navbar-item.uk-visible@s
                     %li
