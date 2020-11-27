@@ -25,3 +25,4 @@
         = f.password_field :password, class: 'form-control'
       .uk-margin-top.uk-text-center
         = f.submit "変更を保存", class: 'uk-button uk-button-primary uk-text-bold uk-border-rounded'
+  = link_to '退会する方はこちらをクリック', user_path(current_user), method: :delete, data: { confirm: "退会したデータは二度と復元できません。本当に退会しますか？" }, class: 'smaller'
