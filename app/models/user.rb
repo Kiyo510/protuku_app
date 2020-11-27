@@ -26,7 +26,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: true }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, on: :create
-  validates :introduction, length: { maximum: 2000 }
+  validates :introduction, length: { maximum: 200 }
   validates :accepted, acceptance: { message: 'をチェックしてください' }, on: :create
 
   # 渡された文字列のハッシュ値を返す
