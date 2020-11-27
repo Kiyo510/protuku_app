@@ -1,31 +1,39 @@
 # frozen_string_literal: true
 
-User.create!(nickname: 'Kiyosuke',
-             email: 'kiyosuke@yahoo.co.jp',
-             password: 'password',
-             activated: true,
-             accepted: :true,
-             admin: true)
+User.create!(
+  nickname: 'Kiyosuke',
+  email: 'kiyosuke@yahoo.co.jp',
+  password: 'password',
+  activated: true,
+  accepted: true,
+  admin: true
+  )
 
-User.create!(nickname: 'Kiyo2',
-             email: 'kiyo2@yahoo.co.jp',
-             password: 'password',
-             activated: true,
-             accepted: :true,
-             admin: true)
+User.create!(
+  nickname: 'Kiyo2',
+  email: 'kiyo2@yahoo.co.jp',
+  password: 'password',
+  activated: true,
+  accepted: true,
+  admin: true
+  )
 
-User.create!(nickname: 'Kiyo3',
-             email: 'kiyo3@yahoo.co.jp',
-             password: 'password',
-             activated: true,
-             accepted: :true,
-             admin: true)
+User.create!(
+  nickname: 'Kiyo3',
+  email: 'kiyo3@yahoo.co.jp',
+  password: 'password',
+  activated: true,
+  accepted: true,
+  admin: true
+  )
 
 5.times do
   User.create!(
     nickname: Faker::Games::Pokemon.name,
     email: Faker::Internet.email,
-    password: 'password'
+    password: 'password',
+    activated: true,
+    accepted: true
   )
 end
 

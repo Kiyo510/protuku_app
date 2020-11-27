@@ -887,10 +887,14 @@ $title-color: #1e87f0;
   padding-left: 0;
 }
 
+.pagination-flex {
+  justify-content: center;
+  align-items: baseline;
+}
+
 .uk-pagination>.uk-active.current {
   color:#0366d6;
   font-weight: 900;
-  top: -1px;
 }
 
 //投稿詳細ページ
