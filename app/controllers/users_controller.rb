@@ -26,10 +26,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     # ストック一覧を取得
     stock_items = Stock.eager_load(item: :user).get_stock_items(@user)
-    @stock_items = Kaminari.paginate_array(stock_items).page(params[:stocks_page]).per(10)
+    @stock_items = Kaminari.paginate_array(stock_items).page(params[:stocks_page]).per(5)
     # 投稿した履歴を取得
     posted_items = @user.items.order('created_at DESC')
-    @posted_items = Kaminari.paginate_array(posted_items).page(params[:items_page]).per(10)
+    @posted_items = Kaminari.paginate_array(posted_items).page(params[:items_page]).per(5)
     return unless logged_in?
 
     # Entryモデルからログインユーザーのレコードを抽出
