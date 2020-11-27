@@ -492,7 +492,7 @@ $title-color: #1e87f0;
 }
 
 .recent-post-contents {
-  width: calc(100% - 130px);
+  width: calc(100% - 105px);
 }
 
 .recent-post-title {
@@ -860,6 +860,12 @@ $title-color: #1e87f0;
   font-weight: normal;
   color: #666 !important;
   transition: opacity .2s;
+}
+
+.fa-map-marker::before {
+  font-family: FontAwesome;
+  content: "\f041";
+  color: #666;
 }
 
 .post_user_avatar_area {
