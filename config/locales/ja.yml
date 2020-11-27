@@ -22,11 +22,13 @@ ja:
         nickname: ニックネーム
         password: パスワード
         email: Eメール
+        avatar: ''
         introduction: 自己紹介
         accepted: 利用規約、及び、個人情報の取扱に同意する
       item:
         title: タイトル
         content: 内容
+        image: ''
         prefecture_id: 所在地
       message:
         content: 内容
