@@ -24,16 +24,18 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    tag_list = params[:item][:tag_name].split(nil)
-    @item.image.attach(params[:item][:image])
-    @item.user_id = current_user.id
-    if @item.save
-      @item.save_items(tag_list)
-      redirect_to items_path
-    else
-      flash.now[:danger] = '投稿に失敗しました'
-      render 'new'
+    Item.transaction(isolation: :read_committed) do
+      @item = Item.new(item_params)
+      tag_list = params[:item][:tag_name].split(nil)
+      @item.image.attach(params[:item][:image])
+      @item.user_id = current_user.id
+      if @item.save
+        @item.save_items(tag_list)
+        redirect_to items_path
+      else
+        flash.now[:danger] = '投稿に失敗しました'
+        render 'new'
+      end
     end
   end
 
