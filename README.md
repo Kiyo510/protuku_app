@@ -36,7 +36,7 @@ https://protuku.com
 
 ### 投稿関連
 - 新規投稿機能
-- Markdownリアルタイムプレビュー機能
+- Markdownリアルタイムプレビュー機能（コードのシンタックスハイライト機能付き）
 - 投稿検索機能
 - 投稿一覧の表示、 詳細、編集、削除機能
 - 投稿へのタグ付け機能
@@ -51,12 +51,12 @@ https://protuku.com
 
 ## 使用技術
 - 言語/フレームワーク
-  - Ruby2.7.1/Rails6.0
+  - Ruby2.7.1/Rails6.0.3
 - DB
-  - MySQL
+  - MySQL 5.7.31
 - 開発環境
   - Docker
-  - nginx
+  - nginx 1.15.8
 - 本番環境
   - ALB
   - ACM
