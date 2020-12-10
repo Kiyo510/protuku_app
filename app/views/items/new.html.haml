@@ -30,6 +30,8 @@
       breaks: true,
       //codeタグ使用時にデフォルトでつくlangage- を削除
       langPrefix: '',
+      //XSS対策
+      sanitize: true,
       //syntax highlight を追加
       highlight: function (code, lang) {
         return hljs.highlightAuto(code, [lang]).value

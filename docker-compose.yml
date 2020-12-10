@@ -7,9 +7,9 @@ services:
     volumes:
       - .:/webapp
       - tmp-data:/webapp/tmp/sockets
-      - bundle:/bundle
       - public-data:/webapp/public
       - log-data:/var/log/nginx
+      - bundle:/bundle
     depends_on:
       - db
     tty: true
