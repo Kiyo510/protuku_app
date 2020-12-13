@@ -30,7 +30,6 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
   apt-get install -y nodejs
 
 # ルート直下にwebappという名前で作業ディレクトリを作成（コンテナ内のアプリケーションディレクトリ）
-RUN mkdir /webapp
 WORKDIR /webapp
 
 # ホストのGemfileとGemfile.lockをコンテナにコピー
