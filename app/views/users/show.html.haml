@@ -12,14 +12,7 @@
       - if logged_in? && @user.id == current_user.id
         = link_to 'プロフィールの編集', edit_user_path(current_user), class: 'edit_profile_btn'
     .uk-margin
-      - if logged_in? && @user.id != current_user.id
-        - if @is_room == true
-          = link_to 'メッセージを送る', room_path(@room_id), class: "message_btn"
-        - else
-          = form_with model: @room, url: rooms_path, local: true do |f|
-            = fields_for @entry do |e|
-              = e.hidden_field :user_id, value: @user.id
-              = f.submit 'メッセージを送る', class: 'message_btn'
+      = render 'layouts/message_btn'
   .profile_box
     .uk-card.uk-card-small.uk-card-default.uk-card-body.uk-margin-bottom
       %h2.mypage_content_title.fa-user

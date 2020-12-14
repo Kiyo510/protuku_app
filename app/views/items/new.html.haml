@@ -8,7 +8,7 @@
     .post_image_and_prefecture_area
       .post_prefecture
         = f.label :投稿者の所在地, class: 'uk-text-bold user_prefecture'
-        = f.collection_select(:prefecture_id, Prefecture.all, :id, :name,{include_blank: "------------"})
+        = f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {include_blank: "------------"})
       .post_image
         = f.label :画像をアップロードする, class: 'uk-text-bold'
         %span.uk-text-muted

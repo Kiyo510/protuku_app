@@ -52,15 +52,4 @@
       .post_user_introduction_info.uk-margin
         = safe_join(@item.user.introduction.split("\n"),tag(:br)) unless @item.user.introduction.nil?
       .uk-margin
-        - if logged_in?
-          - unless @item.user_id == current_user.id
-            - if @is_room == true
-              = link_to '話を聞いてみる', room_path(@room_id), class: "message_btn"
-            - else
-              = form_with model: @room, url: rooms_path, local: true do |f|
-                = fields_for @entry do |e|
-                  = e.hidden_field :user_id, value: @item.user_id
-                  = f.submit '話を聞いてみる', class: "message_btn"
-        - else
-          -# ゲストユーザーにもダミーとして表示させ、クリックしたらログインを促す
-          = link_to '話を聞いてみる', rooms_path, class: "message_btn"
+        = render 'layouts/message_btn'
