@@ -37,7 +37,7 @@
           %div{:id => "item-#{@item.id}",:class => "stock-btn-below_inner"}
             = render partial: 'stocks/stock_btn_below', locals: { item: @item }
           .sns-share_btn_twitter_below
-            = link_to "https://twitter.com/intent/tweet?url=#{request.url}/&hashtags=appname", title: 'Twitter', target: 'blank' do
+            = link_to "https://twitter.com/intent/tweet?url=#{request.url}/&hashtags=プロつく！", title: 'Twitter', target: 'blank' do
               = fa_icon 'twitter'
     .uk-card.uk-card-small.uk-card-body.uk-card-default.uk-margin-small-right.post_user_info_sidebar.uk-text-center
       .uk-text-bolder.uk-text-secondary
