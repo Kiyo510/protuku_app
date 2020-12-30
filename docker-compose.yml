@@ -19,6 +19,8 @@ services:
     image: mysql:5.7
     volumes:
       - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
 
   web:
     build:
